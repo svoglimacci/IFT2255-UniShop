@@ -1,0 +1,218 @@
+<style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16pt;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 20pt;
+    }
+
+</style>
+<h1>Descriptions des cas d'utilisation</h1>
+<p id="case1">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription en tant qu'acheteur<br>
+    <span style="font-weight: bold;">But :</span> L'utilisateur doit fournir les informations necessaires telles que son nom, prenom, pseudo unique, adresse courriel, numero de telephone et l'adresse d'expedition. Il doit aussi etre capable de le modifier en tout temps.<br>
+    <span style="font-weight: bold;">Préconditions :</span> Le compte de l'utilisateur n'existe pas.</Label><br>
+    <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
+    <span style="font-weight: bold;">Scénario principal :</span> L'utilisateur veut se créer un compte<br>
+    1. Étape 1: Menu d'inscription<br>
+    &emsp;1.1. Étape 1.1 : La plateforme demande à l'utilisateur d'entrer les informations nécessaires.<br>
+    2. Étape 2: Vérification la validité des informations<br>
+    &emsp;2.1. Étape 2.1 : Pseudo unique<br>
+    &emsp;2.2. Étape 2.2 : Adresse courriel valide<br>
+    &emsp;2.3. Étape 2.3 : Numero de telephone valide<br>
+    &emsp;2.4. Étape 2.4 : Adresse d'expédition valide<br>
+    3. Étape 3: Confirmation de l'inscription de l'utilisateur<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
+    2a.1. Les informations saisies sont invalides<br>
+    2a.2. La plateforme demande de corriger les informations invalides<br>
+    3a.1. Si le compte existe déjà, la plateforme redirige l'utilisateur vers la page de connexion.<br>
+    <span style="font-weight: bold;">Postconditions :</span> La plateforme crée un nouvel Utilisateur avec les informations données et la sauvegarde à la base de donnée.<br>
+
+</p>
+<p id="case2">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Recherche de produits<br>
+    <span style="font-weight: bold;">But :</span> Permettre à l'acheteur de voir les options d'un produit recherché<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur souhaite acheter un produit.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
+    <span style="font-weight: bold;">Scénario principal :</span><br>
+    1. Étape 1: L'utilisateur saisie le nom du produit dans la bar de recherche.<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2: L'utilisateur peut filtrer les options<br>
+    3. Étape 3: L'utilisateur peut cliquer sur le produit souhaité pour y voir plus de détails<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
+    1a.1. Aucun produit n'est disponible<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> Tous les options sont affichés.<br>
+
+</p>
+<p id="case3">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Évaluation de produit(s)<br>
+    <span style="font-weight: bold;">But :</span> Permettre aux acheteurs de laisser des évaluations et des commentaires sur les produits achetés afin d'aider les autres acheteurs de prendre des décisions éclairées.<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'acheteur doit avoir achater le produit<br>
+    <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
+    <span style="font-weight: bold;">Scénario principal :</span> L'acheteur laisse une critique sur le produit qu'il a acheté.<br>
+    1. Étape 1: L'utilisateur sélectionne le produit qu'il souhaite évaluer<br>
+    &emsp;1.1. Étape 1.1:<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> L'évaluation est affichée sur la page du produit dans la section de critiques.<br>
+
+</p>
+<p id="case4">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Achat d'un produit<br>
+    <span style="font-weight: bold;">But :</span> Vendre le produit à l'utilisateur qui souhaite l'acheter<br>
+    <span style="font-weight: bold;">Préconditions :</span> Le produit n'est pas en rupture de stock.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Acheteur, vendeur<br>
+    <span style="font-weight: bold;">Scénario principal :</span><br>
+    1. Étape 1: L'utilisateur sélectionne le produit souhaité<br>
+    &emsp;1.1. Étape 1.1: L'utilisateur ajoute le produit au panier<br>
+    2. Étape 2: L'utilisateur passe à la commande<br>
+    &emsp;2.1. Étape 2.1: L'utilisateur saisie les informations requises<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> L'inventaire du vendeur du/des produit(s) achetés est mise à jour. Le vendeur est informé de l'achat.  Chaque commande possède un identifiant unique.<br>
+
+</p>
+<p id="case5">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Retour d'un produit<br>
+    <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
+    nécessaires.<br>
+    <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
+    d'entammer le scéanrio principal.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
+    (secondaire).<br>
+    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
+    ordonnée numériquement<br>
+    1. Étape 1<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
+    principal achève avec succès.<br>
+
+</p>
+<p id="case6">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Trouver un revendeur<br>
+    <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
+    nécessaires.<br>
+    <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
+    d'entammer le scéanrio principal.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
+    (secondaire).<br>
+    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
+    ordonnée numériquement<br>
+    1. Étape 1<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
+    principal achève avec succès.<br>
+
+</p>
+<p id="case7">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription en tant que vendeur<br>
+    <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
+    nécessaires.<br>
+    <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
+    d'entammer le scéanrio principal.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2
+    (secondaire).<br>
+    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
+    ordonnée numériquement<br>
+    1. Étape 1<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
+    principal achève avec succès.<br>
+
+</p>
+<p id="case8">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Offrir un produit<br>
+    <span style="font-weight: bold;">But :</span> Permettre au vendeur de mettre un produit sur le marché<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur a un produit a vendre<br>
+    <span style="font-weight: bold;">Acteurs :</span> Vendeur<br>
+    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
+    ordonnée numériquement<br>
+    1. Étape 1<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
+    principal achève avec succès.<br>
+
+</p>
+<p id="case9">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Changer l'état d'une commande<br>
+    <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions
+    nécessaires.<br>
+    <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant
+    d'entammer le scéanrio principal.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Vendeur<br>
+    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
+    ordonnée numériquement<br>
+    1. Étape 1<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> L'état de la commande est mise à jour. L'acheteur est informé de la mise à jour.<br>
+
+</p>
+<p id="case10">
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Gestion de problème d'un produit<br>
+    <span style="font-weight: bold;">But :</span> Permettre au vendeur de fournir un support à ses acheteurs.<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'acheteur a des problèmes avec son achat.<br>
+    <span style="font-weight: bold;">Acteurs :</span> Vendeur, acheteur<br>
+    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
+    ordonnée numériquement<br>
+    1. Étape 1<br>
+    &emsp;1.1. Étape 1.1<br>
+    2. Étape 2<br>
+    3. Étape 3<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
+    principal, alternatives possibles à certaines étapes<br>
+    1a.1. remplace étape 1 du scenario principal<br>
+    1b.1. autre remplacement de la même étape<br>
+    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario
+    principal achève avec succès.<br>
+
+</p>
