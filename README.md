@@ -1,2 +1,2 @@
 # UniShop
-Projet crée dans le cadre du cours de Génie Logiciel (IFT225) à UdeM.
+Projet crée dans le cadre du cours de Génie Logiciel (IFT2225) à UdeM.
