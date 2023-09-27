@@ -167,18 +167,18 @@
 <p id="case9">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Changer l'état d'une commande<br>
     <span style="font-weight: bold;">But :</span> Informer l'acheteur de tout changement dans l'état de leur commande<br>
-    <span style="font-weight: bold;">Préconditions :</span> L'acheteur a acheté un produit, et il y a eu changement dans l'état de sa commande<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'acheteur a passé une commande.<br>
     <span style="font-weight: bold;">Acteurs :</span> Vendeur, acheteur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
-    1. Étape 1: <br>
-    &emsp;1.1. Étape 1.1<br>
-    2. Étape 2<br>
-    3. Étape 3<br>
-    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-    principal, alternatives possibles à certaines étapes<br>
-    1a.1. remplace étape 1 du scenario principal<br>
-    1b.1. autre remplacement de la même étape<br>
-    1b.2. suit 1b.1 indépendamment du scénario principal<br>
+    1. Étape 1 : État « en production »<br>
+    &emsp;1.1. Étape 1.1 : La plateforme met la commande à l'état « en production » quand un acheteur paie une commande.<br>
+    2. Étape 2 : État « en livraison » <br>
+    &emsp;2.1. Étape 2.1 : Le revendeur met à jour l'état à « en livraison » quand la commande est prête à être livré.<br>
+    &emsp;2.2. Étape 2.2 : Le revendeur transmet à l'acheteur le nom de la compagnie d'expédition ainsi que le numéro de suivi pour permettre à l'acheteur de suivre l'état de la livraison.<br>
+    3. Étape 3 : État « livré »<br>
+    &emsp;3.1. Étape 3.1 : Le revendeur met à jour l'état à « livré » quand la commande atteint l'adresse d'expédition de l'acheteur et que l'acheteur a confirmé sa réception.<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
+    3a.1. L'acheteur ne confirme pas la réception du produit<br>
     <span style="font-weight: bold;">Postconditions :</span> L'état de la commande est mise à jour. L'acheteur est informé de la mise à jour.<br>
 
 </p>
