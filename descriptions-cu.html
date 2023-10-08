@@ -1,3 +1,4 @@
+<meta charset="UTF-8">
 <style>
     * {
         font-family: Arial, Helvetica, sans-serif;
@@ -13,22 +14,22 @@
 <h1>Descriptions des cas d'utilisation</h1>
 <p id="case1">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription en tant qu'acheteur<br>
-    <span style="font-weight: bold;">But :</span> Créer un profile d'utilisateur acheteur<br>
-    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit pouvoir fournir les informations nécéssaires telles que son nom, prenom, pseudo unique, adresse courriel, numéro de téléphone et l'adresse d'expedition. Il doit aussi être capable de le modifier en tout temps.</Label><br>
+    <span style="font-weight: bold;">But :</span> Créer un profil d'utilisateur acheteur<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit pouvoir fournir les informations nécéssaires telles que son nom, prénom, pseudonyme unique, adresse courriel, numéro de téléphone et l'adresse d'expedition. Il doit aussi être capable de le modifier en tout temps.</Label><br>
     <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1: Menu d'inscription<br>
     &emsp;1.1. Étape 1.1 : La plateforme demande à l'utilisateur d'entrer les informations nécessaires.<br>
     2. Étape 2: Vérification de la validité des informations<br>
-    &emsp;2.1. Étape 2.1 : Pseudo unique<br>
+    &emsp;2.1. Étape 2.1 : Pseudonyme unique<br>
     &emsp;2.2. Étape 2.2 : Adresse courriel valide<br>
-    &emsp;2.3. Étape 2.3 : Numero de telephone valide<br>
+    &emsp;2.3. Étape 2.3 : Numéro de téléphone valide<br>
     &emsp;2.4. Étape 2.4 : Adresse d'expédition valide<br>
     3. Étape 3: Confirmation de l'inscription de l'utilisateur<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     2a.1. Les informations saisies sont invalides<br>
     2a.2. La plateforme demande de corriger les informations invalides<br>
-    <span style="font-weight: bold;">Postconditions :</span> La plateforme crée un nouveau profile d'acheteur avec les informations données et la sauvegarde à la base de donnée.<br>
+    <span style="font-weight: bold;">Postconditions :</span> La plateforme crée un nouveau profil d'acheteur avec les informations données et la sauvegarde à la base de données.<br>
 
 </p>
 <p id="case2">
@@ -38,67 +39,69 @@
     <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1: Menu de recherche de produits<br>
-    &emsp;1.1. Étape 1.1: L'utilisateur saisie un mot-clé qui décrit son produit.<br>
+    &emsp;1.1. Étape 1.1: L'utilisateur saisit un mot-clé qui décrit son produit.<br>
     2. Étape 2: L'utilisateur trie les options selon les préférences (optionel)<br>
-    3. Étape 3: L'utilisateur choisi le produit souhaité pour y voir plus de détails<br>
+    3. Étape 3: L'utilisateur choisi le produit souhaité pour voir les détails de celui-ci<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     1a.1. Aucun produit n'est disponible<br>
-    <span style="font-weight: bold;">Postconditions :</span> La plateforme renvoie l'utilisateur sur la page du produit.<br>
+    <span style="font-weight: bold;">Postconditions :</span> La plateforme renvoit l'utilisateur sur la page du produit.<br>
 
 </p>
 <p id="case3">
-    <span style="font-weight: bold;">Cas d'utilisation :</span> Évaluation de produit(s)<br>
-    <span style="font-weight: bold;">But :</span> Permettre aux utilisateurs de laisser des évaluations et des commentaires sur les produits achetés afin d'aider les autres utilisateurs de prendre des décisions éclairées.<br>
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Évaluation de produits<br>
+    <span style="font-weight: bold;">But :</span> Permettre aux utilisateurs de laisser des évaluations et des commentaires sur les produits achetés afin d'aider les autres utilisateurs à prendre des décisions éclairées.<br>
     <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit avoir acheté le produit<br>
     <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
-    <span style="font-weight: bold;">Scénario principal :</span> L'utilisateur laisse une critique sur le produit qu'il a acheté.<br>
+    <span style="font-weight: bold;">Scénario principal :</span> L'utilisateur laisse une évaluation sur le produit qu'il a acheté.<br>
     1. Étape 1: L'utilisateur sélectionne le produit qu'il souhaite évaluer<br>
     2. Étape 2: Section d'évaluation dans la page de produit<br>
-    &emsp;2.1. Étape 2.1 : La plateforme demande à l'utilisateur d'entrer une évaluation.<br>
-    &emsp;2.2. Étape 2.2 : L'utilisateur saisie une note valide (0 à 5)<br>
-    &emsp;2.2. Étape 3.2 : L'utilisateur saisie un commentaire (optionel)<br>
+    &emsp;2.1. Étape 2.1 : La plateforme demande à l'utilisateur d'ajouter une évaluation.<br>
+    &emsp;2.2. Étape 2.2 : L'utilisateur saisit une note valide (0 à 5)<br>
+    &emsp;2.2. Étape 3.2 : L'utilisateur saisit un commentaire (optionel)<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
-    1a.1. Critique non permise lorsque l'utilisateur n'a pas fait d'achat du produit<br>
-    2a.1. L'utilisateur saisie une note invalide.<br>
-    <span style="font-weight: bold;">Postconditions :</span> L'évaluation est enregistré dans la base de données des produits et est affichée sur la page du produit dans la section de critiques.<br>
+    1a.1. Évaluation non permise lorsque l'utilisateur n'a pas fait d'achat du produit<br>
+    2a.1. L'utilisateur saisit une note invalide.<br>
+    <span style="font-weight: bold;">Postconditions :</span> L'évaluation est enregistrée dans la base de données des produits et est affichée sur la page du produit dans la section des évaluations<br>
 
 </p>
 <p id="case4">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Achat d'un produit<br>
-    <span style="font-weight: bold;">But :</span> Permettre à l'utilisateur d'acheter le produit qu'il désire<br>
+    <span style="font-weight: bold;">But :</span> Permettre à l'utilisateur d'acheter le produit souhaité<br>
     <span style="font-weight: bold;">Préconditions :</span> Le produit est disponible sur le marché.<br>
     <span style="font-weight: bold;">Acteurs :</span> Acheteur, vendeur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1: L'utilisateur sélectionne le produit souhaité<br>
-    &emsp;1.1. Étape 1.1: L'utilisateur saisie la quantité désirée du produit à acheter.<br>
+    &emsp;1.1. Étape 1.1: L'utilisateur saisit la quantité désirée du produit à acheter.<br>
     &emsp;1.2. Étape 1.2: La plateforme valide la quantité saisie.<br>
-    2. Étape 2: La plateforme offre la possibilité de continuer à magasiner ou de passer la commande<br>
-    3. Étape 3: L'utilisateur passe la commande<br>
-    &emsp;3.1. Étape 3.1: L'utilisateur saisie les informations requises<br>
-    &emsp;3.2. Étape 3.2: La plateforme valide les informations saisies par l'utilisateur.<br>
-    <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement
-    principal, alternatives possibles à certaines étapes<br>
-    1a.1. Quantité invalide<br>
-    3a.1. Les informations saisies sont invalides<br>
-    <span style="font-weight: bold;">Postconditions :</span> L'inventaire du vendeur du/des produit(s) achetés est mise à jour. Le vendeur est informé de l'achat. Une commande avec un numéro d'identifiant unique est créé.<br>
-
+    &emsp;1.3. Étape 1.3: L'article est ajouté au panier de l'utilisateur.<br>
+    2. Étape 2: La plateforme offre la possibilité de continuer à magasiner ou de passer à l'achat.<br>
+    3. Étape 3: L'utilisateur valide son panier d'achats<br>
+    &emsp;3.1. Étape 3.1: L'utilisateur valide le(s) produit(s) ajouté(s) au panier.<br>
+    4. Étape 4: L'utilisateur passe la commande<br>
+    &emsp;3.2. Étape 3.2: L'utilisateur saisit les informations requises<br>
+    &emsp;3.2. Étape 3.3: La plateforme valide les informations saisies par l'utilisateur.<br>
+    <span style="font-weight: bold;">Scénarios alternatifs :</span>
+    1a.2. Quantité invalide<br>
+    3a.1. L'utilisateur modifie la quantité d'un produit ou enleve un produit du panier.<br>
+    4a.1. Les informations saisies sont invalides<br>
+    <span style="font-weight: bold;">Postconditions :</span> L'inventaire du vendeur du/des produit(s) achetés est mis à jour. Le vendeur est informé de l'achat. Une commande avec un numéro d'identifiant unique est créée.<br>
 </p>
 <p id="case5">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Retour d'une commande<br>
     <span style="font-weight: bold;">But :</span> Permettre à l'utilisateur de retourner un article acheté<br>
-    <span style="font-weight: bold;">Préconditions :</span> La demande de retour a été faite dans les 30 jours ouvrables<br>
+    <span style="font-weight: bold;">Préconditions :</span> La demande de retour a été faite dans les 30 jours ouvrables après l'achat.<br>
     <span style="font-weight: bold;">Acteurs :</span> Acheteur, vendeur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
-    1. Étape 1: La plateforme offre une liste de produits retournables<br>
-    &emsp;1.1. Étape 1.1: L'utilisateur choisi le produit qu'il souhaite retourner<br>
-    2. Étape 2: L'utilisateur saisie la raison de retour<br>
+    1. Étape 1: L'utilisateur accède à son historique d'achats<br>
+    &emsp;1.1. Étape 1.1: L'utilisateur choisit le produit qu'il souhaite retourner<br>
+    2. Étape 2: L'utilisateur saisit la raison de retour<br>
     &emsp;2.1. Étape 2.1: La plateforme envoie un message d'étapes à suivre pour le retour<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     1a.1. L'utilisateur souhaite faire un échange<br>
     1a.2. L'utilisateur sélectionne le/les produit(s) de remplacement<br>
     1a.3. La plateforme calcule la différence de prix que l'acheteur devra payer<br>
-    1b.3. L'acheteur se fait remboursé<br>
-    <span style="font-weight: bold;">Postconditions :</span> Changement de l'état de la commande. L'inventaire du revendeur est mis à jour.<br>
+    1b.3. L'utilisateur se fait remboursé<br>
+    <span style="font-weight: bold;">Postconditions :</span> Changement de l'état de la commande. L'inventaire du revendeur est mise à jour.<br>
 
 </p>
 <p id="case6">
@@ -108,28 +111,35 @@
     <span style="font-weight: bold;">Acteurs :</span> Acheteur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1: Menu de recherche de revendeurs<br>
-    &emsp;1.1. Étape 1.1: L'utilisateur saisie un nom qui correspond a un revendeur.<br>
+    &emsp;1.1. Étape 1.1: L'utilisateur saisit un nom qui correspond à un revendeur.<br>
     2. Étape 2: L'utilisateur trie les options selon les préférences (optionel)<br>
-    3. Étape 3: L'utilisateur choisi le revendeur souhaité pour voir sa page<br>
+    3. Étape 3: L'utilisateur choisit le revendeur souhaité pour voir sa page<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     1a.1. Aucun revendeur trouvé<br>
-    <span style="font-weight: bold;">Postconditions :</span> La plateforme renvoie l'utilisateur sur la page du revendeur.<br>
+    <span style="font-weight: bold;">Postconditions :</span> La plateforme renvoit l'utilisateur sur la page du revendeur.<br>
 
 </p>
 
 <p id="case7">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription en tant que revendeur<br>
     <span style="font-weight: bold;">But :</span> Créer un profil d'utilisateur revendeur.<br>
-    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit pouvoir fournir les informations nécessaires telles que son nom (unique), adresse, adresse courriel et numero de telephone. Il doit aussi être capable de le modifier en tout temps.</Label><br>
+    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur doit avoir un produit à offir et possèder les informations suivantes: nom (unique), adresse, adresse courriel et numéro de telephone.</Label><br>
     <span style="font-weight: bold;">Acteurs :</span> Vendeur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1: Menu d'inscription<br>
     &emsp;1.1. Étape 1.1 : La plateforme demande à l'utilisateur d'entrer les informations nécessaires.<br>
-    2. Étape 2: Vérification de la validité des informations<br>
+    2. Étape 2: Validation des informations<br>
     &emsp;2.1. Étape 2.1 : Nom unique<br>
     &emsp;2.2. Étape 2.2 : Adresse valide<br>
     &emsp;2.3. Étape 2.3 : Numéro de téléphone valide<br>
     &emsp;2.4. Étape 2.4 : Adresse courriel valide<br>
+    &emsp;2.5. Étape 2.5 : Titre (unique)<br>
+    &emsp;2.6. Étape 2.6 : Catégorie<br>
+    &emsp;2.7. Étape 2.7 : Description<br>
+    &emsp;2.8. Étape 2.8 : Nom de la marque<br>
+    &emsp;2.9. Étape 2.9 : Nom du modèle<br>
+    &emsp;2.10. Étape 2.10 : Quantité initiale<br>
+    &emsp;2.11. Étape 2.11 : Prix (modifiable après publication)<br>
     3. Étape 3: Confirmation de l'inscription du revendeur<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     2a.1. Les informations saisies sont invalides<br>
@@ -142,10 +152,9 @@
 <p id="case8">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Offrir un produit<br>
     <span style="font-weight: bold;">But :</span> Permettre au vendeur de mettre un produit sur le marché<br>
-    <span style="font-weight: bold;">Préconditions :</span> L'utilisateur a au moins un produit à vendre<br>
+    <span style="font-weight: bold;">Préconditions :</span> Le vendeur souhaite mettre une nouveau produit en vente.<br>
     <span style="font-weight: bold;">Acteurs :</span> Vendeur<br>
-    <span style="font-weight: bold;">Scénario principal :</span> description étape par étape,
-    ordonnée numériquement<br>
+    <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1: Page du produit<br>
     &emsp;1.1. Étape 1.1 : La plateforme demande à l'utilisateur d'entrer les informations nécessaires.<br>
     2. Étape 2: Vérification de la validité des informations<br>
@@ -157,42 +166,44 @@
     &emsp;2.6. Étape 2.6 : Quantité initiale<br>
     &emsp;2.7. Étape 2.7 : Prix (modifiable après publication)<br>
     3. Étape 3: Promouvoir leurs produits<br>
-    &emsp;2.1. Étape 2.1 : L'utilisateur peut ajouter des images et des vidéos du produit offert.
+    &emsp;3.1. Étape 3.1 : L'utilisateur peut ajouter des images et des vidéos du produit offert.<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     2a.1. Les informations saisies sont invalides<br>
     2a.2. La plateforme demande de corriger les informations invalides<br>
-    <span style="font-weight: bold;">Postconditions :</span> La plateforme crée un page du produit.<br>
+    <span style="font-weight: bold;">Postconditions :</span> La plateforme crée une page du produit.<br>
 
 </p>
 <p id="case9">
     <span style="font-weight: bold;">Cas d'utilisation :</span> Changer l'état d'une commande<br>
-    <span style="font-weight: bold;">But :</span> Informer l'acheteur de tout changement dans l'état de leur commande<br>
-    <span style="font-weight: bold;">Préconditions :</span> L'acheteur a passé une commande.<br>
+    <span style="font-weight: bold;">But :</span> Mettre à jour l'état d'une commande à toutes les étapes de celle-ci<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'état de la commande à changé ("en production", "en livraison", "livrée")<br>
     <span style="font-weight: bold;">Acteurs :</span> Vendeur, acheteur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
     1. Étape 1 : État « en production »<br>
     &emsp;1.1. Étape 1.1 : La plateforme met la commande à l'état « en production » quand un acheteur paie une commande.<br>
     2. Étape 2 : État « en livraison » <br>
-    &emsp;2.1. Étape 2.1 : Le revendeur met à jour l'état à « en livraison » quand la commande est prête à être livré.<br>
+    &emsp;2.1. Étape 2.1 : Le revendeur met à jour l'état à « en livraison » quand la commande est prête à être livrée.<br>
     &emsp;2.2. Étape 2.2 : Le revendeur transmet à l'acheteur le nom de la compagnie d'expédition ainsi que le numéro de suivi pour permettre à l'acheteur de suivre l'état de la livraison.<br>
-    3. Étape 3 : État « livré »<br>
-    &emsp;3.1. Étape 3.1 : Le revendeur met à jour l'état à « livré » quand la commande atteint l'adresse d'expédition de l'acheteur et que l'acheteur a confirmé sa réception.<br>
+    3. Étape 3 : État « livrée »<br>
+    &emsp;3.1. Étape 3.1 : Le revendeur met à jour l'état à « livrée » quand la commande atteint l'adresse d'expédition de l'acheteur et que l'acheteur a confirmé sa réception.<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
     3a.1. L'acheteur ne confirme pas la réception du produit<br>
-    <span style="font-weight: bold;">Postconditions :</span> L'état de la commande est mise à jour. L'acheteur est informé de la mise à jour.<br>
+    <span style="font-weight: bold;">Postconditions :</span> L'état de la commande est mis à jour. L'acheteur est informé de la mise à jour.<br>
 
 </p>
 <p id="case10">
-    <span style="font-weight: bold;">Cas d'utilisation :</span> Gestion de problème d'un produit<br>
+    <span style="font-weight: bold;">Cas d'utilisation :</span> Gestion de problème(s) d'un produit<br>
     <span style="font-weight: bold;">But :</span> Permettre au vendeur de fournir un support à ses acheteurs.<br>
-    <span style="font-weight: bold;">Préconditions :</span> L'acheteur a des problèmes avec son achat.<br>
+    <span style="font-weight: bold;">Préconditions :</span> L'acheteur signale un problème avec son achat.<br>
     <span style="font-weight: bold;">Acteurs :</span> Vendeur, acheteur<br>
     <span style="font-weight: bold;">Scénario principal :</span><br>
-    1. Étape 1 : Proposition de solutions<br>
-    &emsp;1.1. Étape 1.1 : Quand un acheteur signale un problème, le revendeur propose des solutions pour y remédier selon le problème.<br>
-    2. Étape 2 : Prise d'action<br>
-    &emsp;2.1. Étape 2.1 : Une fois l'acheteur accepte la solution, le revendeur prend action selon la solution qu'il a proposé.
+    1. Étape 1: Menu de gestion de problème<br>
+    &emsp;1.1. Étape 1.1 : le revendeur prend connaissance du problème.<br>
+    2. Étape 2 : Proposition de solutions<br>
+    &emsp;2.1. Étape 2.1 : le revendeur propose une solution pour remédier au problème.<br>
+    3. Étape 3 : Prise d'action<br>
+    &emsp;3.1. Étape 3.1 : Lorsque l'acheteur accepte une solution, le revendeur prend action selon la solution proposée.<br>
     <span style="font-weight: bold;">Scénarios alternatifs :</span><br>
-    2a.1. L'acheteur n'accepte aucune solution proposée par le revendeur<br>
+    3a.1. L'acheteur n'accepte aucune solution proposée par le revendeur<br>
     <span style="font-weight: bold;">Postconditions :</span> Problème résolu.<br>
 </p>
