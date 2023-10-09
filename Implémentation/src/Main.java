@@ -1,4 +1,7 @@
-import views.MainView;
+import views.AuthView;
+
+import java.io.IOException;
+
 
 /**
  * Plateforme UniShop : plateforme de commerce électronique crée dans le cadre du cours de Génie Logiciel
@@ -14,9 +17,9 @@ import views.MainView;
 
 public class Main {
 
-    public static void main(String[] args) {
-        MainView mainView = new MainView();
-        mainView.start();
+    public static void main(String[] args) throws IOException {
+        AuthView authView = new AuthView();
+        authView.start();
 
 
     }
