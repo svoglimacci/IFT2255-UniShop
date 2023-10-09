@@ -93,7 +93,7 @@ public class AuthView {
             System.out.println("Vous êtes maintenant enregistré!");
 
         } else {
-            System.out.println("Erreur lors de la création du compte.+\n");
+            System.out.println("Erreur lors de la création du compte.\n");
             this.showLoginPrompt(sc, isSeller);
 
         }
