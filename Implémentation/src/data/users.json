@@ -1,7 +1,7 @@
 {
   "buyers": [
     {
-      "username": "john.doe",
+      "username": "johndoe",
       "password": "password",
       "email": "john.doe@example.com",
       "address": "1234 Main St",
@@ -15,11 +15,19 @@
       "address": "asd",
       "firstName": "asd",
       "lastName": "asd"
+    },
+    {
+      "username": "bob123",
+      "password": "password123",
+      "email": "bobby@example.com",
+      "address": "123 rue du verger",
+      "firstName": "bob",
+      "lastName": "verger"
     }
   ],
   "sellers": [
     {
-      "username": "jane.doe",
+      "username": "janedoe",
       "password": "password",
       "email": "pellegrino@example.com",
       "address": "1234 Main St",

@@ -9,15 +9,19 @@ public class User {
     private String email;
     private String address;
 
+    private final String phoneNumber;
+
     @JsonCreator
     public User(@JsonProperty("username") String username,
                 @JsonProperty("password") String password,
                 @JsonProperty("email") String email,
-                @JsonProperty("address") String address) {
+                @JsonProperty("address") String address,
+                @JsonProperty("phoneNumber") String phoneNumber) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     // Getter methods

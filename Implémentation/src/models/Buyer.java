@@ -13,8 +13,9 @@ public class Buyer extends User {
                  @JsonProperty("email") String email,
                  @JsonProperty("address") String address,
                  @JsonProperty("firstName") String firstName,
-                 @JsonProperty("lastName") String lastName) {
-        super(username, password, email, address);
+                 @JsonProperty("lastName") String lastName,
+                 @JsonProperty("phoneNumber") String phoneNumber) {
+        super(username, password, email, address, phoneNumber);
         this.firstName = firstName;
         this.lastName = lastName;
     }

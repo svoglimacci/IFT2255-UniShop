@@ -33,9 +33,9 @@ public class AuthService {
         }
     }
 
-    public boolean register(String firstName, String lastName, String email, String username, String password, String address) {
+    public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
         try {
-            Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName);
+            Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber);
             buyerSet.add(newBuyer);
             users.getBuyers().add(newBuyer);
             JSONHandler.writeJsonToFile(users, "src/data/users.json");
@@ -45,9 +45,9 @@ public class AuthService {
         }
     }
 
-    public boolean register(String businessName, String email, String username, String password, String address) {
+    public boolean register(String businessName, String email, String username, String password, String address, String phoneNumber) {
         try {
-            Seller newSeller = new Seller(username, password, email, address, businessName);
+            Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber);
             sellerSet.add(newSeller);
             users.getSellers().add(newSeller);
             JSONHandler.writeJsonToFile(users, "src/data/users.json");
@@ -57,5 +57,12 @@ public class AuthService {
         }
     }
 
+    public boolean userExists(String username, boolean isSeller) {
+        if (isSeller) {
+            return sellerSet.stream().anyMatch(seller -> seller.getUsername().equals(username));
+        } else {
+            return buyerSet.stream().anyMatch(buyer -> buyer.getUsername().equals(username));
+        }
+    }
 }
 
