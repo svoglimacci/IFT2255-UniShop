@@ -3,6 +3,7 @@ package views;
 import controllers.AuthController;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AuthView {
@@ -36,7 +37,7 @@ public class AuthView {
                         System.out.println("Choix invalide");
                         break;
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 e.printStackTrace();
             }
         } while (!input.equals("exit"));
@@ -68,7 +69,7 @@ public class AuthView {
         }
     }
 
-    public void showRegisterPrompt(Scanner sc, boolean isSeller) {
+    public void showRegisterPrompt(Scanner sc, boolean isSeller) throws IOException {
         boolean register;
         String username;
         String email;
@@ -162,7 +163,7 @@ public class AuthView {
         }
     }
 
-    public void showLoginPrompt(Scanner sc, boolean isSeller) {
+    public void showLoginPrompt(Scanner sc, boolean isSeller) throws IOException {
         boolean login;
         System.out.println("Veuillez entrer votre nom d'utilisateur : ");
         String username = sc.nextLine();

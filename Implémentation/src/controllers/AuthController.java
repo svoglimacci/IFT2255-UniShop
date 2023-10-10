@@ -12,10 +12,7 @@ public class AuthController {
         this.authService = new AuthService();
     }
 
-    public boolean login(String username, String password, boolean isSeller) {
-        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-            return false;
-        }
+    public boolean login(String username, String password, boolean isSeller) throws IOException {
         return authService.login(username, password, isSeller);
     }
 

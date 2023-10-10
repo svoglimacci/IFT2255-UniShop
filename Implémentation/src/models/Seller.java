@@ -3,6 +3,8 @@ package models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
+
 public class Seller extends User {
     private String businessName;
 
@@ -12,8 +14,10 @@ public class Seller extends User {
                   @JsonProperty("email") String email,
                   @JsonProperty("address") String address,
                   @JsonProperty("businessName") String businessName,
-                  @JsonProperty("phoneNumber") String phoneNumber) {
-        super(username, password, email, address, phoneNumber);
+                  @JsonProperty("phoneNumber") String phoneNumber,
+                  @JsonProperty("isActive") boolean isActive,
+                  @JsonProperty("dateCreated") Date dateCreated){
+        super(username, password, email, address, phoneNumber, isActive, dateCreated);
         this.businessName = businessName;
     }
 
