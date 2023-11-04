@@ -1,34 +1,22 @@
 package models;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 public class LearningMaterial extends Product {
     private String brand;
     private String model;
     private String subCategory;
-
-    enum SubCategory {
-
-        PEN("Stylo"),
-        NOTEBOOK("Cahier"),
-        BINDER("Classeur"),
-        PAPER("Feuilles de papier"),
-        CAlCULATOR("Calculatrice"),
-        HIGHLIGHTER("Surligneur");
+    private String isbn;
+    private String author;
+    private String organization;
+    private String publicationDate;
+    private String edition;
 
 
-        private final String displayName;
-
-        SubCategory(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-        }
-
+    @JsonCreator
     public LearningMaterial(
             @JsonProperty("name") String name,
             @JsonProperty("description") String description,
@@ -40,37 +28,48 @@ public class LearningMaterial extends Product {
             @JsonProperty("isPromoted") boolean isPromoted,
             @JsonProperty("brand") String brand,
             @JsonProperty("model") String model,
-            @JsonProperty("subCategory") String subCategory
-    ) {
+            @JsonProperty("subCategory") String subCategory,
+            @JsonProperty("isbn") String isbn,
+            @JsonProperty("author") String author,
+            @JsonProperty("organization") String organization,
+            @JsonProperty("publicationDate") String publicationDate,
+            @JsonProperty("Édition") String edition) {
         super(name, description, price, likes, comments, rating, category, isPromoted);
         this.brand = brand;
         this.model = model;
         this.subCategory = subCategory;
+        this.author = author;
+        this.isbn = isbn;
+        this.organization = organization;
+        this.publicationDate = publicationDate;
+        this.edition = edition;
+
     }
 
-    // Getters and Setters for the new attributes
-
-    public String getBrand() {
-        return brand;
+    // toString
+    @Override
+    public String toString() {
+        return "Marque : " + brand +
+                "\n Modèle : " + model +
+                "\n Sous-catégorie : " + subCategory +
+                "\n Auteur : " + author +
+                "\n ISBN : " + isbn +
+                "\n Organisation : " + organization +
+                "\n Date de publication : " + publicationDate +
+                "\n Édition : " + edition +
+                "\n Type : " + subCategory;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    enum SubCategory {
+        PRINTED("Imprimé"),
+        DIGITAL("Électronique");
+
+        private final String displayName;
+
+        SubCategory(String displayName) {
+            this.displayName = displayName;
+        }
+
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
-    }
 }

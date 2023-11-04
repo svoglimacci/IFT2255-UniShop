@@ -4,43 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-class Review {
-    private String comment;
-    private String author;
-
-    private int rating;
-
-    public Review(@JsonProperty("comment") String comment,
-                   @JsonProperty("author") String author,
-                   @JsonProperty("rating") int rating) {
-        this.comment = comment;
-        this.author = author;
-        this.rating = rating;
-    }
-}
-
 public class Product {
 
-    private String name;
-    private String description;
-    private double price;
+    public String name;
+    public String description;
+    public double price;
 
-    private int likes;
+    public int likes;
 
-    private List<Review> reviews;
+    public List<Review> reviews;
 
-    private float rating;
+    public float rating;
 
-    private String category;
+    public String category;
 
-    private boolean isPromoted;
+    public boolean isPromoted;
 
     public Product(@JsonProperty("name") String name,
                    @JsonProperty("description") String description,
                    @JsonProperty("price") double price,
-                     @JsonProperty("likes") int likes,
-                     @JsonProperty("comments") List<Review> reviews,
-                   @JsonProperty("rating") float rating,
+                   @JsonProperty("likes") int likes,
+                   @JsonProperty("comments") List<Review> reviews,
+                   float rating,
                    @JsonProperty("category") String category,
                    @JsonProperty("isPromoted") boolean isPromoted) {
         this.name = name;
@@ -53,9 +38,51 @@ public class Product {
         this.isPromoted = isPromoted;
 
     }
-    //getter
+
     public String getName() {
-        return this.name;
+        return name;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public float getRating() {
+        //average rating
+        float sum = 0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+        return sum / reviews.size();
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder reviewString = new StringBuilder();
+        for (Review review : reviews) {
+            reviewString.append(review.toString()).append("\n");
+        }
+        return "Nom : + name +" +
+                "\n Description : " + description +
+                "\n Prix : " + price +
+                "\n Évaluation : " + rating +
+                "\n Nombre d'avis : " + reviews.size() +
+                "\n Nombre de mentions j'aime : " + likes +
+                "\n Reviews : " + reviewString;
+    }
+
 
 }

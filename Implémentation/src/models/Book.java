@@ -1,26 +1,26 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Product {
 
+    private final String genre;
     private String isbn;
     private String author;
     private String publisher;
     private int publicationYear;
     private int edition;
     private int volume;
-    private final String genre;
 
-
+    @JsonCreator
     public Book(@JsonProperty("name") String name,
                 @JsonProperty("description") String description,
                 @JsonProperty("price") double price,
                 @JsonProperty("likes") int likes,
-                @JsonProperty("comments") List<Review> reviews,
+                @JsonProperty("reviews") List<Review> reviews,
                 @JsonProperty("rating") float rating,
                 @JsonProperty("category") String category,
                 @JsonProperty("isPromoted") boolean isPromoted,
@@ -42,10 +42,30 @@ public class Book extends Product {
         this.genre = genre;
     }
 
-    //getGenre
-    public String getGenre() {
-        return this.genre;
+    @Override
+    public String toString() {
+        return "Auteur : " + author +
+                "\nISBN : " + isbn +
+                "\nÉdition : " + edition +
+                "\nVolume : " + volume +
+                "\nGenre : " + genre +
+                "\nMaison d'édition : " + publisher +
+                "\nAnnée de publication : " + publicationYear;
     }
 
+    enum genre {
+        ACADEMIC("Académique"),
+        NOVEL("Roman"),
+        DOCUMENTARY("Documentaire"),
+        COMIC("Bande dessinée");
+
+
+        private final String displayName;
+
+        genre(String displayName) {
+            this.displayName = displayName;
+        }
+
+    }
 
 }
