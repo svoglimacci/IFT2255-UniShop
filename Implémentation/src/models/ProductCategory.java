@@ -1,5 +1,6 @@
 package models;
 
+
 public enum ProductCategory {
     LEARNING_MATERIALS("Ressources d'apprentissage"),
     OFFICE_SUPPLIES("Articles de papeterie"),
@@ -11,6 +12,8 @@ public enum ProductCategory {
 
     ProductCategory(String displayName) {
         this.displayName = displayName;
+
+
     }
 
     public String getDisplayName() {

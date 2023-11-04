@@ -139,7 +139,7 @@ public class AuthView {
         if (login) {
             System.out.println("Bonjour, " + username + "!\n");
             if (isSeller) {
-               System.out.println("SellerView");
+                System.out.println("SellerView");
             } else {
                 BuyerView buyerView = new BuyerView();
                 buyerView.start();
