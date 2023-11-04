@@ -21,15 +21,6 @@ public class Seller extends User {
         this.businessName = businessName;
     }
 
-    // Getter methods
-    public String getBusinessName() {
-        return this.businessName;
-    }
-
-    // Setter methods
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
 
 
 }

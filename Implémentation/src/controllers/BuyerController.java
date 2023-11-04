@@ -1,7 +1,7 @@
 package controllers;
 
-import models.Product;
-import models.ProductCategory;
+import models.BookGenre;
+import models.Products;
 import services.BuyerService;
 
 import java.io.IOException;
@@ -14,16 +14,7 @@ public class BuyerController {
         this.buyerService = new BuyerService();
     }
 
-
-    public Iterable<? extends Product> getProductsByCategory(ProductCategory category) {
-        return switch (category) {
-            case BOOKS -> this.buyerService.getBooks();
-            case LEARNING_MATERIALS -> this.buyerService.getLearningMaterials();
-            case OFFICE_SUPPLIES -> this.buyerService.getOfficeSupplies();
-            case OFFICE_FURNITURES -> this.buyerService.getOfficeFurnitures();
-            case ELECTRONICS -> this.buyerService.getElectronics();
-        };
+    public Products getBooksByGenre(String genre) {
+        return buyerService.getBooksByGenre(genre);
     }
-
-
 }

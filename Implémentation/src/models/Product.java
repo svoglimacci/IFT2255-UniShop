@@ -4,28 +4,43 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+class Review {
+    private String comment;
+    private String author;
+
+    private int rating;
+
+    public Review(@JsonProperty("comment") String comment,
+                   @JsonProperty("author") String author,
+                   @JsonProperty("rating") int rating) {
+        this.comment = comment;
+        this.author = author;
+        this.rating = rating;
+    }
+}
+
 public class Product {
 
-    public String name;
-    public String description;
-    public double price;
+    private String name;
+    private String description;
+    private double price;
 
-    public int likes;
+    private int likes;
 
-    public List<Review> reviews;
+    private List<Review> reviews;
 
-    public float rating;
+    private float rating;
 
-    public String category;
+    private String category;
 
-    public boolean isPromoted;
+    private boolean isPromoted;
 
     public Product(@JsonProperty("name") String name,
                    @JsonProperty("description") String description,
                    @JsonProperty("price") double price,
-                   @JsonProperty("likes") int likes,
-                   @JsonProperty("comments") List<Review> reviews,
-                   float rating,
+                     @JsonProperty("likes") int likes,
+                     @JsonProperty("comments") List<Review> reviews,
+                   @JsonProperty("rating") float rating,
                    @JsonProperty("category") String category,
                    @JsonProperty("isPromoted") boolean isPromoted) {
         this.name = name;
@@ -33,42 +48,14 @@ public class Product {
         this.price = price;
         this.likes = likes;
         this.reviews = reviews;
-        this.rating = getRating();
+        this.rating = rating;
         this.category = category;
         this.isPromoted = isPromoted;
 
     }
-
-    public float getRating() {
-        //average rating
-        float sum = 0;
-        for (Review review : reviews) {
-            sum += review.rating;
-        }
-        return sum / reviews.size();
+    //getter
+    public String getName() {
+        return this.name;
     }
-
-    public String productToString() {
-        return name + " " +
-                price + "$ " +
-                rating + "/5 " + "(" + reviews.size() + ")" + "\n";
-
-    }
-
-
-    public String productDetailsToString() {
-        StringBuilder reviewString = new StringBuilder();
-        for (Review review : reviews) {
-            reviewString.append(review).append("\n");
-        }
-
-        return "Name: " + name + "\n" +
-                "Description: " + description + "\n" +
-                "Price: " + price + "$" + "\n" +
-                "Likes: " + likes + "\n" +
-                "Rating: " + rating + "/5" + "\n" +
-                "Reviews: " + reviewString + "\n";
-    }
-
 
 }
