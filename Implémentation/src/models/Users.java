@@ -24,4 +24,3 @@ public class Users {
         return this.sellers;
     }
 }
-

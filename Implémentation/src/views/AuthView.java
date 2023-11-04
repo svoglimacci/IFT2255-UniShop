@@ -128,7 +128,7 @@ public class AuthView {
         }
     }
 
-    public void showLoginPrompt(Scanner sc, boolean isSeller) {
+    public void showLoginPrompt(Scanner sc, boolean isSeller) throws IOException {
         boolean login;
         System.out.println("Veuillez entrer votre nom d'utilisateur : ");
         String username = sc.nextLine();
@@ -137,7 +137,13 @@ public class AuthView {
 
         login = this.authController.login(username, password, isSeller);
         if (login) {
-            System.out.println("Vous êtes maintenant connecté!");
+            System.out.println("Bonjour, " + username + "!\n");
+            if (isSeller) {
+               System.out.println("SellerView");
+            } else {
+                BuyerView buyerView = new BuyerView();
+                buyerView.start();
+            }
 
         } else {
             System.out.println("Nom d'utilisateur ou mot de passe incorrect.+\n");

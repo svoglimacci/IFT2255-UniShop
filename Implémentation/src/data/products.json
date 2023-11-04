@@ -1,0 +1,31 @@
+{
+  "books": [
+    {
+      "name": "The Little Prince",
+      "description": "The Little Prince is a novella by French aristocrat, writer, and aviator Antoine de Saint-Exupéry. It was first published in English and French in the US by Reynal & Hitchcock in April 1943, and posthumously in France following the liberation of France as Saint-Exupéry's works had been banned by the Vichy Regime.",
+      "price": 10.99,
+      "likes": 100,
+      "comments": [
+        {
+          "author": "John Doe",
+          "comment": "This is a great book!",
+          "rating": 5
+        },
+        {
+          "author": "Jane Doe",
+          "comment": "I love it!",
+            "rating": 5
+        }
+      ],
+      "rating": 4.5,
+      "isPromoted": true,
+      "isbn": "978-1-56619-909-4",
+      "author": "Fred Rogers",
+      "publisher": "Bloomsbury",
+      "publicationYear": 1997,
+      "edition": 1,
+      "volume": 1,
+      "genre": "Académique"
+    }
+  ]
+}
