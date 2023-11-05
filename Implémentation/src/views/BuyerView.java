@@ -7,8 +7,6 @@ import models.ProductCategory;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static models.ProductCategory.*;
-
 public class BuyerView {
 
     private final BuyerController buyerController;
@@ -41,39 +39,15 @@ public class BuyerView {
     }
 
     public void showCategories(Scanner sc) {
-        System.out.println("Veuillez choisir une catégorie :");
-        System.out.println("1. Livres et manuels");
-        System.out.println("2. Ressources d'apprentissage");
-        System.out.println("3. Articles de papeterie");
-        System.out.println("4. Équipement de bureau");
-        System.out.println("5. Matériel informatique");
-        System.out.println("0. Retour");
-        String input = sc.nextLine();
-        try {
-            switch (input) {
-                case "1":
-                    this.showProducts(sc, BOOKS);
-                    break;
-                case "2":
-                    this.showProducts(sc, LEARNING_MATERIALS);
-                    break;
-                case "3":
-                    this.showProducts(sc, OFFICE_SUPPLIES);
-                    break;
-                case "4":
-                    this.showProducts(sc, OFFICE_FURNITURES);
-                    break;
-                case "5":
-                    this.showProducts(sc, ELECTRONICS);
-                    break;
-                case "0":
-                    start();
-                default:
-                    System.out.println("Choix invalide");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        System.out.println(ProductCategory.categoriesToString());
+        int categoryIndex = Integer.parseInt(sc.nextLine());
+        if (categoryIndex == 0) {
+            start();
+        } else if (categoryIndex < 0 || categoryIndex > ProductCategory.values().length) {
+            System.out.println("Choix invalide");
         }
+        ProductCategory category = ProductCategory.values()[categoryIndex - 1];
+        showProducts(sc, category);
     }
 
     public void showProducts(Scanner sc, ProductCategory category) {

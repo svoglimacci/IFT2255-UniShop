@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class BuyerService {
+public class ProductService {
 
     private final Set<Book> bookSet;
     private final Set<Electronic> electronicSet;
@@ -19,7 +19,7 @@ public class BuyerService {
     private final Products products;
     private final JSONHandler JSONHandler;
 
-    public BuyerService() throws IOException {
+    public ProductService() throws IOException {
         JSONHandler = new JSONHandler();
         products = JSONHandler.readJsonFromFile("src/data/products.json", Products.class);
         this.bookSet = new HashSet<>(products.getBooks());
@@ -50,4 +50,15 @@ public class BuyerService {
         return new ArrayList<>(officeFurnitureSet);
     }
 
+    public boolean addProduct(String name, String description, double price, int quantity, String brand, String model, String subCategory, String isbn, String author, String organization, String publicationDate, String edition) {
+        try {
+            LearningMaterial newLearningMaterial = new LearningMaterial(name, description, price, quantity, 0, new ArrayList<>(), 0, "Ressources d'apprentissage", false, brand, model, subCategory, isbn, author, organization, publicationDate, edition);
+            learningMaterialSet.add(newLearningMaterial);
+            products.getLearningMaterials().add(newLearningMaterial);
+            JSONHandler.writeJsonToFile(products, "src/data/products.json");
+            return true;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

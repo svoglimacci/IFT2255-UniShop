@@ -6,18 +6,20 @@ import java.util.List;
 
 public class Products {
 
+    @JsonProperty("books")
     public final List<Book> books;
-
+    @JsonProperty("electronics")
     public final List<Electronic> electronics;
-
+    @JsonProperty("learningMaterials")
     public final List<LearningMaterial> learningMaterials;
-
+    @JsonProperty("officeSupplies")
     public final List<OfficeSupply> officeSupplies;
-
+    @JsonProperty("officeFurnitures")
     public final List<OfficeFurniture> officeFurnitures;
 
 
-    public Products(@JsonProperty("books") List<Book> books, @JsonProperty("electronics") List<Electronic> electronics,
+    public Products(@JsonProperty("books") List<Book> books,
+                    @JsonProperty("electronics") List<Electronic> electronics,
                     @JsonProperty("learningMaterials") List<LearningMaterial> learningMaterials,
                     @JsonProperty("officeSupplies") List<OfficeSupply> officeSupplies,
                     @JsonProperty("officeFurnitures") List<OfficeFurniture> officeFurnitures) {
@@ -39,6 +41,7 @@ public class Products {
     }
 
     public List<LearningMaterial> getLearningMaterials() {
+
         return this.learningMaterials;
     }
 
