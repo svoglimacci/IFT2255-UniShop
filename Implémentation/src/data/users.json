@@ -1,36 +1,48 @@
 {
   "buyers": [
     {
-      "username": "john.doe",
-      "password": "password",
-      "email": "john.doe@example.com",
-      "address": "1234 Main St",
-      "firstName": "John",
-      "lastName": "Doe"
+      "username": "bob123",
+      "password": "password123",
+      "email": "bob@example.com",
+      "address": "rue du metro",
+      "firstName": "Bob",
+      "lastName": "Ross",
+      "phoneNumber": "5146605237",
+      "isActive": true,
+      "dateCreated": 1696976508381
     },
     {
-      "username": "asd",
-      "password": "asd",
-      "email": "asd",
-      "address": "asd",
-      "firstName": "asd",
-      "lastName": "asd"
+      "username": "password123",
+      "password": "password1234",
+      "email": "bob@example.com",
+      "address": "394 ch mer",
+      "firstName": "bob",
+      "lastName": "lepine",
+      "phoneNumber": "5146606666",
+      "isActive": false,
+      "dateCreated": 1696976711014
     }
   ],
   "sellers": [
     {
-      "username": "jane.doe",
-      "password": "password",
-      "email": "pellegrino@example.com",
-      "address": "1234 Main St",
-      "businessName": "Pellegrino's"
+      "username": "bob123",
+      "password": "password123",
+      "email": "bob@example.com",
+      "address": "rue du metro",
+      "businessName": "Pelle de Bob",
+      "phoneNumber": "5146605237",
+      "isActive": true,
+      "dateCreated": 1696976508381
     },
     {
-      "username": "asd",
-      "password": "asd",
-      "email": "asd",
-      "address": "asd",
-      "businessName": "asd"
+      "username": "test123",
+      "password": "password123",
+      "email": "test@gmail.com",
+      "address": "test rue de test",
+      "businessName": "test office",
+      "phoneNumber": "1231231234",
+      "isActive": true,
+      "dateCreated": 1699205887981
     }
   ]
 }
