@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class LearningMaterial extends Product {
-    private String brand;
-    private String model;
-    private String subCategory;
-    private String isbn;
-    private String author;
-    private String organization;
-    private String publicationDate;
-    private String edition;
+    private final String brand;
+    private final String model;
+    private final String subCategory;
+    private final String isbn;
+    private final String author;
+    private final String organization;
+    private final String publicationDate;
+    private final String edition;
 
 
     @JsonCreator
@@ -46,30 +46,17 @@ public class LearningMaterial extends Product {
 
     }
 
-    // toString
     @Override
-    public String toString() {
-        return "Marque : " + brand +
-                "\n Modèle : " + model +
-                "\n Sous-catégorie : " + subCategory +
-                "\n Auteur : " + author +
-                "\n ISBN : " + isbn +
-                "\n Organisation : " + organization +
-                "\n Date de publication : " + publicationDate +
-                "\n Édition : " + edition +
-                "\n Type : " + subCategory;
-    }
-
-    enum SubCategory {
-        PRINTED("Imprimé"),
-        DIGITAL("Électronique");
-
-        private final String displayName;
-
-        SubCategory(String displayName) {
-            this.displayName = displayName;
-        }
-
+    public String productDetailsToString() {
+        return super.productDetailsToString() +
+                "Marque : " + brand + "\n" +
+                "Modèle : " + model + "\n" +
+                "Sous-catégorie : " + subCategory + "\n" +
+                "Auteur : " + author + "\n" +
+                "ISBN : " + isbn + "\n" +
+                "Organisation : " + organization + "\n" +
+                "Date de publication : " + publicationDate + "\n" +
+                "Édition : " + edition + "\n";
     }
 
 }

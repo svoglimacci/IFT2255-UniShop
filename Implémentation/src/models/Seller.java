@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Seller extends User {
-    private String businessName;
+    private final String businessName;
 
     @JsonCreator
     public Seller(@JsonProperty("username") String username,

@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Electronic extends Product {
 
-    private String brand;
-    private String model;
-    private String releaseDate;
-    private String subCategory;
+    private final String brand;
+    private final String model;
+    private final String releaseDate;
+    private final String subCategory;
 
 
     @JsonCreator
@@ -36,24 +36,11 @@ public class Electronic extends Product {
     }
 
     @Override
-    public String toString() {
-        return "Marque : " + brand +
-                "\n Modèle : " + model +
-                "\n Date de sortie : " + releaseDate +
-                "\n Sous-catégorie : " + subCategory;
-    }
-
-    enum SubCategory {
-        LAPTOP("Ordinateur portable"),
-        MOUSE("Souris"),
-        KEYBOARD("Clavier"),
-        EXTERNAL_HDD("Disque dur externe"),
-        HEADPHONES("Écouteurs");
-
-        private final String displayName;
-
-        SubCategory(String displayName) {
-            this.displayName = displayName;
-        }
+    public String productDetailsToString() {
+        return super.productDetailsToString() +
+                "Marque : " + brand + "\n" +
+                "Modèle : " + model + "\n" +
+                "Date de sortie : " + releaseDate + "\n" +
+                "Sous-catégorie : " + subCategory + "\n";
     }
 }

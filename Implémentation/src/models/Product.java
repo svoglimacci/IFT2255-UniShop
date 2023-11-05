@@ -33,55 +33,41 @@ public class Product {
         this.price = price;
         this.likes = likes;
         this.reviews = reviews;
-        this.rating = rating;
+        this.rating = getRating();
         this.category = category;
         this.isPromoted = isPromoted;
 
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
     }
 
     public float getRating() {
         //average rating
         float sum = 0;
         for (Review review : reviews) {
-            sum += review.getRating();
+            sum += review.rating;
         }
         return sum / reviews.size();
     }
 
+    public String productToString() {
+        return name + " " +
+                price + "$ " +
+                rating + "/5 " + "(" + reviews.size() + ")" + "\n";
 
-    @Override
-    public String toString() {
+    }
+
+
+    public String productDetailsToString() {
         StringBuilder reviewString = new StringBuilder();
         for (Review review : reviews) {
-            reviewString.append(review.toString()).append("\n");
+            reviewString.append(review).append("\n");
         }
-        return "Nom : + name +" +
-                "\n Description : " + description +
-                "\n Prix : " + price +
-                "\n Évaluation : " + rating +
-                "\n Nombre d'avis : " + reviews.size() +
-                "\n Nombre de mentions j'aime : " + likes +
-                "\n Reviews : " + reviewString;
+
+        return "Name: " + name + "\n" +
+                "Description: " + description + "\n" +
+                "Price: " + price + "$" + "\n" +
+                "Likes: " + likes + "\n" +
+                "Rating: " + rating + "/5" + "\n" +
+                "Reviews: " + reviewString + "\n";
     }
 
 

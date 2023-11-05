@@ -8,9 +8,9 @@ import java.util.List;
 
 public class OfficeSupply extends Product {
 
-    private String brand;
-    private String model;
-    private String subCategory;
+    private final String brand;
+    private final String model;
+    private final String subCategory;
 
     @JsonCreator
     public OfficeSupply(
@@ -32,27 +32,12 @@ public class OfficeSupply extends Product {
         this.subCategory = subCategory;
     }
 
-    // toString
     @Override
-    public String toString() {
-        return "Marque : " + brand +
-                "\n Modèle : " + model +
-                "\n Sous-catégorie : " + subCategory;
-    }
-
-    enum SubCategory {
-        PEN("Stylo"),
-        NOTEBOOK("Cahier"),
-        BINDER("Classeur"),
-        PAPER("Feuilles de papier"),
-        CAlCULATOR("Calculatrice"),
-        HIGHLIGHTER("Surligneur");
-
-        private final String displayName;
-
-        SubCategory(String displayName) {
-            this.displayName = displayName;
-        }
+    public String productDetailsToString() {
+        return super.productDetailsToString() +
+                "Marque : " + brand + "\n" +
+                "Modèle : " + model + "\n" +
+                "Sous-catégorie : " + subCategory + "\n";
     }
 
 }

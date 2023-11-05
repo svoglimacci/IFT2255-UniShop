@@ -146,7 +146,7 @@ public class AuthView {
             }
 
         } else {
-            System.out.println("Nom d'utilisateur ou mot de passe incorrect.+\n");
+            System.out.println("Nom d'utilisateur ou mot de passe incorrect.\n");
             this.showLoginPrompt(sc, isSeller);
 
         }

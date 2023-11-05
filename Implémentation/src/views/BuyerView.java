@@ -1,7 +1,8 @@
 package views;
 
 import controllers.BuyerController;
-import models.*;
+import models.Product;
+import models.ProductCategory;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -77,16 +78,10 @@ public class BuyerView {
 
     public void showProducts(Scanner sc, ProductCategory category) {
         int idx = 1;
-        Iterable<? extends Product> products = switch (category) {
-            case BOOKS -> this.buyerController.getBooks();
-            case LEARNING_MATERIALS -> this.buyerController.getLearningMaterials();
-            case OFFICE_SUPPLIES -> this.buyerController.getOfficeSupplies();
-            case OFFICE_FURNITURES -> this.buyerController.getOfficeFurnitures();
-            case ELECTRONICS -> this.buyerController.getElectronics();
-        };
+        Iterable<? extends Product> products = this.buyerController.getProductsByCategory(category);
         System.out.println("Veuillez choisir un produit :");
         for (Product product : products) {
-            System.out.println(idx + ". " + product.getName() + " - " + product.getPrice() + "$" + " - " + product.getRating() + "/5" + " - " + product.getReviews().size() + " avis");
+            System.out.println(product.productToString());
             idx++;
         }
         String input = sc.nextLine();
@@ -111,35 +106,6 @@ public class BuyerView {
     }
 
     private void showProduct(Product product) {
-        System.out.println(product.getName());
-        System.out.println(product.getDescription());
-        System.out.println(product.getPrice() + "$");
-        System.out.println(product.getRating() + "/5");
-
-        for (Review review : product.getReviews()) {
-            System.out.println(review.toString());
-        }
-
-
-        if (product.getClass().equals(Book.class)) {
-            Book book = (Book) product;
-            System.out.println(book);
-        } else if (product.getClass().equals(LearningMaterial.class)) {
-            LearningMaterial learningMaterial = (LearningMaterial) product;
-            System.out.println(learningMaterial);
-        } else if (product.getClass().equals(OfficeSupply.class)) {
-            OfficeSupply officeSupply = (OfficeSupply) product;
-            System.out.println(officeSupply);
-        } else if (product.getClass().equals(OfficeFurniture.class)) {
-            OfficeFurniture officeFurniture = (OfficeFurniture) product;
-            System.out.println(officeFurniture);
-        } else if (product.getClass().equals(Electronic.class)) {
-            Electronic electronic = (Electronic) product;
-            System.out.println(electronic);
-        } else {
-            throw new IllegalStateException("Unexpected value: " + product.getClass());
-        }
-
-
+        System.out.println(product.productDetailsToString());
     }
 }
