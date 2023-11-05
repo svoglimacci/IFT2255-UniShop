@@ -1,10 +1,10 @@
 package controllers;
 
-import models.*;
+import models.Product;
+import models.ProductCategory;
 import services.BuyerService;
 
 import java.io.IOException;
-import java.util.List;
 
 public class BuyerController {
 
@@ -15,24 +15,14 @@ public class BuyerController {
     }
 
 
-    public List<Book> getBooks() {
-        return this.buyerService.getBooks();
-    }
-
-    public List<Electronic> getElectronics() {
-        return this.buyerService.getElectronics();
-    }
-
-    public List<LearningMaterial> getLearningMaterials() {
-        return this.buyerService.getLearningMaterials();
-    }
-
-    public List<OfficeSupply> getOfficeSupplies() {
-        return this.buyerService.getOfficeSupplies();
-    }
-
-    public List<OfficeFurniture> getOfficeFurnitures() {
-        return this.buyerService.getOfficeFurnitures();
+    public Iterable<? extends Product> getProductsByCategory(ProductCategory category) {
+        return switch (category) {
+            case BOOKS -> this.buyerService.getBooks();
+            case LEARNING_MATERIALS -> this.buyerService.getLearningMaterials();
+            case OFFICE_SUPPLIES -> this.buyerService.getOfficeSupplies();
+            case OFFICE_FURNITURES -> this.buyerService.getOfficeFurnitures();
+            case ELECTRONICS -> this.buyerService.getElectronics();
+        };
     }
 
 

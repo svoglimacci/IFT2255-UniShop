@@ -18,13 +18,11 @@ public class Review {
 
     @Override
     public String toString() {
-        if (rating % 1 != 0) {
-            rating = Math.round(rating);
+        //remove decimal part if it's .0
+        if (rating % 1 == 0) {
+            return "Avis de " + author + " : " + comment + " (" + (int) rating + "/5)";
         }
         return "Avis de " + author + " : " + comment + " (" + rating + "/5)";
     }
 
-    public float getRating() {
-        return rating;
-    }
 }

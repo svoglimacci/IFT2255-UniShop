@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 public class Seller extends User {
-    private String businessName;
+    private final String businessName;
 
     @JsonCreator
     public Seller(@JsonProperty("username") String username,

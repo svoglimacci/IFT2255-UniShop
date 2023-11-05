@@ -21,8 +21,6 @@ public class Main {
         AuthView authView = new AuthView();
         authView.start();
 
-
     }
-
 
 }

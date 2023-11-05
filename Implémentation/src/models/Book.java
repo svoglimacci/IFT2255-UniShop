@@ -8,12 +8,12 @@ import java.util.List;
 public class Book extends Product {
 
     private final String genre;
-    private String isbn;
-    private String author;
-    private String publisher;
-    private int publicationYear;
-    private int edition;
-    private int volume;
+    private final String isbn;
+    private final String author;
+    private final String publisher;
+    private final int publicationYear;
+    private final int edition;
+    private final int volume;
 
     @JsonCreator
     public Book(@JsonProperty("name") String name,
@@ -43,28 +43,15 @@ public class Book extends Product {
     }
 
     @Override
-    public String toString() {
-        return "Auteur : " + author +
-                "\nISBN : " + isbn +
-                "\nÉdition : " + edition +
-                "\nVolume : " + volume +
-                "\nGenre : " + genre +
-                "\nMaison d'édition : " + publisher +
-                "\nAnnée de publication : " + publicationYear;
-    }
-
-    enum genre {
-        ACADEMIC("Académique"),
-        NOVEL("Roman"),
-        DOCUMENTARY("Documentaire"),
-        COMIC("Bande dessinée");
-
-
-        private final String displayName;
-
-        genre(String displayName) {
-            this.displayName = displayName;
-        }
+    public String productDetailsToString() {
+        return super.productDetailsToString() +
+                "Genre : " + genre + "\n" +
+                "ISBN : " + isbn + "\n" +
+                "Auteur : " + author + "\n" +
+                "Editeur : " + publisher + "\n" +
+                "Année de publication : " + publicationYear + "\n" +
+                "Edition : " + edition + "\n" +
+                "Volume : " + volume + "\n";
 
     }
 
