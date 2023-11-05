@@ -2,16 +2,16 @@ package controllers;
 
 import models.Product;
 import models.ProductCategory;
-import services.BuyerService;
+import services.ProductService;
 
 import java.io.IOException;
 
 public class BuyerController {
 
-    private final BuyerService buyerService;
+    private final ProductService buyerService;
 
     public BuyerController() throws IOException {
-        this.buyerService = new BuyerService();
+        this.buyerService = new ProductService();
     }
 
 

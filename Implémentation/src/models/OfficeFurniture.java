@@ -17,8 +17,9 @@ public class OfficeFurniture extends Product {
             @JsonProperty("name") String name,
             @JsonProperty("description") String description,
             @JsonProperty("price") double price,
+            @JsonProperty("quantity") int quantity,
             @JsonProperty("likes") int likes,
-            @JsonProperty("comments") List<Review> comments,
+            @JsonProperty("reviews") List<Review> reviews,
             @JsonProperty("rating") float rating,
             @JsonProperty("category") String category,
             @JsonProperty("isPromoted") boolean isPromoted,
@@ -26,10 +27,23 @@ public class OfficeFurniture extends Product {
             @JsonProperty("model") String model,
             @JsonProperty("subCategory") String subCategory
     ) {
-        super(name, description, price, likes, comments, rating, category, isPromoted);
+        super(name, description, price, quantity, likes, reviews, rating, category, isPromoted);
         this.brand = brand;
         this.model = model;
         this.subCategory = subCategory;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    //getter
+    public String getBrand() {
+        return brand;
     }
 
     @Override
@@ -40,4 +54,11 @@ public class OfficeFurniture extends Product {
                 "Sous-catégorie : " + subCategory + "\n";
     }
 
+    @Override
+    public List<String> propertiesToString() {
+        //return super and append new properties
+        List<String> propertiesNames = super.propertiesToString();
+        propertiesNames.addAll(List.of("marque", "modèle", "sous-catégorie"));
+        return propertiesNames;
+    }
 }
