@@ -78,40 +78,6 @@ public class LearningMaterial extends Product {
         return edition;
     }
 
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public String getOrganization() {
-        return organization;
-    }
-
-    public String getPublicationDate() {
-        return publicationDate;
-    }
-
-    public String getEdition() {
-        return edition;
-    }
-
-
     @Override
     public String productDetailsToString() {
         return super.productDetailsToString() +
