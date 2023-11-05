@@ -33,6 +33,7 @@ public class Book extends Product {
                 @JsonProperty("volume") int volume,
                 @JsonProperty("genre") String genre) {
         super(name, description, price, quantity, likes, reviews, rating, category, isPromoted);
+
         this.isbn = isbn;
         this.author = author;
         this.publisher = publisher;
@@ -52,9 +53,7 @@ public class Book extends Product {
                 "Année de publication : " + publicationYear + "\n" +
                 "Edition : " + edition + "\n" +
                 "Volume : " + volume + "\n";
-
     }
-
 
     @Override
     public List<String> propertiesToString() {
@@ -91,4 +90,5 @@ public class Book extends Product {
     public String getGenre() {
         return genre;
     }
+
 }

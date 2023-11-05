@@ -45,8 +45,7 @@ public class LearningMaterial extends Product {
         this.publicationDate = publicationDate;
         this.edition = edition;
     }
-
-    //getter
+  
     public String getBrand() {
         return brand;
     }
@@ -95,7 +94,6 @@ public class LearningMaterial extends Product {
 
     @Override
     public List<String> propertiesToString() {
-        //return super and append new properties
         List<String> propertiesNames = super.propertiesToString();
         propertiesNames.addAll(List.of("marque", "modèle", "sous-catégorie", "auteur", "isbn", "organisation", "date de publication", "édition"));
         return propertiesNames;

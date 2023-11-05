@@ -2,7 +2,11 @@ package controllers;
 
 import models.Product;
 import models.ProductCategory;
+
 import services.ProductService;
+
+import services.BuyerService;
+
 
 import java.io.IOException;
 
@@ -12,6 +16,12 @@ public class BuyerController {
 
     public BuyerController() throws IOException {
         this.buyerService = new ProductService();
+
+    private final BuyerService buyerService;
+
+    public BuyerController() throws IOException {
+        this.buyerService = new BuyerService();
+
     }
 
 

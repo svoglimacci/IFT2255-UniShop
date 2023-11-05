@@ -55,7 +55,6 @@ public class OfficeSupply extends Product {
 
     @Override
     public List<String> propertiesToString() {
-        //return super and append new properties
         List<String> propertiesNames = super.propertiesToString();
         propertiesNames.addAll(List.of("marque", "modèle", "sous-catégorie"));
         return propertiesNames;
