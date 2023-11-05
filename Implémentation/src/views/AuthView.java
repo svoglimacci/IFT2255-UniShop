@@ -175,15 +175,14 @@ public class AuthView {
         if (login) {
             System.out.println("Vous êtes maintenant connecté!");
             if (isSeller) {
-                SellerView sellerView = new SellerView();
-                sellerView.start();
+                System.out.println("Vous êtes maintenant connecté en tant que vendeur!");
             } else {
                 BuyerView buyerView = new BuyerView();
                 buyerView.start();
             }
 
         } else {
-            System.out.println("Nom d'utilisateur ou mot de passe incorrect.+\n");
+            System.out.println("Nom d'utilisateur ou mot de passe incorrect.\n");
             this.showLoginPrompt(sc, isSeller);
 
         }
