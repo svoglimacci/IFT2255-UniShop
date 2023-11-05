@@ -22,11 +22,36 @@ public class ProductService {
     public ProductService() throws IOException {
         JSONHandler = new JSONHandler();
         products = JSONHandler.readJsonFromFile("src/data/products.json", Products.class);
-        this.bookSet = new HashSet<>(products.getBooks());
-        this.electronicSet = new HashSet<>(products.getElectronics());
-        this.learningMaterialSet = new HashSet<>(products.getLearningMaterials());
-        this.officeSupplySet = new HashSet<>(products.getOfficeSupplies());
-        this.officeFurnitureSet = new HashSet<>(products.getOfficeFurnitures());
+
+        if (products.getBooks() != null) {
+    this.bookSet = new HashSet<>(products.getBooks());
+} else {
+    this.bookSet = new HashSet<>();
+}
+
+if (products.getElectronics() != null) {
+    this.electronicSet = new HashSet<>(products.getElectronics());
+} else {
+    this.electronicSet = new HashSet<>();
+}
+
+if (products.getLearningMaterials() != null) {
+    this.learningMaterialSet = new HashSet<>(products.getLearningMaterials());
+} else {
+    this.learningMaterialSet = new HashSet<>();
+}
+
+if (products.getOfficeSupplies() != null) {
+    this.officeSupplySet = new HashSet<>(products.getOfficeSupplies());
+} else {
+    this.officeSupplySet = new HashSet<>();
+}
+
+if (products.getOfficeFurnitures() != null) {
+    this.officeFurnitureSet = new HashSet<>(products.getOfficeFurnitures());
+} else {
+    this.officeFurnitureSet = new HashSet<>();
+}
 
     }
 
@@ -49,6 +74,7 @@ public class ProductService {
     public List<OfficeFurniture> getOfficeFurnitures() {
         return new ArrayList<>(officeFurnitureSet);
     }
+
 
     public boolean addProduct(String name, String description, double price, int quantity, String brand, String model, String subCategory, String isbn, String author, String organization, String publicationDate, String edition) {
         try {

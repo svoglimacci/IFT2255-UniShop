@@ -1,6 +1,9 @@
+import utilities.JSONHandler;
 import views.AuthView;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -18,6 +21,13 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
+        JSONHandler jsonHandler = new JSONHandler();
+        Map<String, Object> emptyObject = new HashMap<>();
+        jsonHandler.writeJsonToFile(emptyObject, "src/data/users.json");
+        jsonHandler.writeJsonToFile(emptyObject, "src/data/products.json");
+
+
         AuthView authView = new AuthView();
         authView.start();
 
