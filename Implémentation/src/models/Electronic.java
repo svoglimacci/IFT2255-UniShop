@@ -18,6 +18,8 @@ public class Electronic extends Product {
             @JsonProperty("name") String name,
             @JsonProperty("description") String description,
             @JsonProperty("price") double price,
+            @JsonProperty("quantity") int quantity,
+
             @JsonProperty("likes") int likes,
             @JsonProperty("reviews") List<Review> reviews,
             @JsonProperty("rating") float rating,
@@ -28,11 +30,28 @@ public class Electronic extends Product {
             @JsonProperty("releaseDate") String releaseDate,
             @JsonProperty("subCategory") String subCategory
     ) {
-        super(name, description, price, likes, reviews, rating, category, isPromoted);
+
+        super(name, description, price, quantity, likes, reviews, rating, category, isPromoted);
         this.brand = brand;
         this.model = model;
         this.releaseDate = releaseDate;
         this.subCategory = subCategory;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
     }
 
     @Override
@@ -42,5 +61,12 @@ public class Electronic extends Product {
                 "Modèle : " + model + "\n" +
                 "Date de sortie : " + releaseDate + "\n" +
                 "Sous-catégorie : " + subCategory + "\n";
+    }
+
+    @Override
+    public List<String> propertiesToString() {
+        List<String> propertiesNames = super.propertiesToString();
+        propertiesNames.addAll(List.of("marque", "modèle", "date de sortie", "sous-catégorie"));
+        return propertiesNames;
     }
 }

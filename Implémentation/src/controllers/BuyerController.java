@@ -2,26 +2,28 @@ package controllers;
 
 import models.Product;
 import models.ProductCategory;
-import services.BuyerService;
+import services.ProductService;
 
 import java.io.IOException;
 
 public class BuyerController {
 
-    private final BuyerService buyerService;
+    private final ProductService productService;
 
     public BuyerController() throws IOException {
-        this.buyerService = new BuyerService();
+        this.productService = new ProductService();
+
+
     }
 
 
     public Iterable<? extends Product> getProductsByCategory(ProductCategory category) {
         return switch (category) {
-            case BOOKS -> this.buyerService.getBooks();
-            case LEARNING_MATERIALS -> this.buyerService.getLearningMaterials();
-            case OFFICE_SUPPLIES -> this.buyerService.getOfficeSupplies();
-            case OFFICE_FURNITURES -> this.buyerService.getOfficeFurnitures();
-            case ELECTRONICS -> this.buyerService.getElectronics();
+            case BOOKS -> this.productService.getBooks();
+            case LEARNING_MATERIALS -> this.productService.getLearningMaterials();
+            case OFFICE_SUPPLIES -> this.productService.getOfficeSupplies();
+            case OFFICE_FURNITURES -> this.productService.getOfficeFurnitures();
+            case ELECTRONICS -> this.productService.getElectronics();
         };
     }
 

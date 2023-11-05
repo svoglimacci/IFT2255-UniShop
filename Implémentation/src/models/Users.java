@@ -1,15 +1,17 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 public class Users {
     @JsonProperty("buyers")
-    public final List<Buyer> buyers;
+    public List<Buyer> buyers;
     @JsonProperty("sellers")
-    public final List<Seller> sellers;
+    public List<Seller> sellers;
 
+    @JsonCreator
     public Users(@JsonProperty("buyers") List<Buyer> buyers,
                  @JsonProperty("sellers") List<Seller> sellers) {
         this.buyers = buyers;
@@ -20,7 +22,15 @@ public class Users {
         return this.buyers;
     }
 
+    public void setBuyers(List<Buyer> buyers) {
+        this.buyers = buyers;
+    }
+
     public List<Seller> getSellers() {
         return this.sellers;
+    }
+
+    public void setSellers(List<Seller> sellers) {
+        this.sellers = sellers;
     }
 }

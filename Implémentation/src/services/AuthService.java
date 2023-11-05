@@ -7,6 +7,7 @@ import models.Users;
 import utilities.JSONHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +22,17 @@ public class AuthService {
     public AuthService() throws IOException {
         JSONHandler = new JSONHandler();
         users = JSONHandler.readJsonFromFile("src/data/users.json", Users.class);
-        this.buyerSet = new HashSet<>(users.getBuyers());
-        this.sellerSet = new HashSet<>(users.getSellers());
+
+        if (users.getBuyers() != null) {
+            this.buyerSet = new HashSet<>(users.getBuyers());
+        } else {
+            this.buyerSet = new HashSet<>();
+        }
+        if (users.getSellers() != null) {
+            this.sellerSet = new HashSet<>(users.getSellers());
+        } else {
+            this.sellerSet = new HashSet<>();
+        }
     }
 
     public boolean login(String username, String password, boolean isSeller) throws IOException {
@@ -55,6 +65,9 @@ public class AuthService {
     public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
         try {
             Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date());
+            if (users.getBuyers() == null) {
+                users.setBuyers(new ArrayList<>());
+            }
             buyerSet.add(newBuyer);
             users.getBuyers().add(newBuyer);
             JSONHandler.writeJsonToFile(users, "src/data/users.json");
@@ -67,6 +80,9 @@ public class AuthService {
     public boolean register(String businessName, String email, String username, String password, String address, String phoneNumber) {
         try {
             Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber, false, new Date());
+            if (users.getSellers() == null) {
+                users.setSellers(new ArrayList<>());
+            }
             sellerSet.add(newSeller);
             users.getSellers().add(newSeller);
             JSONHandler.writeJsonToFile(users, "src/data/users.json");
