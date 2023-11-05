@@ -3,6 +3,7 @@ package views;
 import controllers.AuthController;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AuthView {
@@ -36,7 +37,7 @@ public class AuthView {
                         System.out.println("Choix invalide");
                         break;
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 e.printStackTrace();
             }
         } while (!input.equals("exit"));
@@ -70,27 +71,62 @@ public class AuthView {
 
     public void showRegisterPrompt(Scanner sc, boolean isSeller) throws IOException {
         boolean register;
-        System.out.println("Veuillez entrer votre adresse courriel : ");
-        String email = sc.nextLine();
-        System.out.println("Veuillez entrer votre nom d'utilisateur : ");
-        String username = sc.nextLine();
-        System.out.println("Veuillez entrer votre mot de passe : ");
-        String password = sc.nextLine();
-        System.out.println("Veuillez entrer votre adresse : ");
-        String address = sc.nextLine();
+        String username;
+        String email;
+        String password;
+        String address;
+        String businessName;
+        String firstName;
+        String lastName;
+        String phoneNumber;
+
+        do {
+            System.out.println("Veuillez entrer votre adresse courriel valide : ");
+            email = sc.nextLine();
+        } while (!this.authController.validateEmail(email));
+
+        do {
+            System.out.println("Veuillez entrer votre nom d'utilisateur valide: ");
+            username = sc.nextLine();
+
+        } while (!this.authController.validateUsername(username, isSeller));
+
+
+        do {
+            System.out.println("Veuillez entrer votre mot de passe valide : ");
+            password = sc.nextLine();
+        } while (!this.authController.validatePassword(password));
+
+
+        do {
+            System.out.println("Veuillez entrer une adresse valide : ");
+            address = sc.nextLine();
+        } while (!this.authController.validateAddress(address));
+
+        do {
+            System.out.println("Veuillez entrer un numéro de téléphone valide : ");
+            phoneNumber = sc.nextLine();
+        } while (!this.authController.validatePhoneNumber(phoneNumber));
+
         if (isSeller) {
-            System.out.println("Veuillez entrer le nom de votre entreprise : ");
-            String businessName = sc.nextLine();
-            register = this.authController.register(businessName, email, username, password, address);
+            do {
+                System.out.println("Veuillez entrer un nom d'entreprise valide : ");
+                businessName = sc.nextLine();
+            } while (!this.authController.validateName(businessName));
+            register = this.authController.register(businessName, email, username, password, address, phoneNumber);
         } else {
-            System.out.println("Veuillez entrer votre prénom : ");
-            String firstName = sc.nextLine();
-            System.out.println("Veuillez entrer votre nom de famille : ");
-            String lastName = sc.nextLine();
-            register = this.authController.register(firstName, lastName, email, username, password, address);
+            do {
+                System.out.println("Veuillez entrer un prénom valide : ");
+                firstName = sc.nextLine();
+                System.out.println("Veuillez entrer un nom de famille valide : ");
+                lastName = sc.nextLine();
+            } while (!this.authController.validateName(firstName, lastName));
+            register = this.authController.register(firstName, lastName, email, username, password, address, phoneNumber);
         }
+
         if (register) {
             System.out.println("Vous êtes maintenant enregistré!");
+            this.start();
 
         } else {
             System.out.println("Erreur lors de la création du compte.\n");
@@ -137,16 +173,17 @@ public class AuthView {
 
         login = this.authController.login(username, password, isSeller);
         if (login) {
-            System.out.println("Bonjour, " + username + "!\n");
+            System.out.println("Vous êtes maintenant connecté!");
             if (isSeller) {
-                System.out.println("SellerView");
+                SellerView sellerView = new SellerView();
+                sellerView.start();
             } else {
                 BuyerView buyerView = new BuyerView();
                 buyerView.start();
             }
 
         } else {
-            System.out.println("Nom d'utilisateur ou mot de passe incorrect.\n");
+            System.out.println("Nom d'utilisateur ou mot de passe incorrect.+\n");
             this.showLoginPrompt(sc, isSeller);
 
         }
