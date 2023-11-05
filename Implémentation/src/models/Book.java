@@ -19,6 +19,7 @@ public class Book extends Product {
     public Book(@JsonProperty("name") String name,
                 @JsonProperty("description") String description,
                 @JsonProperty("price") double price,
+                @JsonProperty("quantity") int quantity,
                 @JsonProperty("likes") int likes,
                 @JsonProperty("reviews") List<Review> reviews,
                 @JsonProperty("rating") float rating,
@@ -31,8 +32,8 @@ public class Book extends Product {
                 @JsonProperty("edition") int edition,
                 @JsonProperty("volume") int volume,
                 @JsonProperty("genre") String genre) {
+        super(name, description, price, quantity, likes, reviews, rating, category, isPromoted);
 
-        super(name, description, price, likes, reviews, rating, category, isPromoted);
         this.isbn = isbn;
         this.author = author;
         this.publisher = publisher;
@@ -52,7 +53,42 @@ public class Book extends Product {
                 "Année de publication : " + publicationYear + "\n" +
                 "Edition : " + edition + "\n" +
                 "Volume : " + volume + "\n";
+    }
 
+    @Override
+    public List<String> propertiesToString() {
+        //return super and append new properties
+        List<String> propertiesNames = super.propertiesToString();
+        propertiesNames.addAll(List.of("genre", "isbn", "auteur", "editeur", "annee de publication", "edition", "volume"));
+        return propertiesNames;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public int getEdition() {
+        return edition;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 
 }

@@ -21,8 +21,17 @@ public class AuthService {
     public AuthService() throws IOException {
         JSONHandler = new JSONHandler();
         users = JSONHandler.readJsonFromFile("src/data/users.json", Users.class);
-        this.buyerSet = new HashSet<>(users.getBuyers());
-        this.sellerSet = new HashSet<>(users.getSellers());
+
+        if (users.getBuyers() != null) {
+            this.buyerSet = new HashSet<>(users.getBuyers());
+        } else {
+            this.buyerSet = new HashSet<>();
+        }
+        if (users.getSellers() != null) {
+            this.sellerSet = new HashSet<>(users.getSellers());
+        } else {
+            this.sellerSet = new HashSet<>();
+        }
     }
 
     public boolean login(String username, String password, boolean isSeller) throws IOException {
