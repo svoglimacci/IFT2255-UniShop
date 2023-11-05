@@ -21,7 +21,6 @@ public class AuthController {
     }
 
     public boolean register(String businessName, String email, String username, String password, String address, String phoneNumber) {
-        validateUsername(username, true);
         return authService.register(businessName, email, username, password, address, phoneNumber);
     }
 

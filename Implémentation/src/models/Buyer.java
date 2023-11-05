@@ -18,7 +18,7 @@ public class Buyer extends User {
                  @JsonProperty("lastName") String lastName,
                  @JsonProperty("phoneNumber") String phoneNumber,
                  @JsonProperty("isActive") boolean isActive,
-                 @JsonProperty("dateCreated") Date dateCreated){
+                 @JsonProperty("dateCreated") Date dateCreated) {
         super(username, password, email, address, phoneNumber, isActive, dateCreated);
         this.firstName = firstName;
         this.lastName = lastName;

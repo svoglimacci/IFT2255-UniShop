@@ -126,6 +126,7 @@ public class AuthView {
 
         if (register) {
             System.out.println("Vous êtes maintenant enregistré!");
+            this.start();
 
         } else {
             System.out.println("Erreur lors de la création du compte.\n");
@@ -173,6 +174,13 @@ public class AuthView {
         login = this.authController.login(username, password, isSeller);
         if (login) {
             System.out.println("Vous êtes maintenant connecté!");
+            if (isSeller) {
+                SellerView sellerView = new SellerView();
+                sellerView.start();
+            } else {
+                BuyerView buyerView = new BuyerView();
+                buyerView.start();
+            }
 
         } else {
             System.out.println("Nom d'utilisateur ou mot de passe incorrect.+\n");

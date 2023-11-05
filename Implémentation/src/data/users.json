@@ -33,6 +33,16 @@
       "phoneNumber": "5146605237",
       "isActive": true,
       "dateCreated": 1696976508381
+    },
+    {
+      "username": "test123",
+      "password": "password123",
+      "email": "test@gmail.com",
+      "address": "test rue de test",
+      "businessName": "test office",
+      "phoneNumber": "1231231234",
+      "isActive": true,
+      "dateCreated": 1699205887981
     }
   ]
 }

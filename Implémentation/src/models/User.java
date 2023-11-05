@@ -21,7 +21,7 @@ public class User {
                 @JsonProperty("address") String address,
                 @JsonProperty("phoneNumber") String phoneNumber,
                 @JsonProperty("isActive") boolean isActive,
-                @JsonProperty("dateCreated") Date dateCreated){
+                @JsonProperty("dateCreated") Date dateCreated) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -73,20 +73,20 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-
     public boolean getIsActive() {
         return this.isActive;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public Date getDateCreated() {
         return this.dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
 }

@@ -32,24 +32,24 @@ public class AuthService {
                 .filter(userToFind -> userToFind.getUsername().equals(username) && userToFind.getPassword().equals(password))
                 .findFirst()
                 .orElse(null);
-            if (user == null) {
-                return false;
-            }
+        if (user == null) {
+            return false;
+        }
 
-            if( user.getIsActive()) {
-                return true;
-            }
+        if (user.getIsActive()) {
+            return true;
+        }
 
-            if (new Date().getTime() - user.getDateCreated().getTime() < 86400000) {
-                System.out.println ("Account is now active");
-                user.setIsActive(true);
-                JSONHandler.writeJsonToFile(users, "src/data/users.json");
-                return true;
-            } else {
-                userSet.remove(user);
-                JSONHandler.writeJsonToFile(users, "src/data/users.json");
-                return false;
-            }
+        if (new Date().getTime() - user.getDateCreated().getTime() < 86400000) {
+            System.out.println("Account is now active");
+            user.setIsActive(true);
+            JSONHandler.writeJsonToFile(users, "src/data/users.json");
+            return true;
+        } else {
+            userSet.remove(user);
+            JSONHandler.writeJsonToFile(users, "src/data/users.json");
+            return false;
+        }
     }
 
     public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
@@ -76,14 +76,13 @@ public class AuthService {
         }
     }
 
-public boolean userExists(String username, boolean isSeller) {
-    Set<? extends User> userSet = isSeller ? sellerSet : buyerSet;
-    User user = userSet.stream()
-            .filter(userToFind -> userToFind.getUsername() != null && userToFind.getUsername().equals(username))
-            .findFirst()
-            .orElse(null);
-    return user != null;
-}
+    public boolean userExists(String username, boolean isSeller) {
+        Set<? extends User> userSet = isSeller ? sellerSet : buyerSet;
+        User user = userSet.stream()
+                .filter(userToFind -> userToFind.getUsername() != null && userToFind.getUsername().equals(username))
+                .findFirst()
+                .orElse(null);
+        return user != null;
+    }
 
 }
-
