@@ -46,15 +46,23 @@ public class AuthService {
         }
 
         if (user.getIsActive()) {
+            if (new Date().getTime() - user.getDateCreated().getTime() >= 86400000 && isSeller) {
+                Seller seller = (Seller) user;
+                if (seller.getProducts() == null || seller.getProducts().isEmpty()) {
+                    user.setIsActive(false);
+                    JSONHandler.writeJsonToFile(users, "src/data/users.json");
+                    return false;
+                }
+            }
             return true;
         }
 
         if (new Date().getTime() - user.getDateCreated().getTime() < 86400000) {
-            System.out.println("Account is now active");
             user.setIsActive(true);
             JSONHandler.writeJsonToFile(users, "src/data/users.json");
             return true;
         } else {
+
             userSet.remove(user);
             JSONHandler.writeJsonToFile(users, "src/data/users.json");
             return false;
@@ -78,7 +86,7 @@ public class AuthService {
 
     public boolean register(String businessName, String email, String username, String password, String address, String phoneNumber) {
         try {
-            Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber, false, new Date());
+            Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber, false, new Date(), new ArrayList<>());
             if (users.getSellers() == null) {
                 users.setSellers(new ArrayList<>());
             }
