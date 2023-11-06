@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Electronic extends Product {
 
@@ -15,11 +16,10 @@ public class Electronic extends Product {
 
     @JsonCreator
     public Electronic(
+            @JsonProperty("id") List<UUID> id,
             @JsonProperty("name") String name,
             @JsonProperty("description") String description,
             @JsonProperty("price") double price,
-            @JsonProperty("quantity") int quantity,
-
             @JsonProperty("likes") int likes,
             @JsonProperty("reviews") List<Review> reviews,
             @JsonProperty("rating") float rating,
@@ -31,7 +31,7 @@ public class Electronic extends Product {
             @JsonProperty("subCategory") String subCategory
     ) {
 
-        super(name, description, price, quantity, likes, reviews, rating, category, isPromoted);
+        super(id, name, description, price, likes, reviews, rating, category, isPromoted);
         this.brand = brand;
         this.model = model;
         this.releaseDate = releaseDate;

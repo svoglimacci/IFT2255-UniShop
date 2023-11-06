@@ -1,16 +1,19 @@
 package views;
 
-import controllers.AuthController;
+import controllers.ProductController;
+import controllers.UserController;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AuthView {
-    private final AuthController authController;
+    private final UserController userController;
+
 
     public AuthView() throws IOException {
-        this.authController = new AuthController();
+        this.userController = new UserController();
+
     }
 
     public void start() {
@@ -84,49 +87,55 @@ public class AuthView {
         do {
             System.out.println("Veuillez entrer une adresse courriel: ");
             email = sc.nextLine();
-        } while (!this.authController.validateEmail(email));
+        } while (!this.userController.validateEmail(email));
 
         do {
             System.out.println("Veuillez entrer un nom d'utilisateur: ");
             username = sc.nextLine();
 
-        } while (!this.authController.validateUsername(username, isSeller));
+        } while (!this.userController.validateUsername(username, isSeller));
 
 
         do {
             System.out.println("Veuillez entrer un mot de passe: ");
             password = sc.nextLine();
-        } while (!this.authController.validatePassword(password));
+        } while (!this.userController.validatePassword(password));
 
 
         do {
             System.out.println("Veuillez entrer votre adresse: ");
             address = sc.nextLine();
-        } while (!this.authController.validateAddress(address));
+        } while (!this.userController.validateAddress(address));
 
         do {
             System.out.println("Veuillez entrer un numéro de téléphone: ");
             phoneNumber = sc.nextLine();
-        } while (!this.authController.validatePhoneNumber(phoneNumber));
+        } while (!this.userController.validatePhoneNumber(phoneNumber));
 
         if (isSeller) {
             do {
                 System.out.println("Veuillez entrer le nom d'entreprise: ");
                 businessName = sc.nextLine();
-            } while (!this.authController.validateName(businessName));
-            register = this.authController.register(businessName, email, username, password, address, phoneNumber);
+            } while (!this.userController.validateName(businessName));
+            register = this.userController.register(businessName, email, username, password, address, phoneNumber);
+
+
         } else {
             do {
                 System.out.println("Veuillez entrer un prénom: ");
                 firstName = sc.nextLine();
                 System.out.println("Veuillez entrer un nom de famille: ");
                 lastName = sc.nextLine();
-            } while (!this.authController.validateName(firstName, lastName));
-            register = this.authController.register(firstName, lastName, email, username, password, address, phoneNumber);
+            } while (!this.userController.validateName(firstName, lastName));
+            register = this.userController.register(firstName, lastName, email, username, password, address, phoneNumber);
         }
+
 
         if (register) {
             System.out.println("Vous êtes maintenant enregistré!");
+            if (isSeller) {
+                System.out.println("Veuillez vous connecter et ajouter un produit à votre inventaire afin de confirmer votre inscription.");
+            }
             this.start();
 
         } else {
@@ -134,8 +143,6 @@ public class AuthView {
             this.showLoginPrompt(sc, isSeller);
 
         }
-
-
     }
 
     public void showLoginMenu(Scanner sc) {
@@ -173,14 +180,14 @@ public class AuthView {
         System.out.println("Veuillez entrer un mot de passe : ");
         String password = sc.nextLine();
 
-        login = this.authController.login(username, password, isSeller);
+        login = this.userController.login(username, password, isSeller);
         if (login) {
             System.out.println("Vous êtes maintenant connecté!");
             if (isSeller) {
-                SellerView sellerView = new SellerView();
+                SellerView sellerView = new SellerView(username);
                 sellerView.start();
             } else {
-                BuyerView buyerView = new BuyerView();
+                BuyerView buyerView = new BuyerView(username);
                 buyerView.start();
             }
 
