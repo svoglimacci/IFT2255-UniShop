@@ -1,2 +1,1 @@
-{}
-
+{"books":null,"electronics":null,"learningMaterials":[{"name":"test product","description":"test description","price":123.0,"quantity":1,"likes":0,"reviews":[],"rating":"NaN","category":"Ressources d'apprentissage","isPromoted":false,"brand":"example","model":"test123","subCategory":"imprimé","isbn":"1234-123-123-1","author":"test","organization":"test","publicationDate":"123","edition":"1"},{"name":"test","description":"test","price":123.0,"quantity":123,"likes":0,"reviews":[],"rating":"NaN","category":"Ressources d'apprentissage","isPromoted":false,"brand":"test","model":"test","subCategory":"test","isbn":"1234-123-12-1","author":"test","organization":"test","publicationDate":"1234","edition":"1"}],"officeSupplies":null,"officeFurnitures":null}

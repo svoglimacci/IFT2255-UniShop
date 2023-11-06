@@ -36,7 +36,6 @@ public class AuthService {
     }
 
     public boolean login(String username, String password, boolean isSeller) throws IOException {
-        System.out.println("username: " + username + " password: " + password + " isSeller: " + isSeller);
         Set<? extends User> userSet = isSeller ? sellerSet : buyerSet;
         User user = userSet.stream()
                 .filter(userToFind -> userToFind.getUsername().equals(username) && userToFind.getPassword().equals(password))

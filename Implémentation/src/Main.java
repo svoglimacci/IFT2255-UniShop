@@ -22,12 +22,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        JSONHandler jsonHandler = new JSONHandler();
-        Map<String, Object> emptyObject = new HashMap<>();
-        jsonHandler.writeJsonToFile(emptyObject, "src/data/users.json");
-        jsonHandler.writeJsonToFile(emptyObject, "src/data/products.json");
-
-
         AuthView authView = new AuthView();
         authView.start();
 

@@ -28,7 +28,6 @@ public enum ProductCategory {
 
     public static String categoriesToString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Veuillez choisir une catégorie :\n");
         for (CategoryWithIndex category : ProductCategory.getCategoriesWithIndices()) {
             sb.append(category.getIndex()).append(". ").append(category.getCategory().getDisplayName()).append("\n");
         }
@@ -39,13 +38,4 @@ public enum ProductCategory {
         return displayName;
     }
 
-    public Class<? extends Product> getProductClass() {
-        return switch (this) {
-            case BOOKS -> Book.class;
-            case LEARNING_MATERIALS -> LearningMaterial.class;
-            case OFFICE_SUPPLIES -> OfficeSupply.class;
-            case OFFICE_FURNITURES -> OfficeFurniture.class;
-            case ELECTRONICS -> Electronic.class;
-        };
-    }
 }

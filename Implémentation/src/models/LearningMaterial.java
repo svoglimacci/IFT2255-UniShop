@@ -45,7 +45,7 @@ public class LearningMaterial extends Product {
         this.publicationDate = publicationDate;
         this.edition = edition;
     }
-  
+
     public String getBrand() {
         return brand;
     }
