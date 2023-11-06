@@ -78,7 +78,6 @@ public class LearningMaterial extends Product {
         return edition;
     }
 
-
     @Override
     public String productDetailsToString() {
         return super.productDetailsToString() +
