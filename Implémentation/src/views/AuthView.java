@@ -58,7 +58,8 @@ public class AuthView {
                     this.showRegisterPrompt(sc, true);
                     break;
                 case "0":
-                    return;
+                    this.start();
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -81,44 +82,44 @@ public class AuthView {
         String phoneNumber;
 
         do {
-            System.out.println("Veuillez entrer votre adresse courriel valide : ");
+            System.out.println("Veuillez entrer une adresse courriel: ");
             email = sc.nextLine();
         } while (!this.authController.validateEmail(email));
 
         do {
-            System.out.println("Veuillez entrer votre nom d'utilisateur valide: ");
+            System.out.println("Veuillez entrer un nom d'utilisateur: ");
             username = sc.nextLine();
 
         } while (!this.authController.validateUsername(username, isSeller));
 
 
         do {
-            System.out.println("Veuillez entrer votre mot de passe valide : ");
+            System.out.println("Veuillez entrer un mot de passe: ");
             password = sc.nextLine();
         } while (!this.authController.validatePassword(password));
 
 
         do {
-            System.out.println("Veuillez entrer une adresse valide : ");
+            System.out.println("Veuillez entrer votre adresse: ");
             address = sc.nextLine();
         } while (!this.authController.validateAddress(address));
 
         do {
-            System.out.println("Veuillez entrer un numéro de téléphone valide : ");
+            System.out.println("Veuillez entrer un numéro de téléphone: ");
             phoneNumber = sc.nextLine();
         } while (!this.authController.validatePhoneNumber(phoneNumber));
 
         if (isSeller) {
             do {
-                System.out.println("Veuillez entrer un nom d'entreprise valide : ");
+                System.out.println("Veuillez entrer le nom d'entreprise: ");
                 businessName = sc.nextLine();
             } while (!this.authController.validateName(businessName));
             register = this.authController.register(businessName, email, username, password, address, phoneNumber);
         } else {
             do {
-                System.out.println("Veuillez entrer un prénom valide : ");
+                System.out.println("Veuillez entrer un prénom: ");
                 firstName = sc.nextLine();
-                System.out.println("Veuillez entrer un nom de famille valide : ");
+                System.out.println("Veuillez entrer un nom de famille: ");
                 lastName = sc.nextLine();
             } while (!this.authController.validateName(firstName, lastName));
             register = this.authController.register(firstName, lastName, email, username, password, address, phoneNumber);
@@ -139,7 +140,7 @@ public class AuthView {
 
     public void showLoginMenu(Scanner sc) {
 
-        System.out.println("Souhaitez-vous vous connecter en tant que : ");
+        System.out.println("Souhaitez-vous vous connecter en tant que: ");
         System.out.println("1. Acheteur");
         System.out.println("2. Vendeur");
         System.out.println("0. Retour");
@@ -153,7 +154,8 @@ public class AuthView {
                     this.showLoginPrompt(sc, true);
                     break;
                 case "0":
-                    return;
+                    this.start();
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -166,9 +168,9 @@ public class AuthView {
 
     public void showLoginPrompt(Scanner sc, boolean isSeller) throws IOException {
         boolean login;
-        System.out.println("Veuillez entrer votre nom d'utilisateur : ");
+        System.out.println("Veuillez entrer un nom d'utilisateur : ");
         String username = sc.nextLine();
-        System.out.println("Veuillez entrer votre mot de passe : ");
+        System.out.println("Veuillez entrer un mot de passe : ");
         String password = sc.nextLine();
 
         login = this.authController.login(username, password, isSeller);
@@ -183,7 +185,7 @@ public class AuthView {
             }
 
         } else {
-            System.out.println("Nom d'utilisateur ou mot de passe incorrect.+\n");
+            System.out.println("Nom d'utilisateur ou mot de passe incorrect.\n");
             this.showLoginPrompt(sc, isSeller);
 
         }

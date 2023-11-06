@@ -1,1 +1,26 @@
-{}
+{
+  "buyers": [
+    {
+      "username": "test123",
+      "password": "password123",
+      "email": "test@exemple.com",
+      "address": "exemple addresse",
+      "firstName": "Exemple",
+      "lastName": "Test",
+      "phoneNumber": "1231231234",
+      "isActive": true,
+      "dateCreated": 1699216097467
+    }
+  ],
+  "sellers": [{
+    "username": "test123",
+    "password": "password123",
+    "email": "test@exemple.com",
+    "address": "exemple addresse",
+    "businessName": "Exemple",
+    "phoneNumber": "1231231234",
+    "isActive": true,
+    "dateCreated": 1699216097467
+  }
+    ]
+}

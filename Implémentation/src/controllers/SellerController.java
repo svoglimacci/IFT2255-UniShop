@@ -16,7 +16,6 @@ public class SellerController {
         if (name.isEmpty() || description.isEmpty() || price < 0 || quantity < 0 || brand.isEmpty() || model.isEmpty() || subCategory.isEmpty() || isbn.isEmpty() || author.isEmpty() || organization.isEmpty() || publicationDate.isEmpty() || edition.isEmpty()) {
             return false;
         }
-        System.out.println(name + " " + description + " " + price + " " + quantity + " " + brand + " " + model + " " + subCategory + " " + isbn + " " + author + " " + organization + " " + publicationDate + " " + edition);
         return this.productService.addProduct(name, description, price, quantity, brand, model, subCategory, isbn, author, organization, publicationDate, edition);
     }
 }

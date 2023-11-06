@@ -5,6 +5,7 @@ import models.ProductCategory;
 import services.ProductService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BuyerController {
 
@@ -17,7 +18,7 @@ public class BuyerController {
     }
 
 
-    public Iterable<? extends Product> getProductsByCategory(ProductCategory category) {
+    public List<? extends Product> getProductsByCategory(ProductCategory category) {
         return switch (category) {
             case BOOKS -> this.productService.getBooks();
             case LEARNING_MATERIALS -> this.productService.getLearningMaterials();

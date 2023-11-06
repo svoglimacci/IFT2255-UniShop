@@ -45,39 +45,6 @@ public class LearningMaterial extends Product {
         this.publicationDate = publicationDate;
         this.edition = edition;
     }
-  
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public String getOrganization() {
-        return organization;
-    }
-
-    public String getPublicationDate() {
-        return publicationDate;
-    }
-
-    public String getEdition() {
-        return edition;
-    }
-
 
     public String getBrand() {
         return brand;
