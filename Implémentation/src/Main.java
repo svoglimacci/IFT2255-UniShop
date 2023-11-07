@@ -1,9 +1,6 @@
-import utilities.JSONHandler;
 import views.AuthView;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class Book extends Product {
 
@@ -11,15 +13,17 @@ public class Book extends Product {
     private final String isbn;
     private final String author;
     private final String publisher;
-    private final int publicationYear;
-    private final int edition;
-    private final int volume;
+    private final String publicationYear;
+    private final String edition;
+    private final String volume;
 
     @JsonCreator
-    public Book(@JsonProperty("name") String name,
+    public Book(
+            @JsonProperty("id") UUID id,
+            @JsonProperty("instances") Set<UUID> instances,
+                @JsonProperty("name") String name,
                 @JsonProperty("description") String description,
                 @JsonProperty("price") double price,
-                @JsonProperty("quantity") int quantity,
                 @JsonProperty("likes") int likes,
                 @JsonProperty("reviews") List<Review> reviews,
                 @JsonProperty("rating") float rating,
@@ -28,11 +32,11 @@ public class Book extends Product {
                 @JsonProperty("isbn") String isbn,
                 @JsonProperty("author") String author,
                 @JsonProperty("publisher") String publisher,
-                @JsonProperty("publicationYear") int publicationYear,
-                @JsonProperty("edition") int edition,
-                @JsonProperty("volume") int volume,
+                @JsonProperty("publicationYear") String publicationYear,
+                @JsonProperty("edition") String edition,
+                @JsonProperty("volume") String volume,
                 @JsonProperty("genre") String genre) {
-        super(name, description, price, quantity, likes, reviews, rating, category, isPromoted);
+        super(id, instances, name, description, price, likes, reviews, rating, category, isPromoted);
 
         this.isbn = isbn;
         this.author = author;
@@ -75,15 +79,15 @@ public class Book extends Product {
         return publisher;
     }
 
-    public int getPublicationYear() {
+    public String getPublicationYear() {
         return publicationYear;
     }
 
-    public int getEdition() {
+    public String getEdition() {
         return edition;
     }
 
-    public int getVolume() {
+    public String getVolume() {
         return volume;
     }
 

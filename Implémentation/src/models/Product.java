@@ -4,10 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class Product {
 
-    public int quantity;
+    public UUID id;
+    public Set<UUID> instances;
+
     public String name;
     public String description;
     public double price;
@@ -23,24 +27,27 @@ public class Product {
     public boolean isPromoted;
 
     @JsonCreator
-    public Product(@JsonProperty("name") String name,
+    public Product(@JsonProperty("id") UUID id,
+            @JsonProperty("instances") Set<UUID> instances,
+                   @JsonProperty("name") String name,
                    @JsonProperty("description") String description,
                    @JsonProperty("price") double price,
-                   @JsonProperty("quantity") int quantity,
                    @JsonProperty("likes") int likes,
                    @JsonProperty("reviews") List<Review> reviews,
                    @JsonProperty("rating") float rating,
                    @JsonProperty("category") String category,
                    @JsonProperty("isPromoted") boolean isPromoted) {
+        this.id = id;
+        this.instances = instances;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.quantity = quantity;
         this.likes = likes;
         this.reviews = reviews;
         this.rating = getRating();
         this.category = category;
         this.isPromoted = isPromoted;
+
 
     }
 
@@ -57,9 +64,6 @@ public class Product {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
     public int getLikes() {
         return likes;
@@ -96,7 +100,7 @@ public class Product {
     }
 
     public List<String> propertiesToString() {
-        return List.of("nom", "description", "prix", "quantité");
+        return List.of("nom", "description", "prix");
     }
 
 
@@ -109,11 +113,26 @@ public class Product {
         return "Name: " + name + "\n" +
                 "Description: " + description + "\n" +
                 "Price: " + price + "$" + "\n" +
-                "Quantity: " + quantity + "\n" +
                 "Likes: " + likes + "\n" +
                 "Rating: " + rating + "/5" + "\n" +
                 "Reviews: " + reviewString + "\n";
     }
 
 
+    public UUID getId() {
+        return id;
+    }
+
+    public Set<UUID> getInstances() {
+        return instances;
+    }
+
+    public void addLike() {
+        this.likes++;
+    }
+
+
+    public void removeLike() {
+        this.likes--;
+    }
 }

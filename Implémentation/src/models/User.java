@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class User {
     private String username;
@@ -14,6 +17,8 @@ public class User {
     private boolean isActive;
     private Date dateCreated;
 
+    private final Set<UUID> likes;
+
     @JsonCreator
     public User(@JsonProperty("username") String username,
                 @JsonProperty("password") String password,
@@ -21,7 +26,8 @@ public class User {
                 @JsonProperty("address") String address,
                 @JsonProperty("phoneNumber") String phoneNumber,
                 @JsonProperty("isActive") boolean isActive,
-                @JsonProperty("dateCreated") Date dateCreated) {
+                @JsonProperty("dateCreated") Date dateCreated,
+                @JsonProperty("likes") Set<UUID> likes) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -29,6 +35,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.isActive = isActive;
         this.dateCreated = dateCreated;
+        this.likes = likes;
     }
 
     // Getter methods
@@ -89,4 +96,15 @@ public class User {
         this.dateCreated = dateCreated;
     }
 
+    public Set<UUID> getLikes() {
+        return this.likes;
+    }
+
+    public void addLike(UUID id) {
+        this.likes.add(id);
+    }
+
+    public void removeLike(UUID id) {
+        this.likes.remove(id);
+    }
 }

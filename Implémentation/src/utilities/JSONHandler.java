@@ -15,7 +15,15 @@ public class JSONHandler {
     }
 
     public <T> T readJsonFromFile(String filepath, Class<T> valueType) throws IOException {
-        return mapper.readValue(new File(filepath), valueType);
+        File file = new File(filepath);
+
+        if (!file.exists() || file.length() == 0) {
+            T defaultValue = mapper.readValue("{}", valueType);
+            writeJsonToFile(defaultValue, filepath);
+            return defaultValue;
+        } else {
+            return mapper.readValue(file, valueType);
+        }
     }
 
     public void writeJsonToFile(Object data, String filepath) throws IOException {
