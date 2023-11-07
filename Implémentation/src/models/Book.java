@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class Book extends Product {
@@ -17,7 +18,9 @@ public class Book extends Product {
     private final String volume;
 
     @JsonCreator
-    public Book(@JsonProperty("id") List<UUID> id,
+    public Book(
+            @JsonProperty("id") UUID id,
+            @JsonProperty("instances") Set<UUID> instances,
                 @JsonProperty("name") String name,
                 @JsonProperty("description") String description,
                 @JsonProperty("price") double price,
@@ -33,7 +36,7 @@ public class Book extends Product {
                 @JsonProperty("edition") String edition,
                 @JsonProperty("volume") String volume,
                 @JsonProperty("genre") String genre) {
-        super(id, name, description, price, likes, reviews, rating, category, isPromoted);
+        super(id, instances, name, description, price, likes, reviews, rating, category, isPromoted);
 
         this.isbn = isbn;
         this.author = author;

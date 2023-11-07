@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class Seller extends User {
@@ -20,8 +21,9 @@ public class Seller extends User {
                   @JsonProperty("phoneNumber") String phoneNumber,
                   @JsonProperty("isActive") boolean isActive,
                   @JsonProperty("dateCreated") Date dateCreated,
-                  @JsonProperty("products") List<UUID> products) {
-        super(username, password, email, address, phoneNumber, isActive, dateCreated);
+                  @JsonProperty("products") List<UUID> products,
+                  @JsonProperty("likes") Set<UUID> likes) {
+        super(username, password, email, address, phoneNumber, isActive, dateCreated, likes);
         this.businessName = businessName;
         this.products = products;
     }

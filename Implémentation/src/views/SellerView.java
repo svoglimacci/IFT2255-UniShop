@@ -3,22 +3,26 @@ package views;
 import controllers.ProductController;
 import controllers.UserController;
 import models.ProductCategory;
+import models.Seller;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
 
 public class SellerView {
 
     private final UserController userController;
     private final ProductController productController;
+    private final Seller user;
     private final String username;
 
-    public SellerView(String username) throws IOException {
+    public SellerView(Seller user) throws IOException {
         this.userController = new UserController();
         this.productController = new ProductController();
-        this.username = username;
+        this.user = user;
+        this.username = user.getUsername();
     }
 
     public void start() {
@@ -78,7 +82,7 @@ public class SellerView {
     }
 
     public void showBookPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        List<UUID> addProduct;
+        Set<UUID> addProduct;
         System.out.println("Veuillez entrer l'ISBN:");
         String isbn = sc.nextLine();
         System.out.println("Veuillez entrer l'auteur:");
@@ -106,7 +110,7 @@ public class SellerView {
     }
 
     public void showOfficeFurniturePrompt(Scanner sc, String name, String description, double price, int quantity) {
-        List<UUID> addProduct;
+        Set<UUID> addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -126,7 +130,7 @@ public class SellerView {
     }
 
     public void showOfficeSupplyPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        List<UUID> addProduct;
+        Set<UUID> addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -146,7 +150,7 @@ public class SellerView {
     }
 
     public void showElectronicPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        List<UUID> addProduct;
+        Set<UUID> addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -168,7 +172,7 @@ public class SellerView {
     }
 
     public void showLearningMaterialPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        List<UUID> addProduct;
+        Set<UUID> addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");

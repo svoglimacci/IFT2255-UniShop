@@ -17,7 +17,6 @@ public class ProductController {
     private final Set<OfficeFurniture> officeFurnitureSet;
 
 
-
     public ProductController() throws IOException {
         this.productService = new ProductService();
         products = productService.getProducts();
@@ -63,7 +62,7 @@ public class ProductController {
         };
     }
 
-         public List<Book> getBooks() {
+    public List<Book> getBooks() {
         return new ArrayList<>(bookSet);
     }
 
@@ -85,106 +84,111 @@ public class ProductController {
 
 
     // Book
-    public List<UUID> addBook(String name, String description, double price, int quantity, String isbn, String author, String publisher, String publicationYear, String edition, String volume, String genre) {
+    public Set<UUID> addBook(String name, String description, double price, int quantity, String isbn, String author, String publisher, String publicationYear, String edition, String volume, String genre) {
         if (products.getBooks() == null) {
             products.setBooks(new ArrayList<>());
         }
-        List<UUID> id = new ArrayList<>();
+        Set<UUID> instances = new HashSet<>();
         for (int i = 0; i < quantity; i++) {
             UUID uuid = UUID.randomUUID();
-            id.add(uuid);
+            instances.add(uuid);
         }
-        Book newBook = new Book(id, name, description, price, 0, new ArrayList<>(), 0, "Book", false, isbn, author, publisher, publicationYear, edition, volume, genre);
+        Book newBook = new Book(UUID.randomUUID(), instances, name, description, price, 0, new ArrayList<>(), 0, "Book", false, isbn, author, publisher, publicationYear, edition, volume, genre);
         bookSet.add(newBook);
         products.getBooks().add(newBook);
 
 
         productService.writeProducts(products);
-        return id;
+        return instances;
     }
 
     // Electronic
-    public List<UUID> addElectronic(String name, String description, double price, int quantity, String brand, String model, String releaseDate, String subCategory) {
+    public Set<UUID> addElectronic(String name, String description, double price, int quantity, String brand, String model, String releaseDate, String subCategory) {
         if (products.getElectronics() == null) {
             products.setElectronics(new ArrayList<>());
         }
-        List<UUID> id = new ArrayList<>();
+        Set<UUID> instances = new HashSet<>();
         for (int i = 0; i < quantity; i++) {
             UUID uuid = UUID.randomUUID();
-            id.add(uuid);
+            instances.add(uuid);
         }
 
-        Electronic newElectronic = new Electronic(id, name, description, price, 0, new ArrayList<>(), 0, "Electronic", false, brand, model, releaseDate, subCategory);
+        Electronic newElectronic = new Electronic(UUID.randomUUID(), instances, name, description, price, 0, new ArrayList<>(), 0, "Electronic", false, brand, model, releaseDate, subCategory);
         electronicSet.add(newElectronic);
         products.getElectronics().add(newElectronic);
         productService.writeProducts(products);
-        return id;
+        return instances;
     }
 
     // OfficeSupply
-    public List<UUID> addOfficeSupply(String name, String description, double price, int quantity, String brand, String model, String subCategory) {
+    public Set<UUID> addOfficeSupply(String name, String description, double price, int quantity, String brand, String model, String subCategory) {
         if (products.getOfficeSupplies() == null) {
             products.setOfficeSupplies(new ArrayList<>());
         }
-        List<UUID> id = new ArrayList<>();
+        Set<UUID> instances = new HashSet<>();
         for (int i = 0; i < quantity; i++) {
             UUID uuid = UUID.randomUUID();
-            id.add(uuid);
+            instances.add(uuid);
         }
-        OfficeSupply newOfficeSupply = new OfficeSupply(id, name, description, price, 0, new ArrayList<>(), 0, "OfficeSupply", false, brand, model, subCategory);
+        OfficeSupply newOfficeSupply = new OfficeSupply(UUID.randomUUID(), instances, name, description, price, 0, new ArrayList<>(), 0, "OfficeSupply", false, brand, model, subCategory);
         officeSupplySet.add(newOfficeSupply);
         products.getOfficeSupplies().add(newOfficeSupply);
         productService.writeProducts(products);
-        return id;
+        return instances;
     }
 
     // OfficeFurniture
-    public List<UUID> addOfficeFurniture(String name, String description, double price, int quantity, String brand, String model, String subCategory) {
+    public Set<UUID> addOfficeFurniture(String name, String description, double price, int quantity, String brand, String model, String subCategory) {
         if (products.getOfficeFurnitures() == null) {
             products.setOfficeFurnitures(new ArrayList<>());
         }
-        List<UUID> id = new ArrayList<>();
+        Set<UUID> instances = new HashSet<>();
         for (int i = 0; i < quantity; i++) {
             UUID uuid = UUID.randomUUID();
-            id.add(uuid);
+            instances.add(uuid);
         }
 
-        OfficeFurniture newOfficeFurniture = new OfficeFurniture(id, name, description, price, 0, new ArrayList<>(), 0, "OfficeFurniture", false, brand, model, subCategory);
+        OfficeFurniture newOfficeFurniture = new OfficeFurniture(UUID.randomUUID(), instances, name, description, price, 0, new ArrayList<>(), 0, "OfficeFurniture", false, brand, model, subCategory);
         officeFurnitureSet.add(newOfficeFurniture);
         products.getOfficeFurnitures().add(newOfficeFurniture);
 
         productService.writeProducts(products);
-        return id;
+        return instances;
     }
 
 
     // LearningMaterial
-    public List<UUID> addLearningMaterial(String name, String description, double price, int quantity, String brand, String model, String subCategory, String isbn, String author, String organization, String publicationDate, String edition) {
+    public Set<UUID> addLearningMaterial(String name, String description, double price, int quantity, String brand, String model, String subCategory, String isbn, String author, String organization, String publicationDate, String edition) {
         if (products.getLearningMaterials() == null) {
             products.setLearningMaterials(new ArrayList<>());
         }
-        List<UUID> id = new ArrayList<>();
+        Set<UUID> instances = new HashSet<>();
         for (int i = 0; i < quantity; i++) {
             UUID uuid = UUID.randomUUID();
-            id.add(uuid);
+            instances.add(uuid);
         }
 
-        LearningMaterial newLearningMaterial = new LearningMaterial(id, name, description, price, 0, new ArrayList<>(), 0, "LearningMaterial", false, brand, model, subCategory, isbn, author, organization, publicationDate, edition);
+        LearningMaterial newLearningMaterial = new LearningMaterial(UUID.randomUUID(), instances, name, description, price, 0, new ArrayList<>(), 0, "LearningMaterial", false, brand, model, subCategory, isbn, author, organization, publicationDate, edition);
         learningMaterialSet.add(newLearningMaterial);
         products.getLearningMaterials().add(newLearningMaterial);
 
         productService.writeProducts(products);
-        return id;
+        return instances;
     }
 
 
     public boolean changeAttribute(Product product, String attribute, String value, ProductCategory category) {
         switch (attribute) {
             case "likes":
-                product.addLike();
+                if (value == "add") {
+                    product.addLike();
+
+                } else {
+                    product.removeLike();
+                }
                 break;
         }
-        switch (category ) {
+        switch (category) {
             case BOOKS:
                 bookSet.add((Book) product);
                 products.setBooks(new ArrayList<>(bookSet));

@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class Product {
 
-    public List<UUID> id;
+    public UUID id;
+    public Set<UUID> instances;
 
     public String name;
     public String description;
@@ -25,7 +27,8 @@ public class Product {
     public boolean isPromoted;
 
     @JsonCreator
-    public Product(@JsonProperty("id") List<UUID> id,
+    public Product(@JsonProperty("id") UUID id,
+            @JsonProperty("instances") Set<UUID> instances,
                    @JsonProperty("name") String name,
                    @JsonProperty("description") String description,
                    @JsonProperty("price") double price,
@@ -35,6 +38,7 @@ public class Product {
                    @JsonProperty("category") String category,
                    @JsonProperty("isPromoted") boolean isPromoted) {
         this.id = id;
+        this.instances = instances;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -43,6 +47,7 @@ public class Product {
         this.rating = getRating();
         this.category = category;
         this.isPromoted = isPromoted;
+
 
     }
 
@@ -114,11 +119,20 @@ public class Product {
     }
 
 
-    public List<UUID> getId() {
+    public UUID getId() {
         return id;
+    }
+
+    public Set<UUID> getInstances() {
+        return instances;
     }
 
     public void addLike() {
         this.likes++;
+    }
+
+
+    public void removeLike() {
+        this.likes--;
     }
 }

@@ -1,9 +1,6 @@
 package controllers;
 
-import models.Buyer;
-import models.Seller;
-import models.User;
-import models.Users;
+import models.*;
 import services.UserService;
 
 import java.io.IOException;
@@ -34,14 +31,14 @@ public class UserController {
         }
     }
 
-    public boolean login(String username, String password, boolean isSeller) {
+    public Object login(String username, String password, boolean isSeller) {
         Set<? extends User> userSet = isSeller ? sellerSet : buyerSet;
         User user = userSet.stream()
                 .filter(userToFind -> userToFind.getUsername().equals(username) && userToFind.getPassword().equals(password))
                 .findFirst()
                 .orElse(null);
         if (user == null) {
-            return false;
+            return null;
         }
 
         if (user.getIsActive()) {
@@ -50,27 +47,27 @@ public class UserController {
                 if (seller.getProducts() == null || seller.getProducts().isEmpty()) {
                     user.setIsActive(false);
                     userService.writeUsers(users);
-                    return false;
+                    return null;
                 }
             }
-            return true;
+            return user;
         }
 
         if (new Date().getTime() - user.getDateCreated().getTime() < 86400000) {
             user.setIsActive(true);
             userService.writeUsers(users);
-            return true;
+            return user;
         } else {
 
             userSet.remove(user);
             userService.writeUsers(users);
-            return false;
+            return null;
         }
 
     }
 
     public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
-        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date());
+        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>());
         if (users.getBuyers() == null) {
             users.setBuyers(new ArrayList<>());
         }
@@ -81,7 +78,7 @@ public class UserController {
     }
 
     public boolean register(String businessName, String email, String username, String password, String address, String phoneNumber) {
-        Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber, false, new Date(), new ArrayList<>());
+        Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber, false, new Date(), new ArrayList<>(), new HashSet<>());
         if (users.getSellers() == null) {
             users.setSellers(new ArrayList<>());
         }
@@ -133,7 +130,7 @@ public class UserController {
         return phoneNumber.matches("^[0-9]{10}$");
     }
 
-    public void addProductsToSeller(String username, List<UUID> productId) {
+    public void addProductsToSeller(String username, Set<UUID> productId) {
         Seller seller = sellerSet.stream()
                 .filter(sellerToFind -> sellerToFind.getUsername().equals(username))
                 .findFirst()
@@ -196,4 +193,22 @@ public class UserController {
         userService.writeUsers(users);
         return true;
     }
+
+    public boolean addLike(Buyer user, Product product) {
+            buyerSet.remove(user);
+            user.addLike(product.getId());
+            buyerSet.add(user);
+            users.setBuyers(new ArrayList<>(buyerSet));
+            userService.writeUsers(users);
+            return true;
+        }
+
+        public boolean removeLike(Buyer user, Product product) {
+            buyerSet.remove(user);
+             user.removeLike(product.getId());
+             buyerSet.add(user);
+            users.setBuyers(new ArrayList<>(buyerSet));
+            userService.writeUsers(users);
+            return true;
+        }
 }

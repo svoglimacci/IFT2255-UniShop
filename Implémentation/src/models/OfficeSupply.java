@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -15,7 +16,8 @@ public class OfficeSupply extends Product {
 
     @JsonCreator
     public OfficeSupply(
-            @JsonProperty("id") List<UUID> id,
+            @JsonProperty("id") UUID id,
+            @JsonProperty("instances") Set<UUID> instances,
             @JsonProperty("name") String name,
             @JsonProperty("description") String description,
             @JsonProperty("price") double price,
@@ -28,7 +30,7 @@ public class OfficeSupply extends Product {
             @JsonProperty("model") String model,
             @JsonProperty("subCategory") String subCategory
     ) {
-        super(id, name, description, price, likes, reviews, rating, category, isPromoted);
+        super(id, instances, name, description, price, likes, reviews, rating, category, isPromoted);
         this.brand = brand;
         this.model = model;
         this.subCategory = subCategory;
