@@ -67,7 +67,7 @@ public class UserController {
     }
 
     public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
-        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>());
+        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>(), new ShoppingCart( new HashSet<>()));
         if (users.getBuyers() == null) {
             users.setBuyers(new ArrayList<>());
         }
@@ -211,4 +211,11 @@ public class UserController {
             userService.writeUsers(users);
             return true;
         }
+
+    public boolean addProductToCart(Buyer user, Product product, int quantity) {
+        buyerSet.remove(user);
+        CartItem cartItem = new CartItem(product.getId(), product.getName(), quantity, product.getPrice());
+        user.getCart().addProduct(cartItem, quantity);
+        return true;
+    }
 }
