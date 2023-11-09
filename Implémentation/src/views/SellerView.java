@@ -2,11 +2,9 @@ package views;
 
 import controllers.ProductController;
 import controllers.UserController;
-import models.ProductCategory;
 import models.Seller;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.UUID;
@@ -26,34 +24,38 @@ public class SellerView {
     }
 
     public void start() {
-        System.out.println("Veuillez choisir une option :");
-        System.out.println("1. Ajouter un produit");
-        System.out.println("2. Modifier le profil");
-        System.out.println("0. Se déconnecter");
-        String input;
         Scanner sc = new Scanner(System.in);
-        input = sc.nextLine();
-        try {
-            switch (input) {
-                case "1":
-                    this.showProductPrompt(sc);
-                    break;
-                case "2":
-                    this.modifyProfile(sc);
-                    break;
-                case "0":
-                    AuthView authView = new AuthView();
-                    authView.start();
-                    break;
-                default:
-                    System.out.println("Choix invalide");
+        String input;
+        boolean displayMenu = true;
+        while (true) {
+            if (displayMenu) {
+                System.out.println("Veuillez choisir une option :");
+                System.out.println("1. Ajouter un produit");
+                System.out.println("2. Modifier le profil");
+                System.out.println("0. Se déconnecter");
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            try {
+                input = sc.nextLine();
+                switch (input) {
+                    case "1" -> showProductPrompt(sc);
+                    case "2" -> modifyProfile(sc);
+                    case "0" -> {
+                        return;
+                    }
+                    default -> {
+                        System.out.println("Choix invalide");
+                    displayMenu = false; }
+                }
+            } catch (Exception e) {
+                System.out.println("Choix invalide");
+            }
         }
     }
 
     public void showProductPrompt(Scanner sc) {
+        String input;
         System.out.println("Veuillez entrer le nom du produit:");
         String name = sc.nextLine();
         System.out.println("Veuillez entrer la description du produit:");
@@ -63,22 +65,29 @@ public class SellerView {
         System.out.println("Veuillez entrer la quantité:");
         int quantity = Integer.parseInt(sc.nextLine());
 
-        System.out.println(ProductCategory.categoriesToString());
-        int categoryIndex = Integer.parseInt(sc.nextLine());
-        if (categoryIndex == 0) {
-            this.start();
-        } else if (categoryIndex < 0 || categoryIndex > ProductCategory.values().length) {
-            System.out.println("Choix invalide");
-            this.showProductPrompt(sc);
-        }
-        ProductCategory category = ProductCategory.values()[categoryIndex - 1];
-        switch (category) {
-            case BOOKS -> showBookPrompt(sc, name, description, price, quantity);
-            case LEARNING_MATERIALS -> showLearningMaterialPrompt(sc, name, description, price, quantity);
-            case OFFICE_FURNITURES -> showOfficeFurniturePrompt(sc, name, description, price, quantity);
-            case OFFICE_SUPPLIES -> showOfficeSupplyPrompt(sc, name, description, price, quantity);
-            case ELECTRONICS -> showElectronicPrompt(sc, name, description, price, quantity);
-        }
+        System.out.println("Veuillez choisir une catégorie :");
+                System.out.println("1. Livres et Manuels");
+                System.out.println("2. Matériel Informatique");
+                System.out.println("3. Ressources d'apprentissage");
+                System.out.println("4. Articles de papeterie");
+                System.out.println("5. Équipêment de bureau");
+
+                    try {
+                input = sc.nextLine();
+                switch (input) {
+                    case "1" -> showBookPrompt(sc, name, description, price, quantity);
+                    case "2" -> showElectronicPrompt(sc, name, description, price, quantity);
+                    case "3" -> showLearningMaterialPrompt(sc, name, description, price, quantity);
+                    case "4" -> showOfficeSupplyPrompt(sc, name, description, price, quantity);
+                    case "5" -> showOfficeFurniturePrompt(sc, name, description, price, quantity);
+                    default -> {
+                        System.out.println("Choix invalide");
+                    }
+                }
+
+            } catch (Exception e) {
+                System.out.println("Choix invalide");
+            }
     }
 
     public void showBookPrompt(Scanner sc, String name, String description, double price, int quantity) {
@@ -234,20 +243,18 @@ public class SellerView {
                     modify = this.userController.changeProperty("password", password, this.username, true);
                     break;
                 case "0":
-                    this.start();
-                    break;
+                    return;
                 default:
                     System.out.println("Choix invalide");
             }
             if (modify) {
                 System.out.println("Modification effectuée avec succès");
-                this.start();
+
             } else {
                 System.out.println("Erreur lors de la modification");
-                this.modifyProfile(sc);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Choix invalide");
         }
 
     }

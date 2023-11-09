@@ -52,13 +52,14 @@ public class ProductController {
         }
     }
 
-    public List<? extends Product> getProductsByCategory(ProductCategory category) {
+    public List<? extends Product> getProductsByCategory(String category) {
         return switch (category) {
-            case BOOKS -> this.getBooks();
-            case LEARNING_MATERIALS -> this.getLearningMaterials();
-            case OFFICE_SUPPLIES -> this.getOfficeSupplies();
-            case OFFICE_FURNITURES -> this.getOfficeFurnitures();
-            case ELECTRONICS -> this.getElectronics();
+            case "Books" -> this.getBooks();
+            case "LearningMaterials" -> this.getLearningMaterials();
+            case "OfficeSupplies" -> this.getOfficeSupplies();
+            case "OfficeFurnitures" -> this.getOfficeFurnitures();
+            case "Electronics" -> this.getElectronics();
+            default -> throw new IllegalStateException("Unexpected value: " + category);
         };
     }
 
@@ -177,7 +178,8 @@ public class ProductController {
     }
 
 
-    public boolean changeAttribute(Product product, String attribute, String value, ProductCategory category) {
+    public boolean changeAttribute(Product product, String attribute, String value) {
+        String category = product.getClass().getSimpleName();
         switch (attribute) {
             case "likes":
                 if (value == "add") {
@@ -189,13 +191,76 @@ public class ProductController {
                 break;
         }
         switch (category) {
-            case BOOKS:
+            case "Books":
                 bookSet.add((Book) product);
                 products.setBooks(new ArrayList<>(bookSet));
                 break;
+                //TODO: add other categories
 
         }
         productService.writeProducts(products);
         return true;
     }
+
+public List<Product> searchProducts(String keyword) {
+    List<Product> filteredProducts = new ArrayList<>();
+
+    if (products.getBooks() != null) {
+        for (Product product : products.getBooks()) {
+            if (product.getName().contains(keyword)) {
+                filteredProducts.add(product);
+            }
+        }
+    }
+
+    if (products.getElectronics() != null) {
+        for (Product product : products.getElectronics()) {
+            if (product.getName().contains(keyword)) {
+                filteredProducts.add(product);
+            }
+        }
+    }
+
+    if (products.getLearningMaterials() != null) {
+        for (Product product : products.getLearningMaterials()) {
+            if (product.getName().contains(keyword)) {
+                filteredProducts.add(product);
+            }
+        }
+    }
+
+    if (products.getOfficeSupplies() != null) {
+        for (Product product : products.getOfficeSupplies()) {
+            if (product.getName().contains(keyword)) {
+                filteredProducts.add(product);
+            }
+        }
+    }
+
+    if (products.getOfficeFurnitures() != null) {
+        for (Product product : products.getOfficeFurnitures()) {
+            if (product.getName().contains(keyword)) {
+                filteredProducts.add(product);
+            }
+        }
+    }
+
+    return filteredProducts;
+}
+
+    public List<Product> sortProducts(List<Product> searchResults, String sortBy) {
+        switch (sortBy) {
+            case "price":
+                searchResults.sort(Comparator.comparing(Product::getPrice));
+                break;
+            case "rating":
+                searchResults.sort(Comparator.comparing(Product::getRating));
+                break;
+            case "likes":
+                searchResults.sort(Comparator.comparing(Product::getLikes));
+                break;
+        }
+        return searchResults;
+    }
+
 }

@@ -6,9 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Users {
-    @JsonProperty("buyers")
+
     public List<Buyer> buyers;
-    @JsonProperty("sellers")
     public List<Seller> sellers;
 
     @JsonCreator

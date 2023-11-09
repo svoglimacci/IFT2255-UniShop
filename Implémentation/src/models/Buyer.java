@@ -12,6 +12,7 @@ public class Buyer extends User {
     private String firstName;
     private String lastName;
 
+    private ShoppingCart cart;
 
     @JsonCreator
     public Buyer(@JsonProperty("username") String username,
@@ -23,10 +24,12 @@ public class Buyer extends User {
                  @JsonProperty("phoneNumber") String phoneNumber,
                  @JsonProperty("isActive") boolean isActive,
                  @JsonProperty("dateCreated") Date dateCreated,
-                 @JsonProperty("likes") Set<UUID> likes) {
+                 @JsonProperty("likes") Set<UUID> likes,
+                 @JsonProperty("cart") ShoppingCart cart) {
         super(username, password, email, address, phoneNumber, isActive, dateCreated, likes);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.cart = cart;
     }
 
     // Getter methods
@@ -49,4 +52,7 @@ public class Buyer extends User {
     }
 
 
+    public ShoppingCart getCart() {
+        return this.cart;
+    }
 }

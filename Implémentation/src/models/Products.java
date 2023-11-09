@@ -6,15 +6,10 @@ import java.util.List;
 
 public class Products {
 
-    @JsonProperty("books")
     public List<Book> books;
-    @JsonProperty("electronics")
     public List<Electronic> electronics;
-    @JsonProperty("learningMaterials")
     public List<LearningMaterial> learningMaterials;
-    @JsonProperty("officeSupplies")
     public List<OfficeSupply> officeSupplies;
-    @JsonProperty("officeFurnitures")
     public List<OfficeFurniture> officeFurnitures;
 
 
