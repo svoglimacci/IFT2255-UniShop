@@ -2,10 +2,7 @@ package views;
 
 import controllers.ProductController;
 import controllers.UserController;
-import models.Buyer;
-import models.CartItem;
-import models.Product;
-import models.ShoppingCart;
+import models.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +38,7 @@ public class BuyerView {
                 System.out.println("4. Passer une commande");
                 System.out.println("5. Rechercher un produit");
                 System.out.println("6. Mes achats");
+                System.out.println("7. Trouver un revendeur");
                 System.out.println("0. Se déconnecter");
             }
 
@@ -53,6 +51,7 @@ public class BuyerView {
                     case "4" -> reviewOrder(sc);
                     case "5" -> searchProduct(sc);
                     case "6" -> showPurchases(sc);
+                    case "7" -> searchSeller(sc);
                     case "0" -> {
                         return;
                     }
@@ -66,6 +65,53 @@ public class BuyerView {
             }
         }
     }
+
+    private void searchSeller(Scanner sc) {
+    System.out.println("Recherche de revendeurs :");
+    System.out.print("Entrez un mot-clé de recherche : ");
+    String input;
+    String keyword = sc.nextLine();
+
+    List<Seller> searchResults = userController.searchSellers(keyword);
+
+    if (searchResults.isEmpty()) {
+        System.out.println("Aucun vendeur trouvé pour la recherche spécifiée.");
+    } else {
+        while (true) {
+            System.out.println("Résultats de la recherche :");
+            int idx = 2;
+            for (Seller seller : searchResults) {
+                System.out.println(idx + ". " + seller.toString());
+                idx++;
+            }
+
+            System.out.println("Veuillez choisir une option :");
+            System.out.println("1. Filtrer les résultats");
+            System.out.println("#. Entrer le numéro du vendeur pour voir les détails");
+            System.out.println("0. Retour");
+
+            try {
+                input = sc.nextLine();
+                if (input.equals("0")) {
+                    return;
+                } else if (input.equals("1")) {
+                    searchResults = filterBuyers(sc, searchResults);
+                } else {
+                    int sellerChoice = Integer.parseInt(input) - 2;
+                    if (sellerChoice >= 0 && sellerChoice < searchResults.size()) {
+                        System.out.println("...Show Seller infos...");
+                        return;
+                    } else {
+                        System.out.println("Choix invalide");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Choix invalide");
+            }
+        }
+    }
+}
+
 
     private void showPurchases(Scanner sc) {
         List<Product> purchases = new ArrayList<>();
@@ -163,6 +209,69 @@ public class BuyerView {
             }
 
         }
+    }
+
+    private List<Seller> filterBuyers(Scanner sc, List<Seller> searchResults) {
+        List<Seller> filteredResults = new ArrayList<>(searchResults);
+        String input;
+        try {
+            System.out.println("Veuillez choisir une option :");
+            System.out.println("1. Filtrer par nom");
+            System.out.println("2. Filtrer par adresse");
+            System.out.println("3. Filtrer par catégories de produits");
+            System.out.println("0. Retour");
+            input = sc.nextLine();
+            switch (input) {
+                case "1" -> {
+                    return userController.sortSellers(filteredResults, "name");
+                }
+                case "2" -> {
+                    return userController.sortSellers(filteredResults, "address");
+                }
+                case "3" -> {
+                    System.out.println("Veuillez choisir une catégorie :");
+                    System.out.println("1. Livres et Manuels");
+                    System.out.println("2. Matériel Informatique");
+                    System.out.println("3. Ressources d'apprentissage");
+                    System.out.println("4. Articles de papeterie");
+                    System.out.println("5. Équipêment de bureau");
+                    System.out.println("0. Retour");
+                    input = sc.nextLine();
+                    switch (input) {
+                        case "1" -> {
+                            return userController.filterSellers(filteredResults, "Books");
+                        }
+                        case "2" -> {
+                            return userController.filterSellers(filteredResults, "Electronics");
+                        }
+                        case "3" -> {
+                            return userController.filterSellers(filteredResults, "LearningMaterials");
+                        }
+                        case "4" -> {
+                            return userController.filterSellers(filteredResults, "OfficeSupplies");
+                        }
+                        case "5" -> {
+                            return userController.filterSellers(filteredResults, "OfficeEquipment");
+                        }
+                        case "0" -> {
+                            return filteredResults;
+                        }
+                        default -> {
+                            System.out.println("Choix invalide");
+                        }
+                    }
+                }
+                case "0" -> {
+                    return filteredResults;
+                }
+                default -> {
+                    System.out.println("Choix invalide");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Choix invalide");
+        }
+        return filteredResults;
     }
 
     private List<Product> filterResults(Scanner sc, List<Product> searchResults) {

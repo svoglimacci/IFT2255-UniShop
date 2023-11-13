@@ -231,4 +231,46 @@ public class UserController {
         product.getReviews().add(newReview);
         return true;
     }
+
+    public List<Seller> searchSellers(String keyword) {
+        List<Seller> sellers = new ArrayList<>();
+        for (Seller seller : sellerSet) {
+            if (seller.getBusinessName().toLowerCase().contains(keyword.toLowerCase())) {
+                sellers.add(seller);
+            }
+        }
+        return sellers;
+    }
+
+    //get seller sold categories
+    public List<String> getCategories(Seller seller) throws IOException {
+        List<String> categories = new ArrayList<>();
+        for (UUID id : seller.getProducts()) {
+            Product product = new ProductController().getProductById(id);
+            if (!categories.contains(product.getCategory())) {
+                categories.add(product.getCategory());
+            }
+        }
+        return categories;
+    }
+
+    public List<Seller> sortSellers(List<Seller> searchResults, String keyword) {
+        if (keyword.equals("name")) {
+            searchResults.sort(Comparator.comparing(Seller::getBusinessName));
+        } else if (keyword.equals("address")) {
+            searchResults.sort(Comparator.comparing(Seller::getAddress));
+        }
+        return searchResults;
+    }
+
+    public List<Seller> filterSellers(List<Seller> searchResults, String category) throws IOException {
+        List<Seller> filteredSellers = new ArrayList<>();
+        for (Seller seller : searchResults) {
+            List<String> categories = getCategories(seller);
+            if (categories.contains(category)) {
+                filteredSellers.add(seller);
+            }
+        }
+        return filteredSellers;
+    }
 }
