@@ -37,9 +37,10 @@ public class BuyerView {
                 System.out.println("Veuillez choisir une option :");
                 System.out.println("1. Afficher les produits");
                 System.out.println("2. Modifier le profil");
-                System.out.println("3. Voir le panier");
+                System.out.println("3. Voir le panier d'achat");
                 System.out.println("4. Passer une commande");
                 System.out.println("5. Rechercher un produit");
+                System.out.println("6. Mes achats");
                 System.out.println("0. Se déconnecter");
             }
 
@@ -51,6 +52,7 @@ public class BuyerView {
                     case "3" -> showCart(sc);
                     case "4" -> reviewOrder(sc);
                     case "5" -> searchProduct(sc);
+                    case "6" -> showPurchases(sc);
                     case "0" -> {
                         return;
                     }
@@ -61,6 +63,46 @@ public class BuyerView {
                 }
             } catch (Exception e) {
                 System.out.println(e);
+            }
+        }
+    }
+
+    private void showPurchases(Scanner sc) {
+        List<Product> purchases = new ArrayList<>();
+        for (UUID id : user.getPurchases()) {
+            purchases.add(productController.getProductById(id));
+        }
+        String input;
+        if (purchases.isEmpty()) {
+            System.out.println("Aucun achat effectué");
+            return;
+        }
+
+        int idx = 1;
+        System.out.println("Veuillez choisir un produit :");
+        System.out.println("0. Retour");
+
+        for (Product product : purchases) {
+            System.out.println(product.productToString());
+            idx++;
+        }
+
+        while (true) {
+            try {
+                input = sc.nextLine();
+                int productChoice = Integer.parseInt(input);
+                if (input.equals("0")) {
+                    return;
+                }
+                if (productChoice >= 0 && productChoice < idx) {
+                    ProductView productView = new ProductView(user, purchases.get(productChoice - 1));
+                    productView.start(sc);
+                    return;
+                } else {
+                    System.out.println("Choix invalide");
+                }
+            } catch (NumberFormatException | IOException e) {
+                System.out.println("Choix invalide");
             }
         }
     }
@@ -170,6 +212,11 @@ public class BuyerView {
 
     public void reviewOrder(Scanner sc) {
 
+        if (user.getCart().getItems().isEmpty()) {
+            System.out.println("Aucun produit dans le panier");
+            return;
+        }
+
         System.out.println("Utiliser l'adresse du profil pour la livraison ? (Oui/Non) :");
         String useProfileAddressChoice = sc.nextLine().toLowerCase();
         String deliveryAddress;
@@ -185,7 +232,10 @@ public class BuyerView {
         boolean orderPlaced = true;
         if (orderPlaced) {
             System.out.println("Commande passée avec succès! Numéro de commande : " + orderID);
-            user.getCart().getProducts().clear();
+            for (CartItem product : user.getCart().getItems()) {
+                user.addPurchase(product.getId());
+            }
+            user.getCart().getItems().clear();
         } else {
             System.out.println("Erreur lors de la commande. Veuillez réessayer.");
         }
@@ -208,12 +258,12 @@ public class BuyerView {
             ShoppingCart cart = user.getCart();
             if (displayMenu) {
                 System.out.println("Produits dans le panier :");
-                if (cart.getProducts().isEmpty()) {
+                if (cart.getItems().isEmpty()) {
                     System.out.println("Aucun produit dans le panier");
                     return;
                 }
                 int idx = 2;
-                for (CartItem product : cart.getProducts()) {
+                for (CartItem product : cart.getItems()) {
                     System.out.println(idx + ". " + product.productToString());
                     idx++;
                 }
@@ -234,7 +284,7 @@ public class BuyerView {
                     return;
                 }
                 int choice = Integer.parseInt(input) - 1;
-                if (choice >= 0 && choice <= cart.getProducts().size()) {
+                if (choice >= 0 && choice <= cart.getItems().size()) {
                     if (choice != 0) {
                         System.out.println("Veuillez entrer la nouvelle quantité :");
                         int quantity = Integer.parseInt(sc.nextLine());
@@ -242,9 +292,9 @@ public class BuyerView {
                             System.out.println("Quantité invalide");
                             return;
                         }
-                        CartItem product = (CartItem) cart.getProducts().toArray()[choice - 1];
+                        CartItem product = (CartItem) cart.getItems().toArray()[choice - 1];
                         if (quantity == 0) {
-                            cart.getProducts().remove(product);
+                            cart.getItems().remove(product);
                             System.out.println("Produit retiré avec succès\n");
                             return;
                         }

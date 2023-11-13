@@ -2,6 +2,7 @@ package models;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Set;
@@ -17,6 +18,11 @@ public class ShoppingCart {
         this.totalPrice = calculateTotalPrice();
     }
 
+    public Set<CartItem> getItems() {
+        return this.items;
+    }
+
+
     public double calculateTotalPrice() {
         double total = 0;
         for (CartItem item : this.items) {
@@ -25,10 +31,7 @@ public class ShoppingCart {
         return total;
     }
 
-    public Set<CartItem> getProducts() {
-        return this.items;
-    }
-
+    @JsonIgnore
     public double getTotalCost() {
         return this.totalPrice;
     }

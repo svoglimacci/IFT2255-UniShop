@@ -3,16 +3,16 @@ package models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class Buyer extends User {
     private String firstName;
     private String lastName;
 
+    private List<UUID> purchases;
+
     private ShoppingCart cart;
+
 
     @JsonCreator
     public Buyer(@JsonProperty("username") String username,
@@ -25,11 +25,13 @@ public class Buyer extends User {
                  @JsonProperty("isActive") boolean isActive,
                  @JsonProperty("dateCreated") Date dateCreated,
                  @JsonProperty("likes") Set<UUID> likes,
+                 @JsonProperty("purchases") List<UUID> purchases,
                  @JsonProperty("cart") ShoppingCart cart) {
         super(username, password, email, address, phoneNumber, isActive, dateCreated, likes);
         this.firstName = firstName;
         this.lastName = lastName;
         this.cart = cart;
+        this.purchases = purchases;
     }
 
     // Getter methods
@@ -54,5 +56,13 @@ public class Buyer extends User {
 
     public ShoppingCart getCart() {
         return this.cart;
+    }
+
+    public void addPurchase(UUID id) {
+        this.purchases.add(id);
+    }
+
+    public List<UUID> getPurchases() {
+        return purchases;
     }
 }

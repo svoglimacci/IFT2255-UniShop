@@ -3,6 +3,7 @@ package models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -105,6 +106,7 @@ public class Product {
 
 
     public String productDetailsToString() {
+        rating = getRating();
         StringBuilder reviewString = new StringBuilder();
         for (Review review : reviews) {
             reviewString.append(review).append("\n");
@@ -134,5 +136,13 @@ public class Product {
 
     public void removeLike() {
         this.likes--;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

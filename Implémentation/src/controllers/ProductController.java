@@ -263,4 +263,47 @@ public List<Product> searchProducts(String keyword) {
         return searchResults;
     }
 
+    public Product getProductById(UUID id) {
+        if (products.getBooks() != null) {
+            for (Product product : products.getBooks()) {
+                if (product.getId().equals(id)) {
+                    return product;
+                }
+            }
+        }
+
+        if (products.getElectronics() != null) {
+            for (Product product : products.getElectronics()) {
+                if (product.getId().equals(id)) {
+                    return product;
+                }
+            }
+        }
+
+        if (products.getLearningMaterials() != null) {
+            for (Product product : products.getLearningMaterials()) {
+                if (product.getId().equals(id)) {
+                    return product;
+                }
+            }
+        }
+
+        if (products.getOfficeSupplies() != null) {
+            for (Product product : products.getOfficeSupplies()) {
+                if (product.getId().equals(id)) {
+                    return product;
+                }
+            }
+        }
+
+        if (products.getOfficeFurnitures() != null) {
+            for (Product product : products.getOfficeFurnitures()) {
+                if (product.getId().equals(id)) {
+                    return product;
+                }
+            }
+        }
+
+        return null;
+    }
 }

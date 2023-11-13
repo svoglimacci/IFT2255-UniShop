@@ -57,8 +57,8 @@ public void showRegisterMenu(Scanner sc) {
        input = sc.nextLine();
 
        switch (input) {
-           case "1" -> showRegisterPrompt(sc, false);
-           case "2" -> showRegisterPrompt(sc, true);
+           case "1" -> { showRegisterPrompt(sc, false); return;}
+           case "2" -> {showRegisterPrompt(sc, true); return; }
            case "0" -> {
                return;
            }
