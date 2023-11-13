@@ -31,6 +31,10 @@ public class CartItem {
                 "Prix unitaire: " + this.price + "$ ";
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public double getPrice() {
         return this.price;
     }
@@ -41,5 +45,9 @@ public class CartItem {
 
     public int getQuantity() {
         return this.quantity;
+    }
+
+    public UUID getId() {
+        return this.id;
     }
 }

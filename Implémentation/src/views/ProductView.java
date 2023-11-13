@@ -39,6 +39,8 @@ public class ProductView {
                 } else {
                     System.out.println("2. Ajouter une mention j'aime");
                 }
+                System.out.println("3. Laisser un avis");
+
                 System.out.println("0. Retour");
             }
             try {
@@ -49,6 +51,7 @@ public class ProductView {
                         System.out.println("Veuillez entrer la quantité :");
                         int quantity = Integer.parseInt(sc.nextLine());
                         userController.addProductToCart((Buyer) user, product, quantity);
+                        System.out.println("Produit ajouté au panier avec succès");
                     }
                     case "2" -> {
                         if (isLiked) {
@@ -62,6 +65,24 @@ public class ProductView {
                             System.out.println(isLiked ? "Mention j'aime retirée avec succès" : "Mention j'aime ajoutée avec succès");
                         } else {
                             System.out.println("Erreur lors de l'opération");
+                        }
+                    }
+                    case "3" -> {
+                        if (user instanceof Buyer) {
+                            if (((Buyer) user).getPurchases().contains(product.getId())) {
+                                System.out.println("Veuillez entrer une note (1-5) :");
+                                String rating = sc.nextLine();
+                                success1 = productController.changeAttribute(product, "ratings", rating);
+                                System.out.println("Veuillez entrer un commentaire :");
+                                String review = sc.nextLine();
+                                success2 = productController.changeAttribute(product, "reviews",  review);
+                                boolean success3 = userController.addReview((Buyer) user, product, review, rating);
+                                if (success1 && success2 && success3) {
+                                    System.out.println("Avis ajouté avec succès");
+                                } else {
+                                    System.out.println("Erreur lors de l'opération");
+                                }
+                            }
                         }
                     }
                     case "0" -> {

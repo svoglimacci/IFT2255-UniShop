@@ -67,7 +67,7 @@ public class UserController {
     }
 
     public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
-        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>(), new ShoppingCart( new HashSet<>()));
+        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>(),  new ArrayList<>(), new ShoppingCart( new HashSet<>()));
         if (users.getBuyers() == null) {
             users.setBuyers(new ArrayList<>());
         }
@@ -212,10 +212,23 @@ public class UserController {
             return true;
         }
 
-    public boolean addProductToCart(Buyer user, Product product, int quantity) {
+    public void addProductToCart(Buyer user, Product product, int quantity) {
         buyerSet.remove(user);
         CartItem cartItem = new CartItem(product.getId(), product.getName(), quantity, product.getPrice());
         user.getCart().addProduct(cartItem, quantity);
+    }
+
+    public void addProductToPurchases(Buyer user, UUID id) {
+        user.addPurchase(id);
+    }
+
+    public boolean addReview(Buyer user, Product product, String review, String rating) {
+        float ratingToFloat = Float.parseFloat(rating);
+        if (product.getReviews() == null) {
+            product.setReviews(new ArrayList<>());
+        }
+        Review newReview = new Review(user.getUsername(), review, ratingToFloat);
+        product.getReviews().add(newReview);
         return true;
     }
 }

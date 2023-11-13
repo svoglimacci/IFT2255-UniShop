@@ -8,17 +8,17 @@ public class Review {
 
     public float rating;
 
-    public Review(@JsonProperty("comment") String comment,
+    public Review(
                   @JsonProperty("author") String author,
+                  @JsonProperty("comment") String comment,
                   @JsonProperty("rating") float rating) {
-        this.comment = comment;
         this.author = author;
+        this.comment = comment;
         this.rating = rating;
     }
 
     @Override
     public String toString() {
-        //remove decimal part if it's .0
         if (rating % 1 == 0) {
             return "Avis de " + author + " : " + comment + " (" + (int) rating + "/5)";
         }
