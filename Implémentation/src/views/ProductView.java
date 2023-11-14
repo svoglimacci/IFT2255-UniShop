@@ -52,7 +52,9 @@ public class ProductView {
                         int quantity = Integer.parseInt(sc.nextLine());
                         userController.addProductToCart((Buyer) user, product, quantity);
                         System.out.println("Produit ajouté au panier avec succès");
+
                         return;
+
                     }
                     case "2" -> {
                         if (isLiked) {

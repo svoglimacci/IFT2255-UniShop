@@ -5,8 +5,10 @@ import controllers.UserController;
 import models.*;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.util.*;
+
 import java.util.function.Predicate;
 
 public class BuyerView {
@@ -110,7 +112,6 @@ public class BuyerView {
         }
     }
 
-
     private void showPurchases(Scanner sc) {
         List<Product> purchases = new ArrayList<>();
         for (UUID id : user.getPurchases()) {
@@ -129,12 +130,14 @@ public class BuyerView {
 
         for (Order order : user.getOrders()) {
             System.out.println(idx + ". " + order.getId() + " | " + order.getStatus());
+
             idx++;
         }
 
         while (true) {
             try {
                 input = sc.nextLine();
+
                 int orderChoice = Integer.parseInt(input);
                 if (input.equals("0")) {
                     return;
@@ -162,6 +165,7 @@ public class BuyerView {
                 }
 
             } catch (NumberFormatException e) {
+
                 System.out.println("Choix invalide");
             }
         }
@@ -224,6 +228,7 @@ public class BuyerView {
 
         }
     }
+
 
     private List<Seller> filterBuyers(Scanner sc, List<Seller> searchResults) {
         List<Seller> filteredResults = new ArrayList<>(searchResults);
@@ -352,17 +357,21 @@ public class BuyerView {
         System.out.println("Veuillez fournir les informations suivantes :");
         String phoneNumber = getUserInput(sc, "Numéro de téléphone : ", userController::validatePhoneNumber);
         UUID orderID = UUID.randomUUID();
+
         Set<UUID> products = new HashSet<>();
+
         boolean orderPlaced = true;
         if (orderPlaced) {
             System.out.println("Commande passée avec succès! Numéro de commande : " + orderID);
             for (CartItem product : user.getCart().getItems()) {
                 user.addPurchase(product.getId());
+
                 products.add(product.getId());
 
             }
             Order order = new Order(orderID, user.getId(), user.getId(), products, user.getCart().calculateTotalPrice(), "En production");
             user.addOrder(order);
+
             user.getCart().getItems().clear();
         } else {
             System.out.println("Erreur lors de la commande. Veuillez réessayer.");
@@ -403,7 +412,7 @@ public class BuyerView {
             }
             try {
                 input = sc.nextLine();
-                //TODO: finish this.
+
                 if (input.equals("0")) {
                     return;
                 }
@@ -448,7 +457,6 @@ public class BuyerView {
                 System.out.println("Veuillez choisir une catégorie :");
                 System.out.println("1. Livres et Manuels");
                 System.out.println("2. Matériel Informatique");
-                System.out.println("2. Matériel Informatique");
                 System.out.println("3. Ressources d'apprentissage");
                 System.out.println("4. Articles de papeterie");
                 System.out.println("5. Équipêment de bureau");
@@ -457,6 +465,7 @@ public class BuyerView {
             try {
                 input = sc.nextLine();
                 switch (input) {
+
                     case "1" -> {
                         showProducts(sc, "Books");
                         return;
@@ -477,6 +486,7 @@ public class BuyerView {
                         showProducts(sc, "OfficeEquipment");
                         return;
                     }
+
                     case "0" -> {
                         return;
                     }
@@ -506,7 +516,9 @@ public class BuyerView {
         System.out.println("0. Retour");
 
         for (Product product : products) {
+
             System.out.println(idx + ". " + product.productToString());
+
             idx++;
         }
 
@@ -530,7 +542,6 @@ public class BuyerView {
         }
     }
 
-    //TODO: getUserInput() + validator
     private void modifyProfile(Scanner sc) {
         System.out.println("Veuillez choisir une option :");
         System.out.println("1. Modifier le prénom");

@@ -9,7 +9,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public class User {
+
     private UUID id;
+
     private String username;
     private String password;
     private String email;
@@ -21,8 +23,10 @@ public class User {
     private final Set<UUID> likes;
 
     @JsonCreator
+
     public User(@JsonProperty("id") UUID id,
             @JsonProperty("username") String username,
+
                 @JsonProperty("password") String password,
                 @JsonProperty("email") String email,
                 @JsonProperty("address") String address,
@@ -30,7 +34,9 @@ public class User {
                 @JsonProperty("isActive") boolean isActive,
                 @JsonProperty("dateCreated") Date dateCreated,
                 @JsonProperty("likes") Set<UUID> likes) {
+
         this.id = UUID.randomUUID();
+
         this.username = username;
         this.password = password;
         this.email = email;
@@ -115,4 +121,5 @@ public class User {
         return id;
 
     }
+
 }
