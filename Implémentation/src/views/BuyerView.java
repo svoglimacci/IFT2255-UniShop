@@ -66,6 +66,7 @@ public class BuyerView {
         }
     }
 
+
     private void searchSeller(Scanner sc) {
     System.out.println("Recherche de revendeurs :");
     System.out.print("Entrez un mot-clé de recherche : ");
@@ -111,7 +112,6 @@ public class BuyerView {
         }
     }
 }
-
 
     private void showPurchases(Scanner sc) {
         List<Product> purchases = new ArrayList<>();
@@ -210,6 +210,7 @@ public class BuyerView {
 
         }
     }
+
 
     private List<Seller> filterBuyers(Scanner sc, List<Seller> searchResults) {
         List<Seller> filteredResults = new ArrayList<>(searchResults);
@@ -384,7 +385,6 @@ public class BuyerView {
             }
             try {
                 input = sc.nextLine();
-                //TODO: finish this.
                 if (input.equals("0")) {
                     return;
                 }
@@ -495,7 +495,6 @@ public class BuyerView {
         }
     }
 
-    //TODO: getUserInput() + validator
     private void modifyProfile(Scanner sc) {
         System.out.println("Veuillez choisir une option :");
         System.out.println("1. Modifier le prénom");

@@ -242,7 +242,6 @@ public class UserController {
         return sellers;
     }
 
-    //get seller sold categories
     public List<String> getCategories(Seller seller) throws IOException {
         List<String> categories = new ArrayList<>();
         for (UUID id : seller.getProducts()) {
@@ -273,4 +272,5 @@ public class UserController {
         }
         return filteredSellers;
     }
+
 }
