@@ -67,7 +67,9 @@ public class UserController {
     }
 
     public boolean register(String firstName, String lastName, String email, String username, String password, String address, String phoneNumber) {
-        Buyer newBuyer = new Buyer(username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>(),  new ArrayList<>(), new ShoppingCart( new HashSet<>()));
+
+        Buyer newBuyer = new Buyer(UUID.randomUUID(), username, password, email, address, firstName, lastName, phoneNumber, false, new Date(), new HashSet<>(),  new ArrayList<>(), new ShoppingCart( new HashSet<>()));
+
         if (users.getBuyers() == null) {
             users.setBuyers(new ArrayList<>());
         }
@@ -78,7 +80,9 @@ public class UserController {
     }
 
     public boolean register(String businessName, String email, String username, String password, String address, String phoneNumber) {
-        Seller newSeller = new Seller(username, password, email, address, businessName, phoneNumber, false, new Date(), new ArrayList<>(), new HashSet<>());
+
+        Seller newSeller = new Seller(UUID.randomUUID(),username, password, email, address, businessName, phoneNumber, false, new Date(), new ArrayList<>(), new HashSet<>());
+
         if (users.getSellers() == null) {
             users.setSellers(new ArrayList<>());
         }
@@ -241,6 +245,7 @@ public class UserController {
         }
         return sellers;
     }
+
 
     public List<String> getCategories(Seller seller) throws IOException {
         List<String> categories = new ArrayList<>();

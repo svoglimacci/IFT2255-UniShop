@@ -5,10 +5,10 @@ import controllers.UserController;
 import models.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
+
+import java.time.LocalDate;
+import java.util.*;
+
 import java.util.function.Predicate;
 
 public class BuyerView {
@@ -66,52 +66,51 @@ public class BuyerView {
         }
     }
 
-
     private void searchSeller(Scanner sc) {
-    System.out.println("Recherche de revendeurs :");
-    System.out.print("Entrez un mot-clé de recherche : ");
-    String input;
-    String keyword = sc.nextLine();
+        System.out.println("Recherche de revendeurs :");
+        System.out.print("Entrez un mot-clé de recherche : ");
+        String input;
+        String keyword = sc.nextLine();
 
-    List<Seller> searchResults = userController.searchSellers(keyword);
+        List<Seller> searchResults = userController.searchSellers(keyword);
 
-    if (searchResults.isEmpty()) {
-        System.out.println("Aucun vendeur trouvé pour la recherche spécifiée.");
-    } else {
-        while (true) {
-            System.out.println("Résultats de la recherche :");
-            int idx = 2;
-            for (Seller seller : searchResults) {
-                System.out.println(idx + ". " + seller.toString());
-                idx++;
-            }
-
-            System.out.println("Veuillez choisir une option :");
-            System.out.println("1. Filtrer les résultats");
-            System.out.println("#. Entrer le numéro du vendeur pour voir les détails");
-            System.out.println("0. Retour");
-
-            try {
-                input = sc.nextLine();
-                if (input.equals("0")) {
-                    return;
-                } else if (input.equals("1")) {
-                    searchResults = filterBuyers(sc, searchResults);
-                } else {
-                    int sellerChoice = Integer.parseInt(input) - 2;
-                    if (sellerChoice >= 0 && sellerChoice < searchResults.size()) {
-                        System.out.println("...Show Seller infos...");
-                        return;
-                    } else {
-                        System.out.println("Choix invalide");
-                    }
+        if (searchResults.isEmpty()) {
+            System.out.println("Aucun vendeur trouvé pour la recherche spécifiée.");
+        } else {
+            while (true) {
+                System.out.println("Résultats de la recherche :");
+                int idx = 2;
+                for (Seller seller : searchResults) {
+                    System.out.println(idx + ". " + seller.toString());
+                    idx++;
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Choix invalide");
+
+                System.out.println("Veuillez choisir une option :");
+                System.out.println("1. Filtrer les résultats");
+                System.out.println("#. Entrer le numéro du vendeur pour voir les détails");
+                System.out.println("0. Retour");
+
+                try {
+                    input = sc.nextLine();
+                    if (input.equals("0")) {
+                        return;
+                    } else if (input.equals("1")) {
+                        searchResults = filterBuyers(sc, searchResults);
+                    } else {
+                        int sellerChoice = Integer.parseInt(input) - 2;
+                        if (sellerChoice >= 0 && sellerChoice < searchResults.size()) {
+                            System.out.println("...Show Seller infos...");
+                            return;
+                        } else {
+                            System.out.println("Choix invalide");
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Choix invalide");
+                }
             }
         }
     }
-}
 
     private void showPurchases(Scanner sc) {
         List<Product> purchases = new ArrayList<>();
@@ -125,29 +124,48 @@ public class BuyerView {
         }
 
         int idx = 1;
-        System.out.println("Veuillez choisir un produit :");
+        System.out.println("Veuillez choisir une option :");
+        System.out.println("#. Entrer le numéro de la commande pour voir les détails");
         System.out.println("0. Retour");
 
-        for (Product product : purchases) {
-            System.out.println(product.productToString());
+        for (Order order : user.getOrders()) {
+            System.out.println(idx + ". " + order.getId() + " | " + order.getStatus());
+
             idx++;
         }
 
         while (true) {
             try {
                 input = sc.nextLine();
-                int productChoice = Integer.parseInt(input);
+
+                int orderChoice = Integer.parseInt(input);
                 if (input.equals("0")) {
                     return;
                 }
-                if (productChoice >= 0 && productChoice < idx) {
-                    ProductView productView = new ProductView(user, purchases.get(productChoice - 1));
-                    productView.start(sc);
-                    return;
+                if (orderChoice >= 0 && orderChoice < idx) {
+                    Order order = user.getOrders().get(orderChoice - 1);
+                    System.out.println(order.getId() + " | " + order.getPrice() + " | " + order.getStatus());
+                    System.out.println("Date de livraison estimée : " + LocalDate.now().plusDays(3));
+
+                    System.out.println("\nProduits :");
+                    for (UUID id : order.getProductsId()) {
+                        Product product = productController.getProductById(id);
+                        System.out.println(product.productToString());
+                    }
+                    System.out.println("Veuillez choisir une option :");
+                    System.out.println("1. Effectuer un retour ou échange");
+                    System.out.println("2. Annuler la commande");
+                    System.out.println("0. Retour");
+                    input = sc.nextLine();
+                    if (!input.isEmpty()) {
+                        return;
+                    }
                 } else {
                     System.out.println("Choix invalide");
                 }
-            } catch (NumberFormatException | IOException e) {
+
+            } catch (NumberFormatException e) {
+
                 System.out.println("Choix invalide");
             }
         }
@@ -339,12 +357,21 @@ public class BuyerView {
         System.out.println("Veuillez fournir les informations suivantes :");
         String phoneNumber = getUserInput(sc, "Numéro de téléphone : ", userController::validatePhoneNumber);
         UUID orderID = UUID.randomUUID();
+
+        Set<UUID> products = new HashSet<>();
+
         boolean orderPlaced = true;
         if (orderPlaced) {
             System.out.println("Commande passée avec succès! Numéro de commande : " + orderID);
             for (CartItem product : user.getCart().getItems()) {
                 user.addPurchase(product.getId());
+
+                products.add(product.getId());
+
             }
+            Order order = new Order(orderID, user.getId(), user.getId(), products, user.getCart().calculateTotalPrice(), "En production");
+            user.addOrder(order);
+
             user.getCart().getItems().clear();
         } else {
             System.out.println("Erreur lors de la commande. Veuillez réessayer.");
@@ -385,6 +412,7 @@ public class BuyerView {
             }
             try {
                 input = sc.nextLine();
+
                 if (input.equals("0")) {
                     return;
                 }
@@ -437,11 +465,28 @@ public class BuyerView {
             try {
                 input = sc.nextLine();
                 switch (input) {
-                    case "1" -> showProducts(sc, "Books");
-                    case "2" -> showProducts(sc, "Electronics");
-                    case "3" -> showProducts(sc, "LearningMaterials");
-                    case "4" -> showProducts(sc, "OfficeSupplies");
-                    case "5" -> showProducts(sc, "OfficeEquipment");
+
+                    case "1" -> {
+                        showProducts(sc, "Books");
+                        return;
+                    }
+                    case "2" -> {
+                        showProducts(sc, "Electronics");
+                        return;
+                    }
+                    case "3" -> {
+                        showProducts(sc, "LearningMaterials");
+                        return;
+                    }
+                    case "4" -> {
+                        showProducts(sc, "OfficeSupplies");
+                        return;
+                    }
+                    case "5" -> {
+                        showProducts(sc, "OfficeEquipment");
+                        return;
+                    }
+
                     case "0" -> {
                         return;
                     }
@@ -471,7 +516,9 @@ public class BuyerView {
         System.out.println("0. Retour");
 
         for (Product product : products) {
-            System.out.println(product.productToString());
+
+            System.out.println(idx + ". " + product.productToString());
+
             idx++;
         }
 
