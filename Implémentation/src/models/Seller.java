@@ -13,7 +13,8 @@ public class Seller extends User {
     private List<UUID> products;
 
     @JsonCreator
-    public Seller(@JsonProperty("username") String username,
+    public Seller(@JsonProperty("id") UUID id,
+            @JsonProperty("username") String username,
                   @JsonProperty("password") String password,
                   @JsonProperty("email") String email,
                   @JsonProperty("address") String address,
@@ -23,7 +24,7 @@ public class Seller extends User {
                   @JsonProperty("dateCreated") Date dateCreated,
                   @JsonProperty("products") List<UUID> products,
                   @JsonProperty("likes") Set<UUID> likes) {
-        super(username, password, email, address, phoneNumber, isActive, dateCreated, likes);
+        super(id, username, password, email, address, phoneNumber, isActive, dateCreated, likes);
         this.businessName = businessName;
         this.products = products;
     }
