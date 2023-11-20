@@ -1,7 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
 
@@ -13,42 +11,37 @@ public class Buyer extends User {
 
     private ShoppingCart cart;
 
-
     private List<Order> orders;
 
 
-    @JsonCreator
-    public Buyer(@JsonProperty("id") UUID id,
-            @JsonProperty("username") String username,
 
-                 @JsonProperty("password") String password,
-                 @JsonProperty("email") String email,
-                 @JsonProperty("address") String address,
-                 @JsonProperty("firstName") String firstName,
-                 @JsonProperty("lastName") String lastName,
-                 @JsonProperty("phoneNumber") String phoneNumber,
-                 @JsonProperty("isActive") boolean isActive,
-                 @JsonProperty("dateCreated") Date dateCreated,
-                 @JsonProperty("likes") Set<UUID> likes,
-                 @JsonProperty("purchases") List<UUID> purchases,
-                 @JsonProperty("cart") ShoppingCart cart) {
-
+    public Buyer(UUID id,
+ String username,
+String password,
+ String email,
+ String address,
+String firstName,
+String lastName,
+String phoneNumber,
+ boolean isActive,
+Date dateCreated,
+ Set<UUID> likes,
+List<UUID> purchases,
+ ShoppingCart cart) {
         super(id, username, password, email, address, phoneNumber, isActive, dateCreated, likes);
-
         this.firstName = firstName;
         this.lastName = lastName;
         this.cart = cart;
         this.purchases = purchases;
-
         this.orders = new ArrayList<>();
     }
 
 
+    // Getter methods
 
     public List<Order> getOrders() {
         return orders;
     }
-
     public String getFirstName() {
         return this.firstName;
     }
@@ -83,5 +76,4 @@ public class Buyer extends User {
     public void addOrder(Order order) {
         this.orders.add(order);
     }
-
 }

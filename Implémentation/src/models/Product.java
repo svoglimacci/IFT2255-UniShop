@@ -1,8 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -27,17 +24,17 @@ public class Product {
 
     public boolean isPromoted;
 
-    @JsonCreator
-    public Product(@JsonProperty("id") UUID id,
-            @JsonProperty("instances") Set<UUID> instances,
-                   @JsonProperty("name") String name,
-                   @JsonProperty("description") String description,
-                   @JsonProperty("price") double price,
-                   @JsonProperty("likes") int likes,
-                   @JsonProperty("reviews") List<Review> reviews,
-                   @JsonProperty("rating") float rating,
-                   @JsonProperty("category") String category,
-                   @JsonProperty("isPromoted") boolean isPromoted) {
+
+    public Product(UUID id,
+            Set<UUID> instances,
+                  String name,
+                    String description,
+                   double price,
+                    int likes,
+                    List<Review> reviews,
+                  float rating,
+              String category,
+              boolean isPromoted) {
         this.id = id;
         this.instances = instances;
         this.name = name;
@@ -85,6 +82,10 @@ public class Product {
 
 
     public float getRating() {
+
+        if (reviews == null) {
+            return 0;
+        }
         //average rating
         float sum = 0;
         for (Review review : reviews) {
@@ -96,7 +97,7 @@ public class Product {
     public String productToString() {
         return name + " " +
                 price + "$ " +
-                rating + "/5 " + "(" + reviews.size() + ")" + "\n";
+                getRating() + "/5 " + "(" + reviews.size() + ")" + "\n";
 
     }
 

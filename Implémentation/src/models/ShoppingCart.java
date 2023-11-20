@@ -1,10 +1,6 @@
 package models;
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Set;
 
 public class ShoppingCart {
@@ -12,8 +8,8 @@ public class ShoppingCart {
 
     private double totalPrice;
 
-    @JsonCreator
-    public ShoppingCart(@JsonProperty("items") Set<CartItem> items) {
+
+    public ShoppingCart( Set<CartItem> items) {
         this.items = items;
         this.totalPrice = calculateTotalPrice();
     }
@@ -31,7 +27,7 @@ public class ShoppingCart {
         return total;
     }
 
-    @JsonIgnore
+
     public double getTotalCost() {
         return this.totalPrice;
     }

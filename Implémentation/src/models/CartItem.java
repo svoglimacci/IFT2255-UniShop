@@ -1,7 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
 
@@ -14,11 +12,11 @@ public class CartItem {
 
     private final double price;
 
-    @JsonCreator
-    public CartItem(@JsonProperty("id") UUID id,
-                    @JsonProperty("name") String name,
-                    @JsonProperty("quantity") int quantity,
-                    @JsonProperty("price") double price) {
+
+    public CartItem( UUID id,
+                     String name,
+                     int quantity,
+                     double price) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;

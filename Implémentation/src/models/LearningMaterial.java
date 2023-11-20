@@ -1,7 +1,6 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 import java.util.List;
 import java.util.Set;
@@ -18,26 +17,26 @@ public class LearningMaterial extends Product {
     private final String publicationDate;
     private final String edition;
 
-    @JsonCreator
+
     public LearningMaterial(
-            @JsonProperty("id") UUID id,
-            @JsonProperty("instances") Set<UUID> instances,
-            @JsonProperty("name") String name,
-            @JsonProperty("description") String description,
-            @JsonProperty("price") double price,
-            @JsonProperty("likes") int likes,
-            @JsonProperty("reviews") List<Review> reviews,
-            @JsonProperty("rating") float rating,
-            @JsonProperty("category") String category,
-            @JsonProperty("isPromoted") boolean isPromoted,
-            @JsonProperty("brand") String brand,
-            @JsonProperty("model") String model,
-            @JsonProperty("subCategory") String subCategory,
-            @JsonProperty("isbn") String isbn,
-            @JsonProperty("author") String author,
-            @JsonProperty("organization") String organization,
-            @JsonProperty("publicationDate") String publicationDate,
-            @JsonProperty("Édition") String edition) {
+             UUID id,
+             Set<UUID> instances,
+             String name,
+             String description,
+             double price,
+             int likes,
+             List<Review> reviews,
+             float rating,
+             String category,
+             boolean isPromoted,
+             String brand,
+             String model,
+             String subCategory,
+             String isbn,
+             String author,
+             String organization,
+             String publicationDate,
+             String edition) {
         super(id, instances, name, description, price, likes, reviews, rating, category, isPromoted);
         this.brand = brand;
         this.model = model;

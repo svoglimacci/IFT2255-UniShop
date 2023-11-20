@@ -15,11 +15,12 @@ public class ProductView {
     private final User user;
     private final Product product;
 
-    public ProductView(User user, Product product) throws IOException {
-        this.userController = new UserController();
-        this.productController = new ProductController();
+    public ProductView(User user, Product product, UserController userController, ProductController productController) throws IOException {
+
         this.user = user;
         this.product = product;
+        this.userController = userController;
+        this.productController = productController;
     }
 
     public void start(Scanner sc) {
@@ -52,9 +53,7 @@ public class ProductView {
                         int quantity = Integer.parseInt(sc.nextLine());
                         userController.addProductToCart((Buyer) user, product, quantity);
                         System.out.println("Produit ajouté au panier avec succès");
-
                         return;
-
                     }
                     case "2" -> {
                         if (isLiked) {

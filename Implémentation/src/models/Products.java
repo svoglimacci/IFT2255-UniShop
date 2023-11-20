@@ -1,6 +1,6 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ public class Products {
     public List<OfficeFurniture> officeFurnitures;
 
 
-    public Products(@JsonProperty("books") List<Book> books,
-                    @JsonProperty("electronics") List<Electronic> electronics,
-                    @JsonProperty("learningMaterials") List<LearningMaterial> learningMaterials,
-                    @JsonProperty("officeSupplies") List<OfficeSupply> officeSupplies,
-                    @JsonProperty("officeFurnitures") List<OfficeFurniture> officeFurnitures) {
+    public Products( List<Book> books,
+                     List<Electronic> electronics,
+                     List<LearningMaterial> learningMaterials,
+                     List<OfficeSupply> officeSupplies,
+                     List<OfficeFurniture> officeFurnitures) {
         this.electronics = electronics;
         this.learningMaterials = learningMaterials;
         this.officeSupplies = officeSupplies;
