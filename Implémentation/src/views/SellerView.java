@@ -2,12 +2,11 @@ package views;
 
 import controllers.ProductController;
 import controllers.UserController;
-import models.Seller;
+import models.*;
 
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 public class SellerView {
 
@@ -16,9 +15,9 @@ public class SellerView {
     private final Seller user;
     private final String username;
 
-    public SellerView(Seller user) throws IOException {
-        this.userController = new UserController();
-        this.productController = new ProductController();
+    public SellerView(Seller user, UserController userController, ProductController productController) {
+        this.userController = userController;
+        this.productController = productController;
         this.user = user;
         this.username = user.getUsername();
     }
@@ -32,6 +31,7 @@ public class SellerView {
                 System.out.println("Veuillez choisir une option :");
                 System.out.println("1. Ajouter un produit");
                 System.out.println("2. Modifier le profil");
+                System.out.println("3. Mes commandes");
                 System.out.println("0. Se déconnecter");
 
             }
@@ -41,6 +41,7 @@ public class SellerView {
                 switch (input) {
                     case "1" -> showProductPrompt(sc);
                     case "2" -> modifyProfile(sc);
+                    case "3" -> showOrders(sc);
                     case "0" -> {
                         return;
                     }
@@ -91,7 +92,7 @@ public class SellerView {
     }
 
     public void showBookPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        Set<UUID> addProduct;
+        Book addProduct;
         System.out.println("Veuillez entrer l'ISBN:");
         String isbn = sc.nextLine();
         System.out.println("Veuillez entrer l'auteur:");
@@ -108,9 +109,9 @@ public class SellerView {
         String genre = sc.nextLine();
 
         addProduct = this.productController.addBook(name, description, price, quantity, isbn, author, publisher, publicationYear, edition, volume, genre);
-        if (!addProduct.isEmpty()) {
+        if (!addProduct.instances.isEmpty()) {
             System.out.println("Produit ajouté avec succès");
-            this.userController.addProductsToSeller(this.username, addProduct);
+            this.userController.addProductsToSeller(this.username, addProduct.instances);
             this.start();
         } else {
             System.out.println("Erreur lors de l'ajout du produit");
@@ -119,7 +120,7 @@ public class SellerView {
     }
 
     public void showOfficeFurniturePrompt(Scanner sc, String name, String description, double price, int quantity) {
-        Set<UUID> addProduct;
+        OfficeFurniture addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -128,9 +129,9 @@ public class SellerView {
         String subCategory = sc.nextLine();
 
         addProduct = this.productController.addOfficeFurniture(name, description, price, quantity, brand, model, subCategory);
-        if (!addProduct.isEmpty()) {
+        if (!addProduct.instances.isEmpty()) {
             System.out.println("Produit ajouté avec succès");
-            this.userController.addProductsToSeller(this.username, addProduct);
+            this.userController.addProductsToSeller(this.username, addProduct.instances);
             this.start();
         } else {
             System.out.println("Erreur lors de l'ajout du produit");
@@ -139,7 +140,7 @@ public class SellerView {
     }
 
     public void showOfficeSupplyPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        Set<UUID> addProduct;
+        OfficeSupply addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -148,9 +149,9 @@ public class SellerView {
         String subCategory = sc.nextLine();
 
         addProduct = this.productController.addOfficeSupply(name, description, price, quantity, brand, model, subCategory);
-        if (!addProduct.isEmpty()) {
+        if (!addProduct.instances.isEmpty()) {
             System.out.println("Produit ajouté avec succès");
-            this.userController.addProductsToSeller(this.username, addProduct);
+            this.userController.addProductsToSeller(this.username, addProduct.instances);
             this.start();
         } else {
             System.out.println("Erreur lors de l'ajout du produit");
@@ -159,7 +160,7 @@ public class SellerView {
     }
 
     public void showElectronicPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        Set<UUID> addProduct;
+        Electronic addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -170,9 +171,9 @@ public class SellerView {
         String subCategory = sc.nextLine();
 
         addProduct = this.productController.addElectronic(name, description, price, quantity, brand, model, releaseDate, subCategory);
-        if (!addProduct.isEmpty()) {
+        if (!addProduct.instances.isEmpty()) {
             System.out.println("Produit ajouté avec succès");
-            this.userController.addProductsToSeller(this.username, addProduct);
+            this.userController.addProductsToSeller(this.username, addProduct.instances);
             this.start();
         } else {
             System.out.println("Erreur lors de l'ajout du produit");
@@ -181,7 +182,7 @@ public class SellerView {
     }
 
     public void showLearningMaterialPrompt(Scanner sc, String name, String description, double price, int quantity) {
-        Set<UUID> addProduct;
+        LearningMaterial addProduct;
         System.out.println("Veuillez entrer la marque:");
         String brand = sc.nextLine();
         System.out.println("Veuillez entrer le modèle:");
@@ -200,9 +201,9 @@ public class SellerView {
         String edition = sc.nextLine();
 
         addProduct = this.productController.addLearningMaterial(name, description, price, quantity, brand, model, subCategory, isbn, author, organization, publicationDate, edition);
-        if (!addProduct.isEmpty()) {
+        if (!addProduct.instances.isEmpty()) {
             System.out.println("Produit ajouté avec succès");
-            this.userController.addProductsToSeller(this.username, addProduct);
+            this.userController.addProductsToSeller(this.username, addProduct.instances);
             this.start();
         } else {
             System.out.println("Erreur lors de l'ajout du produit");
@@ -257,5 +258,70 @@ public class SellerView {
             System.out.println("Choix invalide");
         }
 
+    }
+
+    private void showOrders(Scanner sc) {
+        List<Order> orders = user.getOrders();
+        String input;
+        if (orders.isEmpty()) {
+            System.out.println("Aucune commande reçue");
+            return;
+        }
+
+        int idx = 1;
+
+        for (Order order : orders) {
+            System.out.println(idx + ". " + order.getId() + " | " + order.getStatus());
+            idx++;
+        }
+
+        System.out.println("Veuillez choisir une option :");
+        System.out.println("#. Entrer le numéro de la commande pour voir les détails");
+        System.out.println("0. Retour");
+
+
+        while (true) {
+            try {
+                input = sc.nextLine();
+                int orderChoice = Integer.parseInt(input);
+                if (input.equals("0")) {
+                    return;
+                }
+                if (orderChoice >= 0 && orderChoice < idx) {
+                    Order order = user.getOrders().get(orderChoice - 1);
+                    System.out.println(order.getId() + " | " + order.getPrice() + " | " + order.getStatus());
+                    System.out.println("Date de livraison estimée : " + LocalDate.now().plusDays(3));
+
+                    System.out.println("\nProduits :");
+                    for (UUID id : order.getProductsId()) {
+                        Product product = productController.getProductById(id);
+                        System.out.println(product.productToString());
+                    }
+
+                    System.out.println("\nProblèmes :");
+                    for (Issue issue : order.getIssues()) {
+                        System.out.println(issue.getDescription());
+                    }
+
+                    System.out.println("Veuillez choisir une option :");
+                    System.out.println("1. Changer l'état de livraison à: en livraison");
+                    System.out.println("2. Annuler la commande");
+                    System.out.println("3. Proposer une solution");
+                    System.out.println("0. Retour");
+                    input = sc.nextLine();
+                    if(Objects.equals(input, "1")){
+                        order.changeOrderStatus(Order.orderState.delivering);
+                    }
+                    else{
+                        return;
+                    }
+                } else {
+                    System.out.println("Choix invalide");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Choix invalide");
+            }
+        }
     }
 }

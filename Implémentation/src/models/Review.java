@@ -1,6 +1,6 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class Review {
     public String comment;
@@ -9,9 +9,9 @@ public class Review {
     public float rating;
 
     public Review(
-                  @JsonProperty("author") String author,
-                  @JsonProperty("comment") String comment,
-                  @JsonProperty("rating") float rating) {
+                   String author,
+                   String comment,
+                   float rating) {
         this.author = author;
         this.comment = comment;
         this.rating = rating;

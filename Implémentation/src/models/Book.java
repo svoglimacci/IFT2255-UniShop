@@ -1,7 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 import java.util.Set;
@@ -17,25 +15,25 @@ public class Book extends Product {
     private final String edition;
     private final String volume;
 
-    @JsonCreator
+
     public Book(
-            @JsonProperty("id") UUID id,
-            @JsonProperty("instances") Set<UUID> instances,
-                @JsonProperty("name") String name,
-                @JsonProperty("description") String description,
-                @JsonProperty("price") double price,
-                @JsonProperty("likes") int likes,
-                @JsonProperty("reviews") List<Review> reviews,
-                @JsonProperty("rating") float rating,
-                @JsonProperty("category") String category,
-                @JsonProperty("isPromoted") boolean isPromoted,
-                @JsonProperty("isbn") String isbn,
-                @JsonProperty("author") String author,
-                @JsonProperty("publisher") String publisher,
-                @JsonProperty("publicationYear") String publicationYear,
-                @JsonProperty("edition") String edition,
-                @JsonProperty("volume") String volume,
-                @JsonProperty("genre") String genre) {
+       UUID id,
+ Set<UUID> instances,
+ String name,
+String description,
+ double price,
+ int likes,
+List<Review> reviews,
+ float rating,
+ String category,
+    boolean isPromoted,
+String isbn,
+    String author,
+    String publisher,
+   String publicationYear,
+       String edition,
+         String volume,
+     String genre) {
         super(id, instances, name, description, price, likes, reviews, rating, category, isPromoted);
 
         this.isbn = isbn;

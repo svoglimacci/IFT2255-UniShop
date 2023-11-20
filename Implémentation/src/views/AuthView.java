@@ -1,5 +1,6 @@
 package views;
 
+import controllers.ProductController;
 import controllers.UserController;
 import models.Buyer;
 import models.Seller;
@@ -7,14 +8,21 @@ import models.Seller;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.Predicate;
+import models.User;
+
 public class AuthView {
     private final UserController userController;
+    private final ProductController productController;
 
-    public AuthView() throws IOException {
-        this.userController = new UserController();
+
+    public AuthView(UserController userController, ProductController productController) throws IOException {
+        this.userController = userController;
+        this.productController = productController;
     }
 
-public void start() {
+
+    public void start() {
+
    Scanner sc = new Scanner(System.in);
    String input;
    boolean displayMenu = true;
@@ -153,11 +161,11 @@ private String getUserInput(Scanner sc, String prompt, Predicate<String> validat
             System.out.println("Vous êtes maintenant connecté!");
             if (isSeller) {
                 Seller seller = (Seller) user;
-                SellerView sellerView = new SellerView(seller);
+                SellerView sellerView = new SellerView(seller, userController, productController);
                 sellerView.start();
             } else {
                 Buyer buyer = (Buyer) user;
-                BuyerView buyerView = new BuyerView(buyer);
+                BuyerView buyerView = new BuyerView(buyer, productController, userController);
                 buyerView.start();
             }
             return;

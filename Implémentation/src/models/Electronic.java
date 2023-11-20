@@ -1,8 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -15,22 +12,21 @@ public class Electronic extends Product {
     private final String subCategory;
 
 
-    @JsonCreator
     public Electronic(
-            @JsonProperty("id") UUID id,
-            @JsonProperty("instances") Set<UUID> instances,
-            @JsonProperty("name") String name,
-            @JsonProperty("description") String description,
-            @JsonProperty("price") double price,
-            @JsonProperty("likes") int likes,
-            @JsonProperty("reviews") List<Review> reviews,
-            @JsonProperty("rating") float rating,
-            @JsonProperty("category") String category,
-            @JsonProperty("isPromoted") boolean isPromoted,
-            @JsonProperty("brand") String brand,
-            @JsonProperty("model") String model,
-            @JsonProperty("releaseDate") String releaseDate,
-            @JsonProperty("subCategory") String subCategory
+             UUID id,
+             Set<UUID> instances,
+             String name,
+             String description,
+             double price,
+             int likes,
+             List<Review> reviews,
+             float rating,
+             String category,
+             boolean isPromoted,
+             String brand,
+             String model,
+             String releaseDate,
+             String subCategory
     ) {
 
         super(id, instances, name, description, price, likes, reviews, rating, category, isPromoted);
