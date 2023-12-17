@@ -25,7 +25,6 @@ public class CartItemPage {
     System.out.println(cartItem.getName());
     System.out.println(cartItem.getPrice());
     System.out.println(cartItem.getQuantity());
-
     CartItemMenu cartItemMenu = new CartItemMenu(cartItem, productController, userController, currentUser);
     cartItemMenu.execute();
     }

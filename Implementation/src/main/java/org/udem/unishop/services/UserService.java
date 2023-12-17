@@ -179,4 +179,28 @@ public class UserService {
 
     return false;
 }
+
+  public void setPassword(UUID id, String input) {
+    User user = getUserById(id);
+    user.setPassword(input);
+    userRepository.update(user);
+  }
+
+  public void setEmail(UUID id, String input) {
+    User user = getUserById(id);
+    user.setEmail(input);
+    userRepository.update(user);
+  }
+
+  public void setAddress(UUID id, String input) {
+    User user = getUserById(id);
+    user.setAddress(input);
+    userRepository.update(user);
+  }
+
+  public void setPhoneNumber(UUID id, String input) {
+    User user = getUserById(id);
+    user.setPhoneNumber(input);
+    userRepository.update(user);
+  }
 }

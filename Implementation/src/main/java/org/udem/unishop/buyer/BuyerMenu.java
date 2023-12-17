@@ -1,6 +1,7 @@
 package org.udem.unishop.buyer;
 
 import org.udem.unishop.common.SearchMenu;
+import org.udem.unishop.user.SettingsMenu;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
 import org.udem.unishop.models.Buyer;
@@ -27,10 +28,26 @@ public class BuyerMenu {
         SearchMenu searchMenu = new SearchMenu(userController, productController, currentUser);
         buyerMenu.addMenuComponent(searchMenu.getSearchMenu());
         buyerMenu.addMenuComponent(new MenuItem(createShoppingCart()));
+        buyerMenu.addMenuComponent(new MenuItem(createSettingsMenu()));
 
     }
 
-    private Command createShoppingCart() {
+  private Command createSettingsMenu() {
+        return new Command() {
+            @Override
+            public String getName() {
+                return "Modifier son profil";
+            }
+
+            @Override
+            public void execute() {
+                SettingsMenu settingsMenu = new SettingsMenu(userController, currentUser);
+                settingsMenu.run();
+            }
+        };
+  }
+
+  private Command createShoppingCart() {
         return new Command() {
             @Override
             public String getName() {
