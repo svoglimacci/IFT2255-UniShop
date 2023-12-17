@@ -73,4 +73,20 @@ public class UserController {
     int quantity = Integer.parseInt(input);
     return userService.addItemToCart(currentUser, product, quantity);
   }
+
+  public void setPassword(UUID id, String input) {
+    userService.setPassword(id, input);
+  }
+
+  public void setEmail(UUID id, String input) {
+    userService.setEmail(id, input);
+  }
+
+  public void setAddress(UUID id, String input) {
+    userService.setAddress(id, input);
+  }
+
+  public void setPhoneNumber(UUID id, String input) {
+    userService.setPhoneNumber(id, input);
+  }
 }
