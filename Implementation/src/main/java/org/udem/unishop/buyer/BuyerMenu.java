@@ -29,14 +29,31 @@ public class BuyerMenu {
         buyerMenu.addMenuComponent(searchMenu.getSearchMenu());
         buyerMenu.addMenuComponent(new MenuItem(createShoppingCart()));
         buyerMenu.addMenuComponent(new MenuItem(createSettingsMenu()));
+        buyerMenu.addMenuComponent(new MenuItem(createFollowedMenu()));
 
     }
+
+  private Command createFollowedMenu() {
+        return new Command() {
+            @Override
+            public String getName() {
+                return "Gérer les utilisateurs suivis";
+            }
+
+            @Override
+            public void execute() {
+              FollowedMenu followedMenu = new FollowedMenu(userController, productController, currentUser);
+              followedMenu.run();
+
+            }
+        };
+  }
 
   private Command createSettingsMenu() {
         return new Command() {
             @Override
             public String getName() {
-                return "Modifier son profil";
+                return "Modifier mon profil";
             }
 
             @Override

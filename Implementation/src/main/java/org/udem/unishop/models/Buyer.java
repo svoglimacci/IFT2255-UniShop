@@ -1,10 +1,10 @@
 package org.udem.unishop.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,9 +22,14 @@ public class Buyer extends User {
   @JsonProperty("liked_sellers")
   private List<UUID> likedSellers = new ArrayList<>();
 
+  @JsonProperty("followed")
+  private List<UUID> followed = new ArrayList<>();
+
+  @JsonProperty("followers")
+  private List<UUID> followers = new ArrayList<>();
+
   @JsonProperty("reviews")
   private List<UUID> reviews = new ArrayList<>();
-
 
   @JsonProperty("shopping_cart")
   private Cart shoppingCart = new Cart();
@@ -64,12 +69,12 @@ public class Buyer extends User {
     this.likedProducts = likedProducts;
   }
 
-  public List<UUID> getLikedUsers() {
+  public List<UUID> getLikedSeller() {
     return likedSellers;
   }
 
-  public void setLikedUsers(List<UUID> likedUsers) {
-    this.likedSellers = likedUsers;
+  public void setLikedSellers(List<UUID> likedSellers) {
+    this.likedSellers = likedSellers;
   }
 
   public List<UUID> getReviews() {
@@ -80,9 +85,24 @@ public class Buyer extends User {
     this.reviews = reviews;
   }
 
-
-@JsonProperty("shopping_cart")
+  @JsonProperty("shopping_cart")
   public Cart getCart() {
     return shoppingCart;
+  }
+
+  public List<UUID> getFollowed() {
+    return followed;
+  }
+
+  public void setFollowed(List<UUID> followed) {
+    this.followed = followed;
+  }
+
+  public List<UUID> getFollowers() {
+    return followers;
+  }
+
+  public void setFollowers(List<UUID> followers) {
+    this.followers = followers;
   }
 }

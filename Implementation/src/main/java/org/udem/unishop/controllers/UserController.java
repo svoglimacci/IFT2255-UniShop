@@ -89,4 +89,12 @@ public class UserController {
   public void setPhoneNumber(UUID id, String input) {
     userService.setPhoneNumber(id, input);
   }
+
+  public boolean addFollowed(UUID buyer, UUID followed) {
+    return userService.addFollowed(buyer, followed);
+  }
+
+  public boolean removeFollowed(UUID buyer, UUID followed) {
+    return userService.removeFollowed(buyer, followed);
+  }
 }

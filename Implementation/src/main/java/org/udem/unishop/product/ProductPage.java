@@ -28,63 +28,64 @@ public class ProductPage {
     }
 
     public void run() {
-        Seller seller = (Seller) userController.getUserById(product.getSellerId());
-        System.out.println(product.getName());
-        System.out.println(product.getDescription());
-        System.out.println(product.getPrice());
-        System.out.println(product.getProductType().displayName());
-        System.out.println(product.getQuantity());
-        System.out.println(product.getLikes());
-        System.out.println(product.getBonusPoints());
-        System.out.println(seller.getCompanyName());
+    Seller vendeur = (Seller) userController.getUserById(product.getSellerId());
+    System.out.println("Nom du produit: " + product.getName());
+    System.out.println("Description: " + product.getDescription());
+    System.out.println("Prix: " + product.getPrice());
+    System.out.println("Type de produit: " + product.getProductType().displayName());
+    System.out.println("Quantité: " + product.getQuantity());
+    System.out.println("Mentions j'aime: " + product.getLikes());
+    System.out.println("Points bonus: " + product.getBonusPoints());
+    System.out.println("Nom de l'entreprise du vendeur: " + vendeur.getCompanyName());
 
-        if(product instanceof Book book) {
-            System.out.println(book.getAuthor());
-            System.out.println(book.getIsbn());
-            System.out.println(book.getPublisher());
-            System.out.println(book.getEdition());
-            System.out.println(book.getGenre());
-            System.out.println(book.getPublicationDate());
-            System.out.println(book.getVolume());
-
-        }
-
-        if(product instanceof LearningResource learningResource) {
-            System.out.println(learningResource.getAuthor());
-            System.out.println(learningResource.getIsbn());
-            System.out.println(learningResource.getEdition());
-            System.out.println(learningResource.getOrganization());
-            System.out.println(learningResource.getPublicationDate());
-            System.out.println(learningResource.getType());
-        }
-
-        if(product instanceof ComputerHardware computerHardware) {
-            System.out.println(computerHardware.getBrand());
-            System.out.println(computerHardware.getModel());
-            System.out.println(computerHardware.getSubCategory());
-            System.out.println(computerHardware.getLaunchDate());
-        }
-
-        if(product instanceof OfficeEquipment officeEquipment) {
-            System.out.println(officeEquipment.getBrand());
-            System.out.println(officeEquipment.getModel());
-            System.out.println(officeEquipment.getSubCategory());
-        }
-
-        if(product instanceof Stationery stationery) {
-            System.out.println(stationery.getBrand());
-            System.out.println(stationery.getModel());
-            System.out.println(stationery.getSubCategory());
-        }
-
-        for (Review review : product.getReviews()) {
-            System.out.println(review.getAuthor());
-            System.out.println(review.getRating());
-            System.out.println(review.getComment());
-        }
-
-
-        ProductMenu productMenu = new ProductMenu(product, userController, productController, currentUser);
-        productMenu.execute();
+    if(product instanceof Book livre) {
+        System.out.println("Auteur: " + livre.getAuthor());
+        System.out.println("ISBN: " + livre.getIsbn());
+        System.out.println("Editeur: " + livre.getPublisher());
+        System.out.println("Edition: " + livre.getEdition());
+        System.out.println("Genre: " + livre.getGenre());
+        System.out.println("Date de publication: " + livre.getPublicationDate());
+        System.out.println("Volume: " + livre.getVolume());
     }
+
+    if(product instanceof LearningResource ressourceApprentissage) {
+        System.out.println("Auteur: " + ressourceApprentissage.getAuthor());
+        System.out.println("ISBN: " + ressourceApprentissage.getIsbn());
+        System.out.println("Edition: " + ressourceApprentissage.getEdition());
+        System.out.println("Organisation: " + ressourceApprentissage.getOrganization());
+        System.out.println("Date de publication: " + ressourceApprentissage.getPublicationDate());
+        System.out.println("Type: " + ressourceApprentissage.getType());
+    }
+
+    if(product instanceof ComputerHardware materielInformatique) {
+        System.out.println("Marque: " + materielInformatique.getBrand());
+        System.out.println("Modèle: " + materielInformatique.getModel());
+        System.out.println("Sous-catégorie: " + materielInformatique.getSubCategory());
+        System.out.println("Date de lancement: " + materielInformatique.getLaunchDate());
+    }
+
+    if(product instanceof OfficeEquipment equipementBureau) {
+        System.out.println("Marque: " + equipementBureau.getBrand());
+        System.out.println("Modèle: " + equipementBureau.getModel());
+        System.out.println("Sous-catégorie: " + equipementBureau.getSubCategory());
+    }
+
+    if(product instanceof Stationery papeterie) {
+        System.out.println("Marque: " + papeterie.getBrand());
+        System.out.println("Modèle: " + papeterie.getModel());
+        System.out.println("Sous-catégorie: " + papeterie.getSubCategory());
+    }
+
+    System.out.println("Avis:");
+    for (Review avis : product.getReviews()) {
+        System.out.println("Auteur: " + avis.getAuthor());
+        System.out.println("Note: " + avis.getRating());
+        System.out.println("Commentaire: " + avis.getComment());
+    }
+
+
+    ProductMenu menuProduit = new ProductMenu(product, userController, productController, currentUser);
+    menuProduit.execute();
+}
+
 }

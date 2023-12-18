@@ -114,12 +114,12 @@ public class UserService {
       return false;
     }
 
-    if (buyer.getLikedUsers().contains(sellerId)) {
+    if (buyer.getLikedSeller().contains(sellerId)) {
       return false;
     }
 
     seller.setLikes(seller.getLikes() + 1);
-    buyer.getLikedUsers().add(sellerId);
+    buyer.getLikedSeller().add(sellerId);
     return userRepository.update(seller);
   }
 
@@ -130,11 +130,11 @@ public class UserService {
     if (buyer == null || seller == null) {
       return false;
     }
-    if (!buyer.getLikedUsers().contains(sellerId)) {
+    if (!buyer.getLikedSeller().contains(sellerId)) {
       return false;
     }
     seller.setLikes(seller.getLikes() - 1);
-    buyer.getLikedUsers().remove(sellerId);
+    buyer.getLikedSeller().remove(sellerId);
     return userRepository.update(seller);
   }
 
@@ -202,5 +202,40 @@ public class UserService {
     User user = getUserById(id);
     user.setPhoneNumber(input);
     userRepository.update(user);
+  }
+
+  public boolean addFollowed(UUID buyer, UUID followed) {
+    Buyer buyerUser = (Buyer) getUserById(buyer);
+    Buyer followedUser = (Buyer) getUserById(followed);
+
+    if (buyerUser == null || followedUser == null) {
+      return false;
+    }
+
+    if (buyerUser.getFollowed().contains(followed)) {
+      return false;
+    }
+
+
+    buyerUser.getFollowed().add(followed);
+    followedUser.getFollowers().add(buyer);
+    return userRepository.update(followedUser);
+  }
+
+  public boolean removeFollowed(UUID buyer, UUID followed) {
+    Buyer buyerUser = (Buyer) getUserById(buyer);
+    Buyer followedUser = (Buyer) getUserById(followed);
+
+    if (buyerUser == null || followedUser == null) {
+      return false;
+    }
+
+    if (!buyerUser.getFollowed().contains(followed)) {
+      return false;
+    }
+
+    buyerUser.getFollowed().remove(followed);
+    followedUser.getFollowers().remove(buyer);
+    return userRepository.update(followedUser);
   }
 }

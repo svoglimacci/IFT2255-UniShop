@@ -97,7 +97,7 @@ public class UserCatalog {
     private void addUserPage(User user, ProductController productController, UserController userController) {
         UserPage userPage = new UserPage(user, productController, userController, currentUser);
 
-        if (!userPages.contains(userPage)) {
+        if (!userPages.contains(userPage) && user.getId() != currentUser.getId()) {
             userPages.add(userPage);
 
             Command showUserCommand = new Command() {

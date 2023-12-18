@@ -3,7 +3,6 @@ package org.udem.unishop.common;
 import org.udem.unishop.utilities.Prompt;
 import org.udem.unishop.utilities.PromptItem;
 import org.udem.unishop.utilities.SearchType;
-import org.udem.unishop.validation.IntegerValidator;
 import org.udem.unishop.validation.PriceValidator;
 import org.udem.unishop.validation.StringValidator;
 

@@ -64,10 +64,10 @@ public class ProductMenu extends SubMenu {
                 boolean added = userController.addItemToCart(currentUser, product, input);
 
                 if (added) {
-                    System.out.println("Product added to cart!");
+                    System.out.println("Produit ajouté au panier avec succès!");
 
                 } else {
-                    System.out.println("Failed to add product to cart. Please try again.");
+                    System.out.println("Impossible d'ajouter le produit au panier. Veuillez réessayer.");
                 }
             }
         };
@@ -88,7 +88,7 @@ public class ProductMenu extends SubMenu {
     private Command createLikeCommand() {
         final String[] commandName = {
             currentUser instanceof Buyer && ((Buyer) currentUser).getLikedProducts()
-                .contains(product.getId()) ? "Unlike" : "Like"};
+                .contains(product.getId()) ? "Retirer la mention j'aime" : "Ajouter une mention j'aime"};
         return new Command() {
             @Override
             public String getName() {
@@ -114,7 +114,7 @@ public class ProductMenu extends SubMenu {
         return new Command() {
             @Override
             public String getName() {
-                return "Add review";
+                return "Ajouter une évaluation";
             }
 
             @Override
@@ -123,9 +123,9 @@ public class ProductMenu extends SubMenu {
                 boolean reviewAdded = productController.addReview(inputs, (Buyer) currentUser, product);
 
                 if (reviewAdded) {
-                    System.out.println("Review added!");
+                    System.out.println("Évaluation ajoutée avec succès!");
                 } else {
-                    System.out.println("Failed to add review. Please try again.");
+                    System.out.println("Impossible d'ajouter l'évaluation. Veuillez réessayer.");
                 }
 
             }
@@ -141,10 +141,10 @@ public class ProductMenu extends SubMenu {
     boolean liked = productController.addProductLike(currentUser.getId(), product.getId());
 
     if (liked) {
-        System.out.println("Product liked!");
+        System.out.println("Mention j'aime ajoutée avec succès!");
 
     } else {
-        System.out.println("Failed to like the product. Please try again.");
+        System.out.println("Impossible d'ajouter la mention j'aime. Veuillez réessayer.");
     }
 }
 
@@ -153,10 +153,10 @@ private void unlikeProduct() {
     boolean unliked = productController.removeProductLike(currentUser.getId(), product.getId());
 
     if (unliked) {
-        System.out.println("Product unliked!");
+        System.out.println("Mention j'aime retirée avec succès.");
 
     } else {
-        System.out.println("Failed to unlike the product. Please try again.");
+        System.out.println("Impossible de retirer la mention j'aime. Veuillez réessayer.");
     }
 }
 }

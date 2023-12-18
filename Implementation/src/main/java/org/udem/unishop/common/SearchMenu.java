@@ -70,7 +70,7 @@ public class SearchMenu {
         return new Command() {
             @Override
             public String getName() {
-  return accountType == AccountType.BUYER ? "Catalogue d'acheteurs" : "Catalogue de vendeurs";
+  return accountType == AccountType.BUYER ? "Catalogue d'acheteurs" : "Catalogue de revendeurs";
             }
 
             @Override
