@@ -24,11 +24,11 @@ public class ComputerHardware extends Product {
   @JsonCreator
   public ComputerHardware(@JsonProperty("name") String name,
       @JsonProperty("description") String description, @JsonProperty("stock") List<UUID> instances,
-      @JsonProperty("price") double price, @JsonProperty("bonus_points") int bonusPoints,
+      @JsonProperty("price") double price, @JsonProperty("bonus_points") int bonusPoints, @JsonProperty("media") String media,
       @JsonProperty("brand") String brand, @JsonProperty("model") String model,
       @JsonProperty("launch_date") String launchDate,
       @JsonProperty("sub_category") String subCategory) {
-    super(name, description, instances, price, bonusPoints);
+    super(name, description, instances, price, bonusPoints, 0, 0, media);
     this.brand = brand;
     this.model = model;
     this.launchDate = launchDate;

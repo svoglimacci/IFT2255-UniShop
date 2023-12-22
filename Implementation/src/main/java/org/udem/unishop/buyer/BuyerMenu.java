@@ -1,9 +1,10 @@
 package org.udem.unishop.buyer;
 
+import org.udem.unishop.common.MetricsPage;
+import org.udem.unishop.common.NotificationsMenu;
 import org.udem.unishop.common.OrdersMenu;
 import org.udem.unishop.common.SearchMenu;
 import org.udem.unishop.controllers.OrderController;
-import org.udem.unishop.models.Order;
 import org.udem.unishop.user.SettingsMenu;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
@@ -37,11 +38,43 @@ public class BuyerMenu {
         buyerMenu.addMenuComponent(new MenuItem(createShoppingCart()));
         buyerMenu.addMenuComponent(new MenuItem(createSettingsMenu()));
         buyerMenu.addMenuComponent(new MenuItem(createFollowedMenu()));
+        buyerMenu.addMenuComponent(createMetricsMenu());
+        buyerMenu.addMenuComponent(createNotificationsMenu());
         buyerMenu.addMenuComponent(createOrdersMenu());
 
     }
 
-      private MenuComponent createOrdersMenu() {
+  private MenuComponent createNotificationsMenu() {
+      return new MenuItem(new Command() {
+  @Override
+          public String getName() {
+              return "Mes notifications" + (!currentUser.getNotifications().isEmpty() ? " (" + currentUser.getNotifications().size() + ")" : "");
+          }
+
+          @Override
+          public void execute() {
+              NotificationsMenu notificationsMenu = new NotificationsMenu(userController, productController, currentUser);
+              notificationsMenu.run();
+          }
+      });
+  }
+
+  private MenuComponent createMetricsMenu() {
+      return new MenuItem(new Command() {
+  @Override
+          public String getName() {
+              return "Mes métriques";
+          }
+
+          @Override
+          public void execute() {
+            MetricsPage metricsPage = new MetricsPage(currentUser, userController, productController, orderController);
+            metricsPage.run();
+          }
+      });
+    }
+
+  private MenuComponent createOrdersMenu() {
     return new MenuItem(new Command() {
       @Override
       public String getName() {

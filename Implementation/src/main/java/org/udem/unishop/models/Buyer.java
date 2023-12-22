@@ -19,6 +19,7 @@ public class Buyer extends User {
   @JsonProperty("liked_products")
   private List<UUID> likedProducts = new ArrayList<>();
 
+
   @JsonProperty("liked_sellers")
   private List<UUID> likedSellers = new ArrayList<>();
 
@@ -33,6 +34,9 @@ public class Buyer extends User {
 
   @JsonProperty("shopping_cart")
   private Cart shoppingCart = new Cart();
+
+  @JsonProperty("fidelity_points")
+  private int fidelityPoints = 0;
 
   @JsonCreator
   public Buyer(@JsonProperty("username") String username, @JsonProperty("password") String password,
@@ -105,4 +109,22 @@ public class Buyer extends User {
   public void setFollowers(List<UUID> followers) {
     this.followers = followers;
   }
+
+
+  public int getFidelityPoints() {
+    return fidelityPoints;
+  }
+
+  public void addFidelityPoints(int fidelityPoints) {
+    this.fidelityPoints += fidelityPoints;
+  }
+
+  public void removeFidelityPoints(int fidelityPoints) {
+    this.fidelityPoints -= fidelityPoints;
+  }
+
+  public void setFidelityPoints(int fidelityPoints) {
+    this.fidelityPoints = fidelityPoints;
+  }
+
 }

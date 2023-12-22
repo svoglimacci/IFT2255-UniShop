@@ -1,8 +1,10 @@
 package org.udem.unishop.repositories;
 
 import java.util.UUID;
+import org.udem.unishop.models.ComputerHardware;
 import org.udem.unishop.models.Product;
 import org.udem.unishop.models.ProductList;
+import org.udem.unishop.models.Stationery;
 import org.udem.unishop.models.User;
 import org.udem.unishop.utilities.JSONHandler;
 import org.udem.unishop.utilities.ProductType;
@@ -89,4 +91,17 @@ public boolean update(Product product) {
     return productList;
   }
 
+  public void saveProducts() {
+    writeDataToJson();
+  }
+
+  public Stationery getStationeryForTesting(String name) {
+    return (Stationery) productList.stream().filter(product -> product.getName().equals(name))
+        .findFirst().orElse(null);
+  }
+
+  public ComputerHardware getComputerHardwareForTesting(String computerHardware1) {
+    return (ComputerHardware) productList.stream().filter(product -> product.getName().equals(computerHardware1))
+        .findFirst().orElse(null);
+  }
 }

@@ -46,7 +46,7 @@ public class ShoppingCart {
       System.out.println("Votre panier est vide");
     } else {
       System.out.println("Total: " + cart.getTotalCost() + "$");
-      System.out.println("Points de fidélité: " + "TODO");
+      System.out.println("Points de fidélité: " + cart.getTotalPoints() + " points");
       System.out.println("Articles dans le panier:");
     }
 

@@ -7,7 +7,10 @@ import org.udem.unishop.controllers.UserController;
 import org.udem.unishop.models.Buyer;
 import org.udem.unishop.utilities.Command;
 import org.udem.unishop.utilities.MenuItem;
+import org.udem.unishop.utilities.Prompt;
+import org.udem.unishop.utilities.PromptItem;
 import org.udem.unishop.utilities.SubMenu;
+import org.udem.unishop.validation.StringValidator;
 
 public class CheckoutMenu {
 
@@ -21,10 +24,13 @@ public class CheckoutMenu {
 
   private final Buyer currentUser;
 
+  private final boolean usePoints;
+
   public CheckoutMenu(Buyer currentUser, UserController userController, OrderController orderController) {
     this.currentUser = currentUser;
     this.userController = userController;
     this.orderController = orderController;
+    this.usePoints = false;
 
 
 
@@ -52,7 +58,7 @@ public class CheckoutMenu {
       @Override
       public void execute() {
         List<String> input = checkoutPrompt.createCheckoutPrompt().getValuesFromUser();
-        List<UUID> orderId = orderController.createOrder(currentUser);
+        List<UUID> orderId = orderController.createOrder(currentUser, usePoints);
 
           if (orderId != null) {
             System.out.println("La Commande a été passée avec succès");
@@ -76,7 +82,12 @@ public class CheckoutMenu {
 
       @Override
       public void execute() {
-          List<UUID> orderId = orderController.createOrder(currentUser);
+            Prompt prompt = new Prompt();
+    prompt.addPromptComponent(new PromptItem("Souhaitez-vous utiliser vos points de fidélité? (Y/N)", new StringValidator()));
+    List<String> input = prompt.getValuesFromUser();
+    boolean usePoints = (input.get(0).equals("Y") || input.get(0).equals("y"));
+
+          List<UUID> orderId = orderController.createOrder(currentUser, usePoints);
 
           if (orderId != null) {
             System.out.println("La Commande a été passée avec succès");

@@ -37,6 +37,15 @@ public class ProductPage {
     System.out.println("Mentions j'aime: " + product.getLikes());
     System.out.println("Points bonus: " + product.getBonusPoints());
     System.out.println("Nom de l'entreprise du vendeur: " + vendeur.getCompanyName());
+    System.out.println(product.getMedia());
+
+    System.out.println("Promotion(s) :");
+    if(product.getPromotionPrice() != 0) {
+        System.out.println("Rabais de: " + product.getPromotionPrice() + "$");
+    }
+    if(product.getPromotionPoints() != 0) {
+        System.out.println("Points bonus : " + product.getPromotionPoints());
+    }
 
     if(product instanceof Book livre) {
         System.out.println("Auteur: " + livre.getAuthor());
@@ -81,6 +90,7 @@ public class ProductPage {
         System.out.println("Auteur: " + avis.getAuthor());
         System.out.println("Note: " + avis.getRating());
         System.out.println("Commentaire: " + avis.getComment());
+        System.out.println("Mentions j'aime: " + avis.getLikes());
     }
 
 

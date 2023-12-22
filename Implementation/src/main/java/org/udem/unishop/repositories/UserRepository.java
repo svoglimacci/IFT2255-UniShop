@@ -1,6 +1,8 @@
 package org.udem.unishop.repositories;
 
 import java.util.UUID;
+import org.udem.unishop.models.Buyer;
+import org.udem.unishop.models.Seller;
 import org.udem.unishop.models.User;
 import org.udem.unishop.models.UserList;
 import org.udem.unishop.utilities.AccountType;
@@ -92,5 +94,21 @@ public boolean update(User user) {
       }
     }
     return sellers;
+  }
+
+
+  public void saveUsers() {
+    jsonHandler.writeJsonToFile(userList, jsonFilePath);
+  }
+
+
+  public Buyer getBuyerForTesting(String username) {
+    return (Buyer) userList.stream().filter(user -> user.getUsername().equals(username)).findFirst()
+        .orElse(null);
+  }
+
+  public Seller getSellerForTesting(String username) {
+    return (Seller) userList.stream().filter(user -> user.getUsername().equals(username)).findFirst()
+        .orElse(null);
   }
 }

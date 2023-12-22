@@ -19,9 +19,15 @@ import org.udem.unishop.utilities.ProductType;
 
 public class Product {
 
+
+
   @JsonIgnore
-  private final ProductType productType = ProductType.valueOf(
-      this.getClass().getSimpleName().toUpperCase());
+  private final ProductType productType = (this instanceof Book) ? ProductType.BOOK
+      : (this instanceof Stationery) ? ProductType.STATIONERY
+          : (this instanceof LearningResource) ? ProductType.LEARNING_RESOURCE
+              : (this instanceof ComputerHardware) ? ProductType.COMPUTER_HARDWARE
+                  : (this instanceof OfficeEquipment) ? ProductType.OFFICE_EQUIPMENT
+                      : null;
   @JsonProperty("id")
   private UUID id;
   @JsonProperty("name")
@@ -31,9 +37,16 @@ public class Product {
   @JsonProperty("instances")
   private List<UUID> instances;
   @JsonProperty("price")
-  private double price;
+  private double price = 0;
   @JsonProperty("bonus_points")
-  private int bonusPoints;
+  private int bonusPoints = 0;
+
+  @JsonProperty("promotion_price")
+  private int promotionPrice = 0;
+
+  @JsonProperty("promotion_points")
+  private int promotionPoints = 0;
+
   @JsonProperty("seller_id")
   private UUID sellerId;
 
@@ -43,16 +56,20 @@ public class Product {
   @JsonProperty("reviews")
   private List<Review> reviews;
 
+  @JsonProperty("media")
+  private String media;
+
   @JsonCreator
   public Product(@JsonProperty("name") String name, @JsonProperty("description") String description,
       @JsonProperty("instances") List<UUID> instances, @JsonProperty("price") double price,
-      @JsonProperty("bonus_points") int bonusPoints) {
+      @JsonProperty("bonus_points") int bonusPoints, @JsonProperty("promotion_price") double promotionPrice, @JsonProperty("promotion_points") int promotionPoints, @JsonProperty("media") String media) {
     this.id = (id != null) ? id : UUID.randomUUID();
     this.name = name;
     this.description = description;
     this.instances = instances;
-    this.price = price;
-    this.bonusPoints = (bonusPoints > 0) ? bonusPoints : 0;
+    this.price = price - promotionPrice;
+    this.bonusPoints = bonusPoints + promotionPoints;
+    this.media = media;
     this.reviews = new ArrayList<>();
   }
 
@@ -150,5 +167,34 @@ public class Product {
 
   public void removeInstance(UUID uuid) {
     this.instances.remove(uuid);
+  }
+
+  public int getPromotionPoints() {
+    return promotionPoints;
+  }
+
+  public void setPromotionPoints(int promotionPoints) {
+    this.promotionPoints = promotionPoints;
+  }
+
+  public double getPromotionPrice() {
+    return promotionPrice;
+  }
+
+  public void setPromotionPrice(int promotionPrice) {
+    this.promotionPrice = promotionPrice;
+  }
+
+  public String getMedia() {
+    return media;
+  }
+
+  public Review getReviewById(UUID review) {
+    for (Review r : reviews) {
+      if (r.getId().equals(review)) {
+        return r;
+      }
+    }
+    return null;
   }
 }

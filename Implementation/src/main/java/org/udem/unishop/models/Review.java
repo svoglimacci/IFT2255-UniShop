@@ -10,6 +10,8 @@ public class Review {
     public String author;
     public float rating;
 
+    public int likes = 0;
+
     public Review(
                   @JsonProperty("author") String author,
                   @JsonProperty("comment") String comment,
@@ -34,5 +36,17 @@ public class Review {
 
     public float getRating() {
         return rating;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void like() {
+        likes++;
+    }
+
+    public void dislike() {
+        likes--;
     }
 }

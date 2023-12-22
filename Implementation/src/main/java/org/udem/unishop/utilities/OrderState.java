@@ -20,6 +20,14 @@ package org.udem.unishop.utilities;
             public String toString(){
                 return "Retourné";
             }
+      }, AWAITING_EXCHANGE{
+            public String toString(){
+                return "En attente d'échange";
+            }
+        }, EXCHANGED{
+            public String toString(){
+                return "Échangé";
+            }
       }, DELIVERED{
             public String toString(){
                 return "Livré";

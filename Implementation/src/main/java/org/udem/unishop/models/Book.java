@@ -27,11 +27,11 @@ public class Book extends Product {
   @JsonCreator
   public Book(@JsonProperty("name") String name, @JsonProperty("description") String description,
       @JsonProperty("stock") List<UUID> instances, @JsonProperty("price") double price,
-      @JsonProperty("bonus_points") int bonusPoints, @JsonProperty("isbn") String isbn,
+      @JsonProperty("bonus_points") int bonusPoints, @JsonProperty("media") String media, @JsonProperty("isbn") String isbn,
       @JsonProperty("author") String author, @JsonProperty("publisher") String publisher,
       @JsonProperty("genre") String genre, @JsonProperty("publication_date") String publicationDate,
       @JsonProperty("edition") String edition, @JsonProperty("volume") String volume) {
-    super(name, description, instances, price, bonusPoints);
+    super(name, description, instances, price, bonusPoints, 0, 0, media);
     this.isbn = isbn;
     this.author = author;
     this.publisher = publisher;

@@ -18,13 +18,25 @@ public class Cart {
   @JsonProperty("total_price")
     private double totalPrice;
 
+  @JsonProperty("total_points")
+    private int totalPoints;
+
 @JsonCreator
     public Cart() {
       this.items = new ArrayList<>();
         this.totalPrice = calculateTotalPrice();
+        this.totalPoints = calculateTotalPoints();
     }
 
-    public List<CartItem> getItems() {
+  private int calculateTotalPoints() {
+    int total = 0;
+    for (CartItem item : this.items) {
+      total += item.getPoints() * item.getQuantity();
+    }
+    return total;
+  }
+
+  public List<CartItem> getItems() {
         return this.items;
     }
 
@@ -54,9 +66,12 @@ public class Cart {
   }
 
   public void addItem(Product product) {
-    CartItem cartItem = new CartItem(product.getId(), product.getName(), 1, product.getPrice());
+    CartItem cartItem = new CartItem(product.getId(), product.getName(), 1, product.getPrice(), product.getBonusPoints());
     this.items.add(cartItem);
     this.totalPrice = calculateTotalPrice();
   }
 
+  public int getTotalPoints() {
+    return this.totalPoints;
+  }
 }
