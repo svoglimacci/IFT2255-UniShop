@@ -4,9 +4,10 @@ import org.udem.unishop.authentication.MainMenu;
 import org.udem.unishop.controllers.OrderController;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
+import org.udem.unishop.repositories.ProductRepository;
+import org.udem.unishop.repositories.UserRepository;
 import org.udem.unishop.utilities.ContainerConfig;
 import org.udem.unishop.utilities.IoCContainer;
-
 
 public class Main {
 
@@ -17,6 +18,8 @@ public class Main {
     OrderController orderController = container.getInstance(OrderController.class);
 
     MainMenu mainMenuInstance = new MainMenu(userController, productController, orderController);
+
+
     System.out.println("Bienvenue chez UniShop!");
     mainMenuInstance.run();
 

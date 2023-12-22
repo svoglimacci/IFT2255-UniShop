@@ -79,4 +79,22 @@ public class ProductController {
   public boolean addReview(List<String> inputs, Buyer buyer, Product product) {
     return productService.addReview(inputs, buyer, product);
   }
+
+  public boolean changePoints(Product product, String input) {
+    return productService.changePoints(product, input);
+  }
+
+  public boolean addPromotion(Product product, List<String> inputs) {
+    return productService.addPromotion(product, inputs);
+  }
+
+  public boolean addReviewLike(UUID user, UUID product, UUID review) {
+    return productService.addReviewLike(user, product, review);
+
+  }
+
+  public boolean removeReviewLike(UUID user, UUID product, UUID review) {
+    return productService.removeReviewLike(user, product, review);
+  }
+
 }

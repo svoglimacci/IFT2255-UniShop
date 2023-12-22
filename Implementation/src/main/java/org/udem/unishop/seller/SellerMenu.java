@@ -1,6 +1,8 @@
 package org.udem.unishop.seller;
 
 import java.util.List;
+import org.udem.unishop.common.MetricsPage;
+import org.udem.unishop.common.NotificationsMenu;
 import org.udem.unishop.common.OrdersMenu;
 import org.udem.unishop.common.SearchMenu;
 import org.udem.unishop.controllers.OrderController;
@@ -40,6 +42,8 @@ public class SellerMenu {
         this.sellerMenu.addMenuComponent(searchMenu.getSearchMenu());
          this.sellerMenu.addMenuComponent(createAddProductMenu());
          this.sellerMenu.addMenuComponent(createOrdersMenu());
+         sellerMenu.addMenuComponent(createMetricsMenu());
+        sellerMenu.addMenuComponent(createNotificationsMenu());
     }
 
   private MenuComponent createOrdersMenu() {
@@ -60,6 +64,36 @@ public class SellerMenu {
 
   public void run() {
         sellerMenu.execute();
+    }
+
+      private MenuComponent createNotificationsMenu() {
+      return new MenuItem(new Command() {
+  @Override
+          public String getName() {
+              return "Mes notifications" + (!currentUser.getNotifications().isEmpty() ? " (" + currentUser.getNotifications().size() + ")" : "");
+          }
+
+          @Override
+          public void execute() {
+              NotificationsMenu notificationsMenu = new NotificationsMenu(userController, productController, currentUser);
+              notificationsMenu.run();
+          }
+      });
+  }
+
+  private MenuComponent createMetricsMenu() {
+      return new MenuItem(new Command() {
+  @Override
+          public String getName() {
+              return "Mes métriques";
+          }
+
+          @Override
+          public void execute() {
+            MetricsPage metricsPage = new MetricsPage(currentUser, userController, productController, orderController);
+            metricsPage.run();
+          }
+      });
     }
 
     private SubMenu createAddProductMenu() {

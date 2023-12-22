@@ -87,6 +87,7 @@ public class IssueMenu extends SubMenu {
 
         @Override
         public void execute() {
+          orderController.confirmIssueDelivery(order);
           orderController.confirmDelivery(order);        }
       };
   }

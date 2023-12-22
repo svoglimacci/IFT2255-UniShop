@@ -28,7 +28,7 @@ public class OrderService {
         this.productService = productService;
     }
 
-public List<UUID> createOrder(Buyer currentUser) {
+public List<UUID> createOrder(Buyer currentUser, boolean usePoints) {
       Cart cart = currentUser.getCart();
       Map<Seller, Map<UUID, Integer>> sellerProductsMap = new HashMap<>();
       List<UUID> orderIds = new ArrayList<>();
@@ -76,6 +76,20 @@ for(Map.Entry<Seller, Map<UUID, Integer>> entry : sellerProductsMap.entrySet()) 
     products.put(productEntry.getKey(), instances);
   }
 
+  if(usePoints) {
+    int points = currentUser.getFidelityPoints();
+    double pointsToMoney = points * 0.02;
+
+    if(pointsToMoney > price) {
+      currentUser.setFidelityPoints(points - (int) (price / 0.02));
+      price = 0;
+    } else {
+      currentUser.setFidelityPoints(0);
+      price -= pointsToMoney;
+    }
+  } else {
+    currentUser.addFidelityPoints(cart.getTotalPoints());
+  }
 
   Order order = new Order(UUID.randomUUID(), currentUser.getId(), entry.getKey().getId(), products, price);
   orderIds.add(order.getId());
@@ -89,6 +103,8 @@ return orderIds;
 
   public void modifyOrderStatus(Order order, User currentUser) {
       if (currentUser instanceof Seller) {
+        Buyer buyer = (Buyer) userService.getUserById(order.getBuyerId());
+        buyer.addNotification("Le vendeur " + currentUser.getUsername() + " a modifié le statut de la commande " + order.getId());
         if(order.getStatus() == OrderState.IN_PRODUCTION) {
           order.changeOrderStatus(OrderState.DELIVERING);
         }
@@ -104,8 +120,11 @@ return orderIds;
 
         }
       } else {
+        Seller seller = (Seller) userService.getUserById(order.getSellerId());
+        seller.addNotification("L'acheteur " + currentUser.getUsername() + " a modifié le statut de la commande " + order.getId());
         order.getInstances().clear();
         order.changeOrderStatus(OrderState.DELIVERED);
+
       }
 
     userService.updateOrder(order, order.getStatus());
@@ -147,6 +166,9 @@ return orderIds;
     order.getIssue().setTrackingNumber(UUID.randomUUID());
     order.getIssue().setTrackingNumberDate(System.currentTimeMillis());
     order.getIssue().setStatus(IssueState.AWAITING);
+    Buyer buyer = (Buyer) userService.getUserById(order.getBuyerId());
+    Seller seller = (Seller) userService.getUserById(order.getSellerId());
+    buyer.addNotification("Le vendeur " + seller.getUsername() + " a proposé une solution à votre problème sur la commande " + order.getId());
 
   }
 
@@ -199,7 +221,7 @@ Set<UUID> products = new HashSet<>();
         product.removeInstance(instance);
       }
     }
-    order.changeOrderStatus(OrderState.AWAITING_RETURN);
+    order.changeOrderStatus(OrderState.AWAITING_EXCHANGE);
 
     userService.updateOrder(order, order.getStatus());
   }

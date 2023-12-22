@@ -7,6 +7,7 @@ import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
 import org.udem.unishop.models.Product;
 import org.udem.unishop.models.Review;
+import org.udem.unishop.models.Seller;
 import org.udem.unishop.utilities.Menu;
 import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.Command;
@@ -35,6 +36,14 @@ public class ProductMenu extends SubMenu {
 
     private void initializeMenu() {
 
+      if(currentUser instanceof Seller) {
+        Command addPromotionCommand = createAddPromotionCommand();
+        Command changePointsCommand = createChangePointsCommand();
+        addMenuComponent(new MenuItem(addPromotionCommand));
+        addMenuComponent(new MenuItem(changePointsCommand));
+
+      }
+
         if (currentUser instanceof Buyer) {
             Command likeCommand = createLikeCommand();
             Command addReviewCommand = createAddReviewCommand();
@@ -50,7 +59,55 @@ public class ProductMenu extends SubMenu {
         }
     }
 
-    private Command createAddToCartCommand() {
+  private Command createChangePointsCommand() {
+
+      return new Command() {
+            @Override
+            public String getName() {
+                return "Changer les points bonus";
+            }
+
+            @Override
+            public void execute() {
+                Prompt pointsPrompt = new PointsPrompt(product).createPointsPrompt();
+                String input = pointsPrompt.getValuesFromUser().get(0);
+                boolean changed = productController.changePoints(product, input);
+
+                if (changed) {
+                    System.out.println("Points bonus changés avec succès!");
+
+                } else {
+                    System.out.println("Impossible de changer les points bonus. Veuillez réessayer.");
+                }
+            }
+        };
+  }
+
+  private Command createAddPromotionCommand() {
+
+      return new Command() {
+            @Override
+            public String getName() {
+                return "Ajouter une promotion";
+            }
+
+            @Override
+            public void execute() {
+                Prompt promotionPrompt = new PromotionPrompt().createPromotionPrompt();
+                List<String> inputs = promotionPrompt.getValuesFromUser();
+                boolean added = productController.addPromotion(product, inputs);
+
+                if (added) {
+                    System.out.println("Promotion ajoutée avec succès!");
+
+                } else {
+                    System.out.println("Impossible d'ajouter la promotion. Veuillez réessayer.");
+                }
+            }
+        };
+  }
+
+  private Command createAddToCartCommand() {
         return new Command() {
             @Override
             public String getName() {

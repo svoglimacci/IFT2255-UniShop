@@ -50,7 +50,7 @@ public class ReturnMenu {
 int input;
     HashMap<UUID, List<UUID>> returnItems = new HashMap<>();
 do {
-  System.out.println("Veillez sélectionner les articles à" + (isExchange ? " échanger" : " retourner"));
+  System.out.println("Veuillez sélectionner les articles à" + (isExchange ? " échanger" : " retourner"));
 
   System.out.println("Articles sélectionnés:");
   for (UUID product : returnItems.keySet()) {

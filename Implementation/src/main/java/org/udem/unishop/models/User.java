@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,6 +44,9 @@ public class User {
   @JsonProperty("address")
   private String address;
 
+    @JsonProperty("liked_reviews")
+  private List<UUID> likedReviews = new ArrayList<>();
+
   @JsonProperty("creation_date")
   private Date creationDate = new Date();
 
@@ -51,6 +55,13 @@ public class User {
 
   @JsonProperty("products_ids")
   private Set<UUID> productsIds = new HashSet<>();
+
+  @JsonProperty("notifications")
+  private Set<String> notifications = new HashSet<>();
+
+  @JsonProperty("selected_metrics")
+  private HashMap<String, List<String>> selectedMetrics = new HashMap<>();
+
 
   @JsonCreator
   public User(@JsonProperty("username") String username, @JsonProperty("password") String password,
@@ -164,4 +175,50 @@ public class User {
   public void removeOrder(UUID orderId) {
     orderList.removeIf(order -> order.getId().equals(orderId));
   }
+
+  public Set<String> getNotifications() {
+    return notifications;
+  }
+
+  public void addNotification(String notification) {
+    notifications.add(notification);
+  }
+
+  public void removeNotification(int i) {
+    notifications.remove(i);
+  }
+
+  public void addMetric(String metric, int value) {
+    selectedMetrics.put(metric, new ArrayList<>(List.of(String.valueOf(value))));
+  }
+
+  public void removeMetric(String metric) {
+    selectedMetrics.remove(metric);
+  }
+
+  public HashMap<String, List<String>> getSelectedMetrics() {
+    return selectedMetrics;
+  }
+
+  public void setSelectedMetrics(HashMap<String, List<String>> chosenMetrics) {
+    this.selectedMetrics = chosenMetrics;
+  }
+
+
+  public List<UUID> getLikedReviews() {
+    return likedReviews;
+  }
+
+  public void setLikedReviews(List<UUID> likedReviews) {
+    this.likedReviews = likedReviews;
+  }
+
+  public void addLikedReview(UUID reviewId) {
+    this.likedReviews.add(reviewId);
+  }
+
+  public void removeLikedReview(UUID reviewId) {
+    this.likedReviews.remove(reviewId);
+  }
+
 }
