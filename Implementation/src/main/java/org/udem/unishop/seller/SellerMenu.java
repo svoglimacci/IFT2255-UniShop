@@ -1,12 +1,15 @@
 package org.udem.unishop.seller;
 
 import java.util.List;
+import org.udem.unishop.common.OrdersMenu;
 import org.udem.unishop.common.SearchMenu;
+import org.udem.unishop.controllers.OrderController;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
 import org.udem.unishop.models.Seller;
 import org.udem.unishop.product.ProductPrompt;
 import org.udem.unishop.utilities.Menu;
+import org.udem.unishop.utilities.MenuComponent;
 import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.ProductType;
 import org.udem.unishop.utilities.SubMenu;
@@ -15,23 +18,47 @@ import org.udem.unishop.utilities.Command;
 public class SellerMenu {
 
     private final Menu sellerMenu;
+
+    private final Menu ordersMenu;
     private final UserController userController;
     private final ProductController productController;
+
+    private final OrderController orderController;
+
     private final Seller currentUser;
 
 
-    public SellerMenu(UserController userController, ProductController productController, Seller currentUser) {
+    public SellerMenu(UserController userController, ProductController productController, OrderController orderController, Seller currentUser) {
         this.userController = userController;
         this.productController = productController;
+        this.orderController = orderController;
         this.currentUser = currentUser;
 
         SearchMenu searchMenu = new SearchMenu(userController, productController, currentUser);
         this.sellerMenu = new Menu();
+        this.ordersMenu = new Menu();
         this.sellerMenu.addMenuComponent(searchMenu.getSearchMenu());
          this.sellerMenu.addMenuComponent(createAddProductMenu());
+         this.sellerMenu.addMenuComponent(createOrdersMenu());
     }
 
-    public void run() {
+  private MenuComponent createOrdersMenu() {
+    return new MenuItem(new Command() {
+      @Override
+      public String getName() {
+        return "Mes commandes";
+      }
+
+      @Override
+      public void execute() {
+        OrdersMenu ordersMenu = new OrdersMenu(userController, productController, orderController,
+            currentUser);
+        ordersMenu.run();
+      }
+    });
+  }
+
+  public void run() {
         sellerMenu.execute();
     }
 

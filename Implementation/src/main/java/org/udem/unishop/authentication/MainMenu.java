@@ -3,6 +3,7 @@ package org.udem.unishop.authentication;
 import java.util.List;
 import org.udem.unishop.buyer.BuyerMenu;
 import org.udem.unishop.common.GuestMenu;
+import org.udem.unishop.controllers.OrderController;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
 import org.udem.unishop.models.Buyer;
@@ -21,9 +22,13 @@ public class MainMenu {
   private final UserController userController;
   private final ProductController productController;
 
-  public MainMenu(UserController userController, ProductController productController) {
+  private final OrderController orderController;
+
+  public MainMenu(UserController userController, ProductController productController, OrderController orderController) {
     this.userController = userController;
     this.productController = productController;
+    this.orderController = orderController;
+
     this.mainMenu = new Menu();
 
     SubMenu registerMenu = createRegisterMenu();
@@ -83,10 +88,10 @@ public class MainMenu {
         if(loggedInUser != null) {
           System.out.println("Vous êtes connecté en tant que " + loggedInUser.getUsername());
           if (accountType == AccountType.SELLER) {
-            SellerMenu userMenu = new SellerMenu(userController, productController, (Seller) loggedInUser);
+            SellerMenu userMenu = new SellerMenu(userController, productController, orderController, (Seller) loggedInUser);
             userMenu.run();
           } else {
-            BuyerMenu userMenu = new BuyerMenu(userController, productController, (Buyer) loggedInUser);
+            BuyerMenu userMenu = new BuyerMenu(userController, productController, (Buyer) loggedInUser, orderController);
             userMenu.run();
           }
 

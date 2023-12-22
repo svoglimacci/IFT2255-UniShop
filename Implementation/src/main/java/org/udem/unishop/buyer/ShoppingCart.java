@@ -1,5 +1,6 @@
 package org.udem.unishop.buyer;
 
+import org.udem.unishop.controllers.OrderController;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
 import org.udem.unishop.models.Buyer;
@@ -15,22 +16,38 @@ public class ShoppingCart {
 
   private final Buyer currentUser;
 
-  public ShoppingCart(Buyer currentUser, UserController userController, ProductController productController) {
+  public ShoppingCart(Buyer currentUser, UserController userController, ProductController productController, OrderController orderController) {
     this.currentUser = currentUser;
-    this.shoppingCart = new SubMenu("Panier d'achats");
+    Cart cart = currentUser.getCart();
 
-    createCartItemList(productController, userController);
+    this.shoppingCart = new SubMenu("Panier d'achats");
+    CheckoutMenu checkoutMenu = new CheckoutMenu(currentUser, userController, orderController);
+
+    createCartItemList(productController, userController, cart);
+    if (!cart.getItems().isEmpty()) {
+          shoppingCart.addMenuComponent(checkoutMenu.getCheckoutMenu());
+    }
+
+
+
+
   }
 
   public void run() {
     shoppingCart.execute();
+
   }
 
-  private void createCartItemList(ProductController productController, UserController userController) {
-    Cart cart = currentUser.getCart();
+
+
+  private void createCartItemList(ProductController productController, UserController userController, Cart cart) {
 
     if (cart.getItems().isEmpty()) {
       System.out.println("Votre panier est vide");
+    } else {
+      System.out.println("Total: " + cart.getTotalCost() + "$");
+      System.out.println("Points de fidélité: " + "TODO");
+      System.out.println("Articles dans le panier:");
     }
 
     for (CartItem object : cart.getItems()) {
@@ -40,7 +57,7 @@ public class ShoppingCart {
       Command showCartItemCommand = new Command() {
         @Override
         public String getName() {
-          return object.getName();
+          return object.getName() + " - " + object.getQuantity() + " - " + object.getPrice() + "$";
         }
 
         @Override
@@ -52,6 +69,8 @@ public class ShoppingCart {
 
       shoppingCart.addMenuComponent(new MenuItem(showCartItemCommand));
     }
+
+
   }
 
 }

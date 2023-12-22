@@ -12,7 +12,6 @@ import org.udem.unishop.models.Product;
 import org.udem.unishop.models.ProductList;
 import org.udem.unishop.models.Review;
 import org.udem.unishop.models.Stationery;
-import org.udem.unishop.models.User;
 import org.udem.unishop.repositories.ProductRepository;
 import org.udem.unishop.utilities.ProductType;
 
@@ -152,5 +151,15 @@ public class ProductService {
     product.addReview(newReview);
     userService.addReviewToBuyer(buyer.getId(), newReview.id);
     return productRepository.update(product);
+  }
+
+  public void removeInstance(Product productById, UUID instance) {
+    productById.getInstances().remove(instance);
+    productRepository.update(productById);
+
+  }
+
+  public void updateProduct(Product product) {
+    productRepository.update(product);
   }
 }

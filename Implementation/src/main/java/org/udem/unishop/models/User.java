@@ -5,17 +5,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import org.udem.unishop.utilities.AccountType;
+import org.udem.unishop.utilities.OrderState;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "account_type")
 @JsonSubTypes({@JsonSubTypes.Type(value = Buyer.class, name = "buyer"),
     @JsonSubTypes.Type(value = Seller.class, name = "seller")})
 
 public class User {
+
+    @JsonProperty("order_list")
+  private List<Order> orderList = new ArrayList<>();
 
   @JsonIgnore
   private final AccountType accountType = AccountType.valueOf(
@@ -134,5 +140,28 @@ public class User {
     this.productsIds.add(productId);
   }
 
+      public void addOrder(Order order) {
+        orderList.add(order);
+    }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+
+    public void updateOrder(UUID orderId, OrderState orderState) {
+      for (Order order : orderList) {
+        if (order.getId().equals(orderId)) {
+          order.changeOrderStatus(orderState);
+        }
+      }
+    }
+
+  public void removeOrder(UUID orderId) {
+    orderList.removeIf(order -> order.getId().equals(orderId));
+  }
 }

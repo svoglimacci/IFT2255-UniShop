@@ -58,4 +58,5 @@ public class Cart {
     this.items.add(cartItem);
     this.totalPrice = calculateTotalPrice();
   }
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import org.udem.unishop.controllers.ProductController;
 import org.udem.unishop.controllers.UserController;
+import org.udem.unishop.models.Buyer;
 import org.udem.unishop.models.User;
 import org.udem.unishop.product.ProductCatalog;
 import org.udem.unishop.user.UserCatalog;
@@ -47,9 +48,27 @@ public class SearchMenu {
         searchMenu.addMenuComponent(new MenuItem(createSearchProductByBrandCommand()));
         searchMenu.addMenuComponent(new MenuItem(createSearchProductByModelCommand()));
         searchMenu.addMenuComponent(new MenuItem(createSearchProductByPriceCommand()));
+        if (currentUser instanceof Buyer) {
+          searchMenu.addMenuComponent(new MenuItem(createSearchBuyerByFollowedCommand()));
+        }
 
        return searchMenu;
     }
+
+  private Command createSearchBuyerByFollowedCommand() {
+    return new Command() {
+      @Override
+      public String getName() {
+        return "Rechercher un acheteur parmi les utilisateurs suivis";
+      }
+
+      @Override
+      public void execute() {
+        UserCatalog userCatalog = new UserCatalog(userController, productController, currentUser, AccountType.BUYER, SearchType.FOLLOWED_USERS, null);
+        userCatalog.run();
+      }
+    };
+  }
 
   private Command createProductCatalog() {
         return new Command() {

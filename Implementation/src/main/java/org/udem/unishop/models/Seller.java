@@ -3,9 +3,14 @@ package org.udem.unishop.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonTypeName("Seller")
 public class Seller extends User {
+
+  @JsonProperty("order_list")
+  private final List<Order> orderList = new ArrayList<>();
 
   @JsonProperty("company_name")
   private String companyName;
@@ -38,4 +43,7 @@ public class Seller extends User {
   public void setLikes(int likes) {
     this.likes = likes;
   }
+
+
+
 }

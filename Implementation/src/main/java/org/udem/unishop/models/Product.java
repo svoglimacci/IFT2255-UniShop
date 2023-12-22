@@ -143,4 +143,12 @@ public class Product {
     this.reviews.add(review);
 
   }
+
+  public void addInstance(UUID instance) {
+    this.instances.add(instance);
+  }
+
+  public void removeInstance(UUID uuid) {
+    this.instances.remove(uuid);
+  }
 }

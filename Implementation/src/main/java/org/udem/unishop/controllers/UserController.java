@@ -3,7 +3,9 @@ package org.udem.unishop.controllers;
 import java.util.List;
 import java.util.UUID;
 import org.udem.unishop.models.Buyer;
+import org.udem.unishop.models.Cart;
 import org.udem.unishop.models.CartItem;
+import org.udem.unishop.models.Order;
 import org.udem.unishop.models.Product;
 import org.udem.unishop.models.ProductList;
 import org.udem.unishop.models.User;
@@ -97,4 +99,6 @@ public class UserController {
   public boolean removeFollowed(UUID buyer, UUID followed) {
     return userService.removeFollowed(buyer, followed);
   }
+
+
 }

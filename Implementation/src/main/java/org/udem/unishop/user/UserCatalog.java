@@ -41,12 +41,25 @@ public class UserCatalog {
     }
 
     private void createFilteredUserList(ProductController productController, UserController userController, SearchType searchType, String searchValue) {
-        searchValue = searchValue.toLowerCase();
+        if(searchValue != null) {
+            searchValue = searchValue.toLowerCase();
+        }
+
         UserList userList = accountType == AccountType.BUYER ? userController.getBuyers() : userController.getSellers();
 
         for (Object user : userList) {
           User u = (User) user;
             switch (searchType) {
+              case FOLLOWED_USERS:
+                Buyer buyer = (Buyer) currentUser;
+                for (UUID followedUserId : buyer.getFollowed()) {
+                  User followedUser = userController.getUserById(followedUserId);
+                  if (followedUser != null && followedUser.getId() == u.getId()) {
+                    addUserPage(u, productController, userController);
+                  }
+                }
+                break;
+
                 case USERNAME:
                     if (u.getUsername().toLowerCase().contains(searchValue)) {
                         addUserPage(u, productController, userController);

@@ -17,7 +17,8 @@ public enum SearchType {
 
   PRODUCT_PRICE("tranche de prix"),
 
-  BUSINESS_ADDRESS("adresse d'entreprise");
+  BUSINESS_ADDRESS("adresse d'entreprise"),
+  FOLLOWED_USERS("utilisateurs suivis");
 
   private final String searchType;
 
