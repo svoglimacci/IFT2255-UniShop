@@ -119,4 +119,8 @@ public class Order {
     }
     return instances;
   }
+
+  public void setStatus(OrderState orderState) {
+    this.status = orderState;
+  }
 }

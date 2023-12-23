@@ -140,10 +140,7 @@ return orderIds;
   }
 
   public void confirmDelivery(Order order) {
-    order.changeOrderStatus(OrderState.DELIVERED);
-
-
-
+      modifyOrderStatus(order, userService.getUserById(order.getSellerId()));
   }
 
   public void confirmIssueDelivery(Order order) {
@@ -224,5 +221,11 @@ Set<UUID> products = new HashSet<>();
     order.changeOrderStatus(OrderState.AWAITING_EXCHANGE);
 
     userService.updateOrder(order, order.getStatus());
+  }
+
+  public Order getOrderById(UUID buyerId, UUID orderId) {
+    Buyer buyer = (Buyer) userService.getUserById(buyerId);
+    Order order = buyer.getOrderList().stream().filter(o -> o.getId().equals(orderId)).findFirst().orElse(null);
+    return order;
   }
 }

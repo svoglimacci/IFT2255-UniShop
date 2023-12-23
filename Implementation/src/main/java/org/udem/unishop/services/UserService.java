@@ -277,9 +277,6 @@ public class UserService {
     seller.updateOrder(order.getId(), orderState);
     buyer.updateOrder(order.getId(), orderState);
 
-
-
-
     userRepository.update(seller);
     userRepository.update(buyer);
   }

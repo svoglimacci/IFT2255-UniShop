@@ -91,17 +91,4 @@ public boolean update(Product product) {
     return productList;
   }
 
-  public void saveProducts() {
-    writeDataToJson();
-  }
-
-  public Stationery getStationeryForTesting(String name) {
-    return (Stationery) productList.stream().filter(product -> product.getName().equals(name))
-        .findFirst().orElse(null);
-  }
-
-  public ComputerHardware getComputerHardwareForTesting(String computerHardware1) {
-    return (ComputerHardware) productList.stream().filter(product -> product.getName().equals(computerHardware1))
-        .findFirst().orElse(null);
-  }
 }
