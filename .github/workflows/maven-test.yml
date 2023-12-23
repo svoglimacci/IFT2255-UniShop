@@ -13,6 +13,6 @@ jobs:
       with:
         java-version: '21'
         distribution: 'oracle'
-    -name: Test with Maven
-    working-directory: ./Implementation
-    run: mvn test
+    - name: Test with Maven
+      working-directory: ./Implementation
+      run: mvn test
