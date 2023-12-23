@@ -101,4 +101,7 @@ public class UserController {
   }
 
 
+  public void updateUser(User currentUser) {
+    userService.updateUser(currentUser);
+  }
 }

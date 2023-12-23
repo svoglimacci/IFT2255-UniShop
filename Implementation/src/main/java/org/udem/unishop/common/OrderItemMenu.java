@@ -75,25 +75,31 @@ public class OrderItemMenu extends SubMenu {
       }
     }
     else {
-      Command modifyOrderCommand = createModifyOrderCommand();
+      if (currentUser instanceof Seller) {
 
-      if(currentUser instanceof Seller && order.getStatus().equals(OrderState.DELIVERED)) {
-        Command showIssueCommand = createShowIssueCommand();
-        if (order.getIssue() != null) {
-          addMenuComponent(new MenuItem(showIssueCommand));
+        if (order.getStatus().equals(OrderState.DELIVERED)) {
+          Command showIssueCommand = createShowIssueCommand();
+          if (order.getIssue() != null) {
+            addMenuComponent(new MenuItem(showIssueCommand));
+          }
         }
-      }
 
-        if(order.getStatus() == OrderState.AWAITING_RETURN) {
+        if (order.getStatus() == OrderState.AWAITING_RETURN) {
           Command showConfirmReturnCommand = createConfirmDeliveryCommand();
           addMenuComponent(new MenuItem(showConfirmReturnCommand));
         }
+
+        if(order.getStatus() == OrderState.AWAITING_EXCHANGE) {
+          Command showConfirmExchangeCommand = createShowDeliveryCommand();
+          addMenuComponent(new MenuItem(showConfirmExchangeCommand));
+        }
       }
 
-      if(order.getStatus().equals(OrderState.IN_PRODUCTION)) {
+      if (order.getStatus().equals(OrderState.IN_PRODUCTION)) {
         Command modifyOrderCommand = createModifyOrderCommand();
         addMenuComponent(new MenuItem(modifyOrderCommand));
       }
+    }
 
     }
 
@@ -106,7 +112,7 @@ public class OrderItemMenu extends SubMenu {
 
       @Override
       public void execute() {
-        //orderController.showDelivery(order);
+        orderController.modifyOrderStatus(order, currentUser);
         System.out.println("Expédition de la commande #" + order.getId());
       }
     };

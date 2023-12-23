@@ -14,15 +14,19 @@ public class CartItem {
 
     private final double price;
 
+    private int points;
+
     @JsonCreator
     public CartItem(@JsonProperty("id") UUID id,
                     @JsonProperty("name") String name,
                     @JsonProperty("quantity") int quantity,
-                    @JsonProperty("price") double price) {
+                    @JsonProperty("price") double price,
+              @JsonProperty("points") int points){
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        this.points = points;
     }
 
     public String getName() {
@@ -43,5 +47,9 @@ public class CartItem {
 
     public UUID getId() {
         return this.id;
+    }
+
+    public int getPoints() {
+        return this.points;
     }
 }

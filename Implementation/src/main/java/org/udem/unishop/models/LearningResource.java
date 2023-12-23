@@ -25,18 +25,19 @@ public class LearningResource extends Product {
   @JsonCreator
   public LearningResource(@JsonProperty("name") String name,
       @JsonProperty("description") String description, @JsonProperty("stock") List<UUID> instances,
-      @JsonProperty("price") double price, @JsonProperty("bonus_points") int bonusPoints,
+      @JsonProperty("price") double price, @JsonProperty("bonus_points") int bonusPoints, @JsonProperty("media") String media,
       @JsonProperty("isbn") String isbn, @JsonProperty("author") String author,
       @JsonProperty("organization") String organization,
       @JsonProperty("publication_date") String publicationDate, @JsonProperty("type") String type,
       @JsonProperty("edition") String edition) {
-    super(name, description, instances, price, bonusPoints);
+    super(name, description, instances, price, bonusPoints, 0, 0, media);
     this.isbn = isbn;
     this.author = author;
     this.organization = organization;
     this.publicationDate = publicationDate;
     this.type = type;
     this.edition = edition;
+
   }
 
   public String getIsbn() {

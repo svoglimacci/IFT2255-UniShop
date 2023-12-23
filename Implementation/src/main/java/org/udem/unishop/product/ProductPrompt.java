@@ -16,7 +16,7 @@ public class ProductPrompt {
     productPrompt.addPromptComponent(new PromptItem("Quantité Initiale", new IntegerValidator()));
     productPrompt.addPromptComponent(new PromptItem("Prix", new PriceValidator()));
     productPrompt.addPromptComponent(new PromptItem("Points bonus", new IntegerValidator()));
-
+    productPrompt.addPromptComponent(new PromptItem("Lien vers une image ou vidéo", new StringValidator()));
 
     switch (productType) {
       case BOOK :

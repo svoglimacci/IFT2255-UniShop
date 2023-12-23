@@ -84,6 +84,7 @@ public class UserService {
   public boolean addLikedProduct(UUID userId, UUID productId) {
     Buyer user = (Buyer) getUserById(userId);
     user.getLikedProducts().add(productId);
+
     return userRepository.update(user);
   }
 
@@ -95,6 +96,16 @@ public class UserService {
 
   public boolean addProductToSeller(User user, UUID productId) {
     user.getProductsIds().add(productId);
+    UserList users = userRepository.getBuyers();
+    for (Object buyer : users) {
+      Buyer buyerUser = (Buyer) buyer;
+      if (buyerUser.getLikedSeller().contains(user.getId())) {
+        buyerUser.addNotification("Un produit que vous aimez est maintenant disponible: " + productId);
+        userRepository.update(buyerUser);
+      }
+    }
+
+
     return userRepository.update(user);
   }
 
@@ -170,7 +181,7 @@ public class UserService {
         }
       } else {
         // If the product is not in the cart, add a new CartItem
-        CartItem newCartItem = new CartItem(product.getId(), product.getName(), quantity, product.getPrice());
+        CartItem newCartItem = new CartItem(product.getId(), product.getName(), quantity, product.getPrice(), product.getBonusPoints());
         cart.getItems().add(newCartItem);
       }
 
@@ -210,9 +221,9 @@ public class UserService {
     Buyer buyerUser = (Buyer) getUserById(buyer);
     Buyer followedUser = (Buyer) getUserById(followed);
 
-    if (buyerUser == null || followedUser == null) {
-      return false;
-    }
+    //add 5 points to both users
+    buyerUser.addFidelityPoints(5);
+    followedUser.addFidelityPoints(5);
 
     if (buyerUser.getFollowed().contains(followed)) {
       return false;
@@ -220,6 +231,7 @@ public class UserService {
 
     buyerUser.getFollowed().add(followed);
     followedUser.getFollowers().add(buyer);
+    followedUser.addNotification("Vous avez un nouveau follower: " + buyerUser.getUsername());
     return userRepository.update(followedUser);
   }
 
@@ -227,9 +239,9 @@ public class UserService {
     Buyer buyerUser = (Buyer) getUserById(buyer);
     Buyer followedUser = (Buyer) getUserById(followed);
 
-    if (buyerUser == null || followedUser == null) {
-      return false;
-    }
+    //remove 5 points to both users
+    buyerUser.removeFidelityPoints(5);
+    followedUser.removeFidelityPoints(5);
 
     if (!buyerUser.getFollowed().contains(followed)) {
       return false;
@@ -267,5 +279,9 @@ public class UserService {
 
     userRepository.update(seller);
     userRepository.update(buyer);
+  }
+
+  public void updateUser(User currentUser) {
+    userRepository.update(currentUser);
   }
 }

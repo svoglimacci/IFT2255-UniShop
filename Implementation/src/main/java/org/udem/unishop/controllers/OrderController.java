@@ -25,8 +25,8 @@ public class OrderController {
     orderService.confirmIssueReturn(order);
   }
 
-  public List<UUID> createOrder(Buyer currentUser) {
-        return orderService.createOrder(currentUser);
+  public List<UUID> createOrder(Buyer currentUser, boolean usePoints) {
+        return orderService.createOrder(currentUser, usePoints);
     }
 
   public void modifyOrderStatus(Order order, User currentUser) {
@@ -66,5 +66,9 @@ public class OrderController {
 
   public void exchangeOrder(Order order, HashMap<UUID, List<UUID>> exchangeItems, HashMap<UUID, List<UUID>> returnItems) {
     orderService.exchangeOrder(order, exchangeItems, returnItems);
+  }
+
+  public void confirmIssueDelivery(Order order) {
+    orderService.confirmIssueDelivery(order);
   }
 }

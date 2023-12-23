@@ -1,8 +1,10 @@
 package org.udem.unishop.repositories;
 
 import java.util.UUID;
+import org.udem.unishop.models.ComputerHardware;
 import org.udem.unishop.models.Product;
 import org.udem.unishop.models.ProductList;
+import org.udem.unishop.models.Stationery;
 import org.udem.unishop.models.User;
 import org.udem.unishop.utilities.JSONHandler;
 import org.udem.unishop.utilities.ProductType;

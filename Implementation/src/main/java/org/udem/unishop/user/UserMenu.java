@@ -68,6 +68,7 @@ public class UserMenu extends SubMenu {
   private void followBuyer() {
 
     Buyer buyer = (Buyer) currentUser;
+
     boolean followed = userController.addFollowed(buyer.getId(), user.getId());
 
     if (followed) {
