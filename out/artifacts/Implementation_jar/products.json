@@ -1,0 +1,258 @@
+[
+  {
+    "product_type": "computer_hardware",
+    "name": "ComputerHardware2",
+    "description": "Description2",
+    "price": 90.0,
+    "bonus_points": 20,
+    "media": "",
+    "brand": "Brand1",
+    "model": "Model1",
+    "launch_date": "1990",
+    "sub_category": "RAM",
+    "id": "94d9d9d1-0e4f-4087-8cac-3b7a38b9f937",
+    "instances": [
+      "cb8285f2-fe0a-46aa-9157-1dfef42b5550"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "89186058-496d-4c45-8dd1-5eaae3c48cc4",
+    "likes": 0,
+    "reviews": []
+  },
+  {
+    "product_type": "computer_hardware",
+    "name": "ComputerHardware3",
+    "description": "Description2",
+    "price": 90.0,
+    "bonus_points": 20,
+    "media": "",
+    "brand": "Brand1",
+    "model": "Model1",
+    "launch_date": "1990",
+    "sub_category": "RAM",
+    "id": "570ddebf-d93c-47de-b9aa-0cb657ffa9f7",
+    "instances": [
+      "bc42f095-5e14-48e1-880c-8642ebc86eb7"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "d13060ec-ab71-4521-ad43-2eef2c9d8525",
+    "likes": 0,
+    "reviews": []
+  },
+  {
+    "product_type": "computer_hardware",
+    "name": "ComputerHardware4",
+    "description": "Description2",
+    "price": 90.0,
+    "bonus_points": 20,
+    "media": "",
+    "brand": "Brand1",
+    "model": "Model1",
+    "launch_date": "1990",
+    "sub_category": "RAM",
+    "id": "710b1166-4b41-4a37-8f3e-f7b4fb994dce",
+    "instances": [
+      "ec1d8f31-5165-4a69-82d3-bf94e5c98815"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "c94ac64b-20fd-4681-b813-ec6dc3259d42",
+    "likes": 0,
+    "reviews": []
+  },
+  {
+    "product_type": "computer_hardware",
+    "name": "ComputerHardware5",
+    "description": "Description2",
+    "price": 90.0,
+    "bonus_points": 20,
+    "media": "",
+    "brand": "Brand1",
+    "model": "Model1",
+    "launch_date": "1990",
+    "sub_category": "RAM",
+    "id": "53a7c45b-3424-4c3d-8cff-def9e31869b4",
+    "instances": [
+      "6c979468-aa40-4f08-b690-07359e00f380"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "b91ea8c2-0168-4aa6-8f03-a4c182703965",
+    "likes": 0,
+    "reviews": []
+  },
+  {
+    "product_type": "computer_hardware",
+    "name": "ComputerHardware1",
+    "description": "Description2",
+    "price": 90.0,
+    "bonus_points": 20,
+    "media": "",
+    "brand": "Brand1",
+    "model": "Model1",
+    "launch_date": "1990",
+    "sub_category": "RAM",
+    "id": "96ca7af1-c81b-4105-84b6-0a91730013db",
+    "instances": [],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "82b11855-f610-45ca-aaf9-6ceb11598ec7",
+    "likes": 0,
+    "reviews": [
+      {
+        "author": "Buyer1",
+        "comment": "This is a review",
+        "rating": 5.0,
+        "id": "eeeceb8c-e0d4-444e-8184-e65077b7633d",
+        "likes": 0
+      }
+    ]
+  },
+  {
+    "product_type": "book",
+    "name": "Book2",
+    "description": "Description1",
+    "price": 12.9,
+    "bonus_points": 10,
+    "media": "",
+    "isbn": "1234567890123",
+    "author": "Author1",
+    "publisher": "Publisher1",
+    "genre": "Genre1",
+    "publication_date": "01/01/2001",
+    "edition": "Edition1",
+    "volume": "Volume1",
+    "id": "c5b70d7b-8c3c-4998-9e22-bb19b3c488bc",
+    "instances": [
+      "f422a6ae-3366-466b-9256-60d5183ffa9d",
+      "03dcf54b-6de6-40cb-b5c8-021a3f4697ff"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "89186058-496d-4c45-8dd1-5eaae3c48cc4",
+    "likes": 0,
+    "reviews": []
+  },
+  {
+    "product_type": "book",
+    "name": "Book3",
+    "description": "Description1",
+    "price": 12.9,
+    "bonus_points": 10,
+    "media": "",
+    "isbn": "1234567890123",
+    "author": "Author1",
+    "publisher": "Publisher1",
+    "genre": "Genre1",
+    "publication_date": "01/01/2001",
+    "edition": "Edition1",
+    "volume": "Volume1",
+    "id": "783f28b0-a897-478c-b6e5-936fb6eefa9d",
+    "instances": [
+      "1b1b46ad-12a6-4ce3-9baa-ab6dd0cba6bc",
+      "ea5cada6-e740-4b99-899e-c8a9b926f189",
+      "1b2d2152-0336-494a-b90b-0b61eb3a1ac6"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "d13060ec-ab71-4521-ad43-2eef2c9d8525",
+    "likes": 0,
+    "reviews": [
+      {
+        "author": "Buyer10",
+        "comment": "Good Book",
+        "rating": 5.0,
+        "id": "ff3f1f8f-9a3d-4b4b-9eca-dd412d53cda3",
+        "likes": 0
+      }
+    ]
+  },
+  {
+    "product_type": "book",
+    "name": "Book1",
+    "description": "Description1",
+    "price": 12.9,
+    "bonus_points": 10,
+    "media": "",
+    "isbn": "1234567890123",
+    "author": "Author1",
+    "publisher": "Publisher1",
+    "genre": "Genre1",
+    "publication_date": "01/01/2001",
+    "edition": "Edition1",
+    "volume": "Volume1",
+    "id": "037ff9fb-55a6-4b24-9e58-96e0ebde7330",
+    "instances": [
+      "dcaf7bb7-f0c0-46e5-9deb-523eb6d169bc",
+      "7a68cf7e-1fa8-4514-8c2a-bb4e18dc25dc",
+      "c5e7e875-7924-48f4-8216-2393ab64b257"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "82b11855-f610-45ca-aaf9-6ceb11598ec7",
+    "likes": 1,
+    "reviews": []
+  },
+  {
+    "product_type": "book",
+    "name": "Book4",
+    "description": "Description1",
+    "price": 12.9,
+    "bonus_points": 10,
+    "media": "",
+    "isbn": "1234567890123",
+    "author": "Author1",
+    "publisher": "Publisher1",
+    "genre": "Genre1",
+    "publication_date": "01/01/2001",
+    "edition": "Edition1",
+    "volume": "Volume1",
+    "id": "339b200c-c8b7-4832-90df-80fd5192cce6",
+    "instances": [
+      "6c9bd7be-3186-448f-b0f3-6be374e32f65",
+      "c6fa22a0-e21a-45a3-81ab-027cf930b8af",
+      "98ff4487-2180-4560-9e14-9928518eac1c"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "c94ac64b-20fd-4681-b813-ec6dc3259d42",
+    "likes": 1,
+    "reviews": []
+  },
+  {
+    "product_type": "book",
+    "name": "Book5",
+    "description": "Description1",
+    "price": 12.9,
+    "bonus_points": 10,
+    "media": "",
+    "isbn": "1234567890123",
+    "author": "Author1",
+    "publisher": "Publisher1",
+    "genre": "Genre1",
+    "publication_date": "01/01/2001",
+    "edition": "Edition1",
+    "volume": "Volume1",
+    "id": "66b3718d-1079-4558-9714-3cc3f1a49fd9",
+    "instances": [
+      "53f9b10b-e84e-4b1f-9ec1-f6a4f06294c6",
+      "eb515353-5d6c-4375-bef4-96f5a4fb4e87",
+      "677f1545-3b9e-4021-90d8-ad67abe151b3"
+    ],
+    "promotion_price": 0.0,
+    "promotion_points": 0,
+    "seller_id": "b91ea8c2-0168-4aa6-8f03-a4c182703965",
+    "likes": 0,
+    "reviews": [
+      {
+        "author": "Buyer1",
+        "comment": "Good",
+        "rating": 5.0,
+        "id": "75bb5f85-39ba-4cd4-bccd-d8aa9a9d5a6d",
+        "likes": 0
+      }
+    ]
+  }
+]
