@@ -9,8 +9,17 @@ import org.udem.unishop.validation.PhoneValidator;
 import org.udem.unishop.validation.StringValidator;
 import org.udem.unishop.validation.UsernameValidator;
 
+/**
+ * Represents a prompt for user registration providing components for various user details on the account type.
+ */
 public class RegisterPrompt {
 
+  /**
+   * Creates a registration prompt with components for user details based on the specified account type.
+   *
+   * @param accountType The type of account for which the registration prompt is created (buyer or seller).
+   * @return The created registration prompt.
+   */
   public Prompt createRegisterPrompt(AccountType accountType) {
     Prompt registerPrompt = new Prompt();
     registerPrompt.addPromptComponent(new PromptItem("Nom d'utilisateur", new UsernameValidator()));
@@ -19,6 +28,7 @@ public class RegisterPrompt {
     registerPrompt.addPromptComponent(new PromptItem("Numéro de téléphone", new PhoneValidator()));
     registerPrompt.addPromptComponent(new PromptItem("Adresse", new StringValidator()));
 
+    // Additionnal prompt components based on account type
     switch (accountType) {
       case BUYER:
         registerPrompt.addPromptComponent(new PromptItem("Prénom", new StringValidator()));

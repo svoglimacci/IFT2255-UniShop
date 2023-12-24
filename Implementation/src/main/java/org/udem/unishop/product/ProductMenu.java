@@ -16,7 +16,9 @@ import org.udem.unishop.models.Buyer;
 import org.udem.unishop.utilities.Prompt;
 import org.udem.unishop.utilities.SubMenu;
 
-
+/**
+ * The ProductMenu class represents a menu for managing product-related actions.
+ */
 public class ProductMenu extends SubMenu {
 
     private final Product product;
@@ -24,6 +26,14 @@ public class ProductMenu extends SubMenu {
     private final ProductController productController;
     private final User currentUser;
 
+    /**
+     * Constructor for ProductMenu with the specified product, user controller, product controller, and current user.
+     *
+     * @param product The product associated with the menu.
+     * @param userController The controller for managing user-related actions.
+     * @param productController The controller for managing product-related actions.
+     * @param currentUser The current user interacting with the menu.
+     */
     public ProductMenu(Product product, UserController userController, ProductController productController, User currentUser) {
         super(product.getName());
         this.product = product;
@@ -34,6 +44,9 @@ public class ProductMenu extends SubMenu {
         initializeMenu();
     }
 
+    /**
+     * Initializes the menu by adding relevant commands based on the user type.
+     */
     private void initializeMenu() {
 
       if(currentUser instanceof Seller) {
@@ -54,12 +67,15 @@ public class ProductMenu extends SubMenu {
             if (!hasBuyerReviewedProduct((Buyer) currentUser, product)) {
                 addMenuComponent(new MenuItem(addReviewCommand));
             }
-
-
         }
     }
 
-  private Command createChangePointsCommand() {
+    /**
+     * Creates a command for changing the bonus points of the product.
+     *
+     * @return The command for changing the bonus points.
+     */
+    private Command createChangePointsCommand() {
 
       return new Command() {
             @Override
@@ -81,9 +97,14 @@ public class ProductMenu extends SubMenu {
                 }
             }
         };
-  }
+    }
 
-  private Command createAddPromotionCommand() {
+    /**
+     * Creates a command for adding a promotion to the product.
+     *
+     * @return The command for adding a promotion.
+     */
+    private Command createAddPromotionCommand() {
 
       return new Command() {
             @Override
@@ -107,7 +128,12 @@ public class ProductMenu extends SubMenu {
         };
   }
 
-  private Command createAddToCartCommand() {
+    /**
+     * Creates a command for adding the product to the cart.
+     *
+     * @return The command for adding the product to the cart.
+     */
+    private Command createAddToCartCommand() {
         return new Command() {
             @Override
             public String getName() {
@@ -130,18 +156,28 @@ public class ProductMenu extends SubMenu {
         };
     }
 
-
+    /**
+     * Checks if the buyer has already reviewed the product.
+     *
+     * @param buyer The buyer to check.
+     * @param product The product to check for reviews.
+     * @return True if the buyer has reviewed the product, false otherwise.
+     */
     private boolean hasBuyerReviewedProduct(Buyer buyer, Product product) {
-    List<UUID> buyerReviews = buyer.getReviews();
+        List<UUID> buyerReviews = buyer.getReviews();
 
-    return buyerReviews.stream()
-            .anyMatch(reviewId ->
-                    product.getReviews().stream()
-                            .anyMatch(productReview -> productReview.getId().equals(reviewId))
-            );
-}
+        return buyerReviews.stream()
+                .anyMatch(reviewId ->
+                        product.getReviews().stream()
+                                .anyMatch(productReview -> productReview.getId().equals(reviewId))
+                );
+    }
 
-
+    /**
+     * Creates a command for liking or unliking the product based on the current user's preference.
+     *
+     * @return The command for liking or unliking the product.
+     */
     private Command createLikeCommand() {
         final String[] commandName = {
             currentUser instanceof Buyer && ((Buyer) currentUser).getLikedProducts()
@@ -165,6 +201,11 @@ public class ProductMenu extends SubMenu {
         };
     }
 
+    /**
+     * Creates a command for adding a review to the product.
+     *
+     * @return The command for adding a review.
+     */
     private Command createAddReviewCommand() {
         Prompt reviewPrompt = new ReviewPrompt().createReviewPrompt();
 
@@ -191,29 +232,32 @@ public class ProductMenu extends SubMenu {
 
     }
 
-
+    /**
+     * Likes the product and provides feedback to the user.
+     */
    private void likeProduct() {
+        boolean liked = productController.addProductLike(currentUser.getId(), product.getId());
 
+        if (liked) {
+            System.out.println("Mention j'aime ajoutée avec succès!");
 
-    boolean liked = productController.addProductLike(currentUser.getId(), product.getId());
-
-    if (liked) {
-        System.out.println("Mention j'aime ajoutée avec succès!");
-
-    } else {
-        System.out.println("Impossible d'ajouter la mention j'aime. Veuillez réessayer.");
+        } else {
+            System.out.println("Impossible d'ajouter la mention j'aime. Veuillez réessayer.");
+        }
     }
-}
 
-private void unlikeProduct() {
+    /**
+     * Unlikes the product and provides feedback to the user.
+     */
+    private void unlikeProduct() {
 
-    boolean unliked = productController.removeProductLike(currentUser.getId(), product.getId());
+        boolean unliked = productController.removeProductLike(currentUser.getId(), product.getId());
 
-    if (unliked) {
-        System.out.println("Mention j'aime retirée avec succès.");
+        if (unliked) {
+            System.out.println("Mention j'aime retirée avec succès.");
 
-    } else {
-        System.out.println("Impossible de retirer la mention j'aime. Veuillez réessayer.");
+        } else {
+            System.out.println("Impossible de retirer la mention j'aime. Veuillez réessayer.");
+        }
     }
-}
 }

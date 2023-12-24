@@ -51,9 +51,9 @@ public class MainMenu {
   }
 
   /**
-   * Creates the submenu for user registration options.
+   * Creates a registration menu with options for buyer and seller registration.
    *
-   * @return The submenu for user registration.
+   * @return The registration menu.
    */
   private SubMenu createRegisterMenu() {
     SubMenu registerMenu = new SubMenu("S'inscrire");
@@ -63,9 +63,9 @@ public class MainMenu {
   }
 
   /**
-   * Creates the submenu for user login options.
+   * Creates a login menu with options for buyer and seller login.
    *
-   * @return The submenu for user login.
+   * @return The login menu.
    */
   private SubMenu createLoginMenu() {
     SubMenu loginMenu = new SubMenu("Se connecter");
@@ -75,17 +75,25 @@ public class MainMenu {
   }
 
   /**
-   * Initiates the application in guest mode.
-   *
-   * @return The command to continue as a guest user.
+   * Creates a command for continuing as a guest.
+   * @return The command for continuing as a guest.
    */
   private Command continueAsGuest() {
     return new Command() {
+
+      /**
+       * Gets the name of the command.
+       *
+       * @return The name of the command.
+       */
       @Override
       public String getName() {
         return "Continuer en tant qu'invité";
       }
 
+      /**
+       * Executes the registration command based on the provided account type.
+       */
       @Override
       public void execute() {
         GuestMenu guestMenu = new GuestMenu(userController, productController);
@@ -94,23 +102,31 @@ public class MainMenu {
     };
   }
 
-
   /**
-   * Handles user login functionality based on the specified account type.
+   * Creates a command for user login based on the account type.
    *
-   * @param accountType The type of account (Buyer/Seller).
-   * @return The command for user login based on the account type.
+   * @param accountType The type of account (buyer or seller).
+   * @return The command for user login.
    */
   private Command loginUser(AccountType accountType) {
     LoginPrompt loginPrompt = new LoginPrompt();
     return new Command() {
       private final String statefulName = accountType == AccountType.BUYER ? "Acheteur" : "Vendeur";
 
+      /**
+       * Gets the name of the command.
+       *
+       * @return The name of the command.
+       */
       @Override
       public String getName() {
         return statefulName;
       }
 
+      /**
+       * Executes the login command based on the account type and displays appropriate messages and navigates
+       * to the user menu if login is successful.
+       */
       @Override
       public void execute() {
         List<String> inputs = loginPrompt.createLoginPrompt().getValuesFromUser();
@@ -138,10 +154,10 @@ public class MainMenu {
   }
 
   /**
-   * Handles user registration based on the specified account type.
+   * Creates a command for user registration based on the account type.
    *
-   * @param accountType The type of account (Buyer/Seller).
-   * @return The command for user registration based on the account type.
+   * @param accountType The type of account (buyer or seller).
+   * @return The command for user registration.
    */
   private Command registerUser(AccountType accountType) {
     RegisterPrompt registerPrompt = new RegisterPrompt();
@@ -172,7 +188,9 @@ public class MainMenu {
   }
 
   /**
-   * Executes the main menu to handle user actions.
+
+   * Runs the main menu, allowing users to navigate through different options.
+   * This method initiates the execution of the main menu, enabling users to interact with the UniShop program.
    */
   public void run() {
     this.mainMenu.execute();

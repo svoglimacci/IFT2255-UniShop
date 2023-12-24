@@ -1,8 +1,17 @@
 package org.udem.unishop.utilities;
 
-public interface MenuComponent {
+/**
+ * Represents a component of a menu.
+ */
+  public interface MenuComponent {
 
-  void display();
+    /**
+     * Displays information about the menu component.
+     */
+    void display();
 
-  void execute();
-}
+    /**
+     * Executes the action associated with the menu component.
+     */
+    void execute();
+  }

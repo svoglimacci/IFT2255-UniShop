@@ -16,7 +16,7 @@ import org.udem.unishop.utilities.OrderState;
 import org.udem.unishop.utilities.SubMenu;
 
 /**
- * A page displaying and managing various metrics for a user.
+ * The MetricsPage class represents the metrics page of the current user.
  */
 public class MetricsPage {
 
@@ -26,12 +26,12 @@ public class MetricsPage {
   private final OrderController orderController;
 
   /**
-   * Constructs a MetricsPage object.
+   * Constructs a MetricsPage with the specified controllers and current user.
    *
-   * @param currentUser       The current user accessing the metrics page.
-   * @param userController    The controller managing user-related operations.
-   * @param productController The controller managing product-related operations.
-   * @param orderController   The controller managing order-related operations.
+   * @param currentUser The user for whom the metrics are displayed.
+   * @param userController The controller for user-related operations.
+   * @param productController The controller for product-related operations.
+   * @param orderController The controller for order-related operations.
    */
   public MetricsPage(User currentUser, UserController userController, ProductController productController, OrderController orderController) {
     this.currentUser = currentUser;
@@ -40,9 +40,11 @@ public class MetricsPage {
     this.orderController = orderController;
   }
 
-  /**
-   * Runs the metrics page, displaying and managing various metrics for the user.
-   */
+
+/**
+ * Runs the MetricsPage, displaying the chosen metrics for the current user.
+ */
+
   public void run() {
 
 
