@@ -13,10 +13,18 @@ import org.udem.unishop.models.UserList;
 import org.udem.unishop.services.UserService;
 import org.udem.unishop.utilities.AccountType;
 
+/**
+ * Controller class managing operations related to users.
+ */
 public class UserController {
 
   private final UserService userService;
 
+  /**
+   * Constructs a UserController object.
+   *
+   * @param userService The service handling user-related operations.
+   */
   public UserController(UserService userService) {
     this.userService = userService;
   }

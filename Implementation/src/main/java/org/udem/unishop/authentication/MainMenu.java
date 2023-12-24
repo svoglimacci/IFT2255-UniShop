@@ -17,9 +17,8 @@ import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.SubMenu;
 
 /**
- * The MainMenu class represents the main menu of UniShop that includes options for registration, login and
- * guest access.
- * <p> The main menu allows users to navigate through different options and interact with the UniShop system. </p>
+ * The MainMenu class represents the main menu of the application for user authentication and navigation.
+ * It provides options for user registration, login, and guest access, directing users to their respective menus based on their roles.
  */
 public class MainMenu {
 
@@ -30,11 +29,11 @@ public class MainMenu {
   private final OrderController orderController;
 
   /**
-   * Constructs a MainMenu with the specified controllers.
+   * Constructs a MainMenu instance for handling user authentication and navigation.
    *
-   * @param userController The controller for user-related operations.
-   * @param productController The controller for product-related operations.
-   * @param orderController The controller for order-related operations.
+   * @param userController    The controller handling user-related operations.
+   * @param productController The controller managing product-related functionalities.
+   * @param orderController   The controller managing order-related actions.
    */
   public MainMenu(UserController userController, ProductController productController, OrderController orderController) {
     this.userController = userController;
@@ -189,8 +188,9 @@ public class MainMenu {
   }
 
   /**
+
    * Runs the main menu, allowing users to navigate through different options.
-   * <p>This method initiates the execution of the main menu, enabling users to interact with the UniShop program. </p>
+   * This method initiates the execution of the main menu, enabling users to interact with the UniShop program.
    */
   public void run() {
     this.mainMenu.execute();

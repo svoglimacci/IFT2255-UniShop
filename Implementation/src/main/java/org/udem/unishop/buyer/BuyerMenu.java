@@ -14,6 +14,12 @@ import org.udem.unishop.utilities.Menu;
 import org.udem.unishop.utilities.MenuComponent;
 import org.udem.unishop.utilities.MenuItem;
 
+/**
+ * The BuyerMenu class represents the menu interface for a buyer in the online shopping system.
+ * It provides access to various functionalities such as managing notifications, viewing metrics,
+ * handling orders, managing followed users, modifying profile settings, and accessing the shopping cart.
+ * This menu integrates with controllers and user-related functionalities for seamless interaction.
+ */
 public class BuyerMenu {
 
     private final Menu buyerMenu;
@@ -24,7 +30,14 @@ public class BuyerMenu {
     private final Buyer currentUser;
 
 
-
+    /**
+     * Constructs a BuyerMenu instance.
+     *
+     * @param userController   The controller handling user-related operations.
+     * @param productController The controller managing product-related functionalities.
+     * @param currentUser      The current logged-in buyer user.
+     * @param orderController  The controller managing order-related actions.
+     */
     public BuyerMenu(UserController userController, ProductController productController, Buyer currentUser, OrderController orderController) {
         this.userController = userController;
         this.productController = productController;
@@ -43,7 +56,11 @@ public class BuyerMenu {
         buyerMenu.addMenuComponent(createOrdersMenu());
 
     }
-
+  /**
+   * Creates the notifications menu component.
+   *
+   * @return The menu component for managing notifications.
+   */
   private MenuComponent createNotificationsMenu() {
       return new MenuItem(new Command() {
   @Override
@@ -59,6 +76,11 @@ public class BuyerMenu {
       });
   }
 
+  /**
+   * Creates the metrics menu component.
+   *
+   * @return The menu component for viewing metrics.
+   */
   private MenuComponent createMetricsMenu() {
       return new MenuItem(new Command() {
   @Override
@@ -74,6 +96,11 @@ public class BuyerMenu {
       });
     }
 
+  /**
+   * Creates the orders menu component.
+   *
+   * @return The menu component for handling orders.
+   */
   private MenuComponent createOrdersMenu() {
     return new MenuItem(new Command() {
       @Override
@@ -90,6 +117,11 @@ public class BuyerMenu {
     });
   }
 
+  /**
+   * Creates the command for managing followed users.
+   *
+   * @return The command for managing followed users.
+   */
   private Command createFollowedMenu() {
         return new Command() {
             @Override
@@ -106,6 +138,11 @@ public class BuyerMenu {
         };
   }
 
+  /**
+   * Creates the command for modifying profile settings.
+   *
+   * @return The command for modifying profile settings.
+   */
   private Command createSettingsMenu() {
         return new Command() {
             @Override
@@ -121,6 +158,11 @@ public class BuyerMenu {
         };
   }
 
+  /**
+   * Creates the command for accessing the shopping cart.
+   *
+   * @return The command for accessing the shopping cart.
+   */
   private Command createShoppingCart() {
         return new Command() {
             @Override
@@ -138,6 +180,9 @@ public class BuyerMenu {
     }
 
 
+    /**
+     * Executes the buyer menu, initiating the interaction with the menu components.
+     */
     public void run() {
         buyerMenu.execute();
     }

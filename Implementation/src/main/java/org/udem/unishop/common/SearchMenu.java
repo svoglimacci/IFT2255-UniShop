@@ -15,6 +15,10 @@ import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.SearchType;
 import org.udem.unishop.utilities.SubMenu;
 
+/**
+ * The SearchMenu class generates a menu for performing various searches within the application.
+ * It provides options for searching products, users, and sellers based on different criteria.
+ */
 public class SearchMenu {
 
     private final SubMenu searchMenu;
@@ -22,10 +26,13 @@ public class SearchMenu {
     private final ProductController productController;
     private final User currentUser;
 
-
-
-
-
+    /**
+     * Constructs a SearchMenu instance with the necessary controllers and current user.
+     *
+     * @param userController     The controller for user-related functionalities.
+     * @param productController  The controller for product-related functionalities.
+     * @param currentUser        The current user accessing the search functionalities.
+     */
     public SearchMenu(UserController userController, ProductController productController, User currentUser) {
         this.userController = userController;
         this.productController = productController;
@@ -34,6 +41,11 @@ public class SearchMenu {
 
     }
 
+    /**
+     * Creates the search menu with various search options based on the current user's role.
+     *
+     * @return The generated search menu with different search commands based on user roles.
+     */
     private SubMenu createSearchMenu() {
         SubMenu searchMenu = new SubMenu("Rechercher");
         searchMenu.addMenuComponent(new MenuItem(createProductCatalog()));
@@ -55,6 +67,12 @@ public class SearchMenu {
        return searchMenu;
     }
 
+  /**
+   * Creates a command to search for a buyer among the followed users.
+   * This command constructs a UserCatalog with specific search parameters and executes it.
+   *
+   * @return A Command instance for searching a buyer among the followed users.
+   */
   private Command createSearchBuyerByFollowedCommand() {
     return new Command() {
       @Override
@@ -70,6 +88,12 @@ public class SearchMenu {
     };
   }
 
+  /**
+   * Creates a command to display the product catalog.
+   * This command constructs a ProductCatalog instance and executes it to display the catalog of products.
+   *
+   * @return A Command instance for displaying the product catalog.
+   */
   private Command createProductCatalog() {
         return new Command() {
             @Override
@@ -85,6 +109,13 @@ public class SearchMenu {
         };
     }
 
+    /**
+     * Creates a command to display the user catalog based on the given account type.
+     * This command constructs a UserCatalog instance and executes it to display the catalog of users based on the specified account type.
+     *
+     * @param accountType The type of account for which the catalog is generated (BUYER or SELLER).
+     * @return A Command instance for displaying the user catalog based on the account type.
+     */
     private Command createUserCatalog(AccountType accountType) {
         return new Command() {
             @Override
@@ -100,6 +131,12 @@ public class SearchMenu {
         };
     }
 
+        /**
+        * Creates a command to search for a buyer by username.
+        * This command utilizes a SearchPrompt to gather user input for the username, constructs a UserCatalog instance based on the provided username, and executes it to search for the buyer.
+        *
+        * @return A Command instance for searching a buyer by username.
+        */
         private Command createSearchBuyerByNameCommand() {
         SearchPrompt searchPrompt = new SearchPrompt();
         return new Command() {
@@ -120,6 +157,12 @@ public class SearchMenu {
         };
     }
 
+    /**
+     * Creates a command to search for a seller by business address.
+     * This command utilizes a SearchPrompt to gather user input for the business address, constructs a UserCatalog instance based on the provided address, and executes it to search for the seller.
+     *
+     * @return A Command instance for searching a seller by business address.
+     */
     private Command createSearchSellerByAddressCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
       return new Command() {
@@ -138,6 +181,12 @@ public class SearchMenu {
       };
     }
 
+    /**
+     * Creates a command to search for a seller by product type.
+     * This command uses a SearchPrompt to collect user input for the product type, constructs a UserCatalog instance based on the provided product type, and executes it to search for the seller.
+     *
+     * @return A Command instance for searching a seller by product type.
+     */
     private Command createSearchSellerByProductTypeCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
       return new Command() {
@@ -176,6 +225,12 @@ public class SearchMenu {
         };
     }
 
+  /**
+   * Creates a command to search for a product by price range.
+   * This command utilizes a SearchPrompt to collect user input for the price range, initializes a ProductCatalog instance based on the provided range, and executes it to search for the product.
+   *
+   * @return A Command instance for searching a product by price range.
+   */
   private Command createSearchProductByPriceCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
 
@@ -194,7 +249,12 @@ public class SearchMenu {
     };
     }
 
-
+  /**
+   * Creates a command to search for a product by model.
+   * This command utilizes a SearchPrompt to gather user input for the product model, initializes a ProductCatalog instance based on the provided model, and executes it to search for the product.
+   *
+   * @return A Command instance for searching a product by its model.
+   */
   private Command createSearchProductByModelCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
 
@@ -213,7 +273,12 @@ public class SearchMenu {
     };
     }
 
-
+  /**
+   * Creates a command to search for a product by model.
+   * This command utilizes a SearchPrompt to gather user input for the product model, initializes a ProductCatalog instance based on the provided model, and executes it to search for the product.
+   *
+   * @return A Command instance for searching a product by its model.
+   */
   private Command createSearchProductByBrandCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
 
@@ -232,6 +297,12 @@ public class SearchMenu {
     };
   }
 
+  /**
+   * Creates a command to search for a product by category.
+   * This method initializes a SearchPrompt to gather user input for the product category, utilizes a ProductCatalog instance with the provided category information, and executes it to search for the product.
+   *
+   * @return A Command instance for searching a product by its category.
+   */
   private Command createSearchProductByCategoryCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
 
@@ -250,6 +321,12 @@ public class SearchMenu {
     };
   }
 
+  /**
+   * Creates a command to search for a product by name.
+   * This method initializes a SearchPrompt to gather user input for the product name, utilizes a ProductCatalog instance with the provided name information, and executes it to search for the product.
+   *
+   * @return A Command instance for searching a product by its name.
+   */
   private Command createSearchProductByNameCommand() {
       SearchPrompt searchPrompt = new SearchPrompt();
 
@@ -268,7 +345,11 @@ public class SearchMenu {
     };
   }
 
-
+    /**
+     * Retrieves the generated search menu.
+     *
+     * @return The SubMenu instance representing the generated search menu with various search options.
+     */
     public SubMenu getSearchMenu() {
         return searchMenu;
     }

@@ -13,7 +13,9 @@ import org.udem.unishop.models.Seller;
 import org.udem.unishop.models.User;
 import org.udem.unishop.utilities.SubMenu;
 
-
+/**
+ * A menu to manage and display various metrics for a user.
+ */
 public class MetricsOptionsMenu extends SubMenu {
 
 
@@ -21,6 +23,12 @@ public class MetricsOptionsMenu extends SubMenu {
 
   private final UserController userController;
 
+  /**
+   * Constructor for the MetricsOptionsMenu class.
+   *
+   * @param currentUser   The current user accessing the metrics menu.
+   * @param userController The user controller managing user data.
+   */
   public MetricsOptionsMenu(User currentUser, UserController userController) {
     super("Métriques");
     this.userController = userController;
@@ -32,6 +40,11 @@ public class MetricsOptionsMenu extends SubMenu {
   public void run() {
   }
 
+  /**
+   * Creates a list of metrics to be displayed and managed.
+   *
+   * @param currentUser The current user accessing the metrics menu.
+   */
   private void createMetricsList(
       User currentUser) {
     Scanner scanner = new Scanner(System.in);

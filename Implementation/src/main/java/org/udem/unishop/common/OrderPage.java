@@ -9,6 +9,10 @@ import org.udem.unishop.models.Product;
 import org.udem.unishop.models.Seller;
 import org.udem.unishop.models.User;
 
+/**
+ * The OrderPage class represents a page displaying details of a specific order.
+ * It provides methods to display order information and initiate actions related to the order.
+ */
 public class OrderPage {
 
   private final Order order;
@@ -17,6 +21,15 @@ public class OrderPage {
   private final OrderController orderController;
   private final User currentUser;
 
+  /**
+   * Constructs an OrderPage object with the required controllers and current user.
+   *
+   * @param order            The order to be displayed on the page.
+   * @param productController The controller for product-related functionalities.
+   * @param userController    The controller for user-related functionalities.
+   * @param orderController   The controller for order-related functionalities.
+   * @param currentUser       The current user accessing the order page.
+   */
   public OrderPage(Order order, ProductController productController, UserController userController, OrderController orderController, User currentUser) {
     this.order = order;
     this.productController = productController;
@@ -25,6 +38,11 @@ public class OrderPage {
     this.currentUser = currentUser;
   }
 
+  /**
+   * Displays the details of the order, including its ID, total price (for buyers),
+   * status, and the list of products included in the order.
+   * Initiates the execution of the OrderItemMenu for further actions on the order.
+   */
   public void run() {
     System.out.println("Commande #" + order.getId());
     if (currentUser instanceof Buyer) {
