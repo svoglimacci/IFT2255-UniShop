@@ -9,11 +9,18 @@ import org.udem.unishop.models.User;
 import org.udem.unishop.services.ProductService;
 import org.udem.unishop.utilities.ProductType;
 
-
+/**
+ * Controller class managing operations related to products.
+ */
 public class ProductController {
 
   private final ProductService productService;
 
+  /**
+   * Constructs a ProductController object.
+   *
+   * @param productService The service handling product-related operations.
+   */
   public ProductController(ProductService productService) {
     this.productService = productService;
   }

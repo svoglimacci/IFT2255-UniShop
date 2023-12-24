@@ -9,18 +9,36 @@ import org.udem.unishop.models.Order;
 import org.udem.unishop.models.User;
 import org.udem.unishop.services.OrderService;
 
+/**
+ * Controller class managing operations related to orders.
+ */
 public class OrderController {
 
     private final OrderService orderService;
 
+  /**
+   * Constructs an OrderController object.
+   *
+   * @param orderService The service handling order-related operations.
+   */
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
+  /**
+   * Confirms delivery of an order.
+   *
+   * @param order The order to confirm delivery for.
+   */
   public  void confirmDelivery(Order order) {
     orderService.confirmDelivery(order);
   }
 
+  /**
+   * Confirms the return of an order.
+   *
+   * @param order The order to confirm return for.
+   */
   public void confirmReturn(Order order) {
     orderService.confirmIssueReturn(order);
   }
