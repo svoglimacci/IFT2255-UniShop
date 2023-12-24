@@ -6,8 +6,18 @@ import org.udem.unishop.utilities.SearchType;
 import org.udem.unishop.validation.PriceValidator;
 import org.udem.unishop.validation.StringValidator;
 
+/**
+ * The SearchPrompt class generates prompt components based on the specified search type.
+ * It creates prompts for various search criteria used within the application.
+ */
 public class SearchPrompt {
 
+  /**
+   * Creates a prompt based on the provided search type.
+   *
+   * @param searchType The type of search for which the prompt is generated.
+   * @return The Prompt instance with prompt components based on the given search type.
+   */
   public Prompt createSearchPrompt(SearchType searchType) {
 
     Prompt searchPrompt = new Prompt();

@@ -16,6 +16,10 @@ import org.udem.unishop.utilities.Menu;
 import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.SubMenu;
 
+/**
+ * The MainMenu class represents the main menu of the application for user authentication and navigation.
+ * It provides options for user registration, login, and guest access, directing users to their respective menus based on their roles.
+ */
 public class MainMenu {
 
   private final Menu mainMenu;
@@ -24,6 +28,13 @@ public class MainMenu {
 
   private final OrderController orderController;
 
+  /**
+   * Constructs a MainMenu instance for handling user authentication and navigation.
+   *
+   * @param userController    The controller handling user-related operations.
+   * @param productController The controller managing product-related functionalities.
+   * @param orderController   The controller managing order-related actions.
+   */
   public MainMenu(UserController userController, ProductController productController, OrderController orderController) {
     this.userController = userController;
     this.productController = productController;
@@ -39,6 +50,11 @@ public class MainMenu {
     this.mainMenu.addMenuComponent(new MenuItem(continueAsGuest()));
   }
 
+  /**
+   * Creates the submenu for user registration options.
+   *
+   * @return The submenu for user registration.
+   */
   private SubMenu createRegisterMenu() {
     SubMenu registerMenu = new SubMenu("S'inscrire");
     registerMenu.addMenuComponent(new MenuItem(registerUser(AccountType.BUYER)));
@@ -46,6 +62,11 @@ public class MainMenu {
     return registerMenu;
   }
 
+  /**
+   * Creates the submenu for user login options.
+   *
+   * @return The submenu for user login.
+   */
   private SubMenu createLoginMenu() {
     SubMenu loginMenu = new SubMenu("Se connecter");
     loginMenu.addMenuComponent(new MenuItem(loginUser(AccountType.BUYER)));
@@ -53,6 +74,11 @@ public class MainMenu {
     return loginMenu;
   }
 
+  /**
+   * Initiates the application in guest mode.
+   *
+   * @return The command to continue as a guest user.
+   */
   private Command continueAsGuest() {
     return new Command() {
       @Override
@@ -68,6 +94,13 @@ public class MainMenu {
     };
   }
 
+
+  /**
+   * Handles user login functionality based on the specified account type.
+   *
+   * @param accountType The type of account (Buyer/Seller).
+   * @return The command for user login based on the account type.
+   */
   private Command loginUser(AccountType accountType) {
     LoginPrompt loginPrompt = new LoginPrompt();
     return new Command() {
@@ -104,6 +137,12 @@ public class MainMenu {
     };
   }
 
+  /**
+   * Handles user registration based on the specified account type.
+   *
+   * @param accountType The type of account (Buyer/Seller).
+   * @return The command for user registration based on the account type.
+   */
   private Command registerUser(AccountType accountType) {
     RegisterPrompt registerPrompt = new RegisterPrompt();
     return new Command() {
@@ -132,6 +171,9 @@ public class MainMenu {
     };
   }
 
+  /**
+   * Executes the main menu to handle user actions.
+   */
   public void run() {
     this.mainMenu.execute();
   }

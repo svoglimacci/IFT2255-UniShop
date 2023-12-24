@@ -14,6 +14,12 @@ import org.udem.unishop.utilities.Command;
 import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.OrderState;
 import org.udem.unishop.utilities.SubMenu;
+
+/**
+ * The OrderItemMenu class represents a menu for managing individual orders within the online shopping system.
+ * It allows users to perform various actions based on the order status, such as confirming delivery, reporting issues,
+ * initiating returns or exchanges, and more.
+ */
 public class OrderItemMenu extends SubMenu {
 
   private final Order order;
@@ -26,6 +32,15 @@ public class OrderItemMenu extends SubMenu {
 
   private final User currentUser;
 
+  /**
+   * Constructs an OrderItemMenu instance for managing actions related to a specific order.
+   *
+   * @param order             The order being managed.
+   * @param productController The controller managing product-related functionalities.
+   * @param userController    The controller handling user-related operations.
+   * @param orderController   The controller managing order-related actions.
+   * @param currentUser       The current user interacting with the order menu.
+   */
   public OrderItemMenu(Order order, ProductController productController, UserController userController, OrderController orderController, User currentUser) {
     super("Produits");
     this.order = order;
@@ -37,6 +52,9 @@ public class OrderItemMenu extends SubMenu {
     initializeMenu();
   }
 
+  /**
+   * Initializes the menu components based on the order's status and the current user type (Buyer/Seller).
+   */
   private void initializeMenu() {
     if(currentUser instanceof Buyer) {
       Command confirmDeliveryCommand = createConfirmDeliveryCommand();
@@ -103,6 +121,11 @@ public class OrderItemMenu extends SubMenu {
 
     }
 
+  /**
+   * Creates a command to show the delivery status for replacement products.
+   *
+   * @return The command for showing the delivery status of replacement products.
+   */
   private Command createShowDeliveryCommand() {
     return new Command() {
       @Override
@@ -118,6 +141,11 @@ public class OrderItemMenu extends SubMenu {
     };
   }
 
+  /**
+   * Creates a command to display the issue associated with the order.
+   *
+   * @return The command for displaying the issue associated with the order.
+   */
   private Command createShowIssueCommand() {
 
     IssuePage issuePage = new IssuePage(order, productController, userController,
@@ -137,6 +165,11 @@ public class OrderItemMenu extends SubMenu {
 
   }
 
+  /**
+   * Creates a command to modify the order's status.
+   *
+   * @return The command for modifying the order's status.
+   */
   private Command createModifyOrderCommand() {
     return new Command() {
       @Override
@@ -152,6 +185,11 @@ public class OrderItemMenu extends SubMenu {
     };
   }
 
+  /**
+   * Creates a command to confirm the delivery of the order.
+   *
+   * @return The command for confirming the delivery of the order.
+   */
   private Command createConfirmDeliveryCommand() {
     return new Command() {
       @Override
@@ -167,6 +205,11 @@ public class OrderItemMenu extends SubMenu {
     };
   }
 
+  /**
+   * Creates a command to report an issue with the order.
+   *
+   * @return The command for reporting an issue with the order.
+   */
   private Command createReportProblemCommand() {
     ReportPrompt reportPrompt = new ReportPrompt();
     return new Command() {
@@ -184,9 +227,12 @@ public class OrderItemMenu extends SubMenu {
     };
   }
 
-
-
-
+  /**
+   * Creates a command to handle returning or exchanging an order.
+   *
+   * @param isExchange Indicates whether the action is an exchange or return.
+   * @return The command for returning or exchanging an order.
+   */
   private Command createReturnOrderCommand(boolean isExchange) {
 
     return new Command() {
