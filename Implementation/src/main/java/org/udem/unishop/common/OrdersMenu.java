@@ -10,6 +10,10 @@ import org.udem.unishop.utilities.Command;
 import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.utilities.SubMenu;
 
+/**
+ * The OrdersMenu class generates a menu displaying a list of orders for the current user.
+ * It allows users to view their orders and access detailed information about each order.
+ */
 public class OrdersMenu {
 
   private final SubMenu ordersMenu;
@@ -20,6 +24,14 @@ public class OrdersMenu {
   private final OrderController orderController;
   private final User currentUser;
 
+  /**
+   * Constructs an OrdersMenu object with the necessary controllers and current user.
+   *
+   * @param userController    The controller for user-related functionalities.
+   * @param productController The controller for product-related functionalities.
+   * @param orderController   The controller for order-related functionalities.
+   * @param currentUser       The current user accessing the orders menu.
+   */
   public OrdersMenu(UserController userController, ProductController productController, OrderController orderController, User currentUser) {
     this.userController = userController;
     this.productController = productController;
@@ -30,6 +42,10 @@ public class OrdersMenu {
 
   }
 
+  /**
+   * Initiates the execution of the orders menu.
+   * Displays the list of orders and executes the selected order's action when prompted.
+   */
   public void run() {
     ordersMenu.execute();
   }

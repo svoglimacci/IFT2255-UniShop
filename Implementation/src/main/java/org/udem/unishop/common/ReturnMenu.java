@@ -20,7 +20,10 @@ import org.udem.unishop.utilities.MenuItem;
 import org.udem.unishop.models.Product;
 import java.util.UUID;
 
-
+/**
+ * The ReturnMenu class generates a menu for return or exchange of items in an order for a buyer.
+ * It handles the selection of items to be returned or exchanged and the execution of respective actions.
+ */
 public class ReturnMenu {
 
   private final SubMenu returnMenu;
@@ -30,6 +33,16 @@ public class ReturnMenu {
 
   private final Order order;
 
+  /**
+   * Constructs a ReturnMenu object to facilitate the process of returning or exchanging items in an order for a buyer.
+   *
+   * @param currentUser     The current buyer initiating the return or exchange process.
+   * @param order           The order for which the return or exchange is being initiated.
+   * @param orderController The controller handling order-related actions.
+   * @param userController  The controller managing user-related operations.
+   * @param productController The controller responsible for product-related functionalities.
+   * @param isExchange      A boolean indicating whether the action is an exchange (true) or a return (false).
+   */
   public ReturnMenu(Buyer currentUser, Order order, OrderController orderController, UserController userController, ProductController productController, boolean isExchange) {
     this.currentUser = currentUser;
     this.order = order;
@@ -44,6 +57,14 @@ public class ReturnMenu {
 
   }
 
+  /**
+   * Creates a list of items for return or exchange within an order based on user input.
+   *
+   * @param orderController  The controller managing order-related actions.
+   * @param userController   The controller handling user-related operations.
+   * @param productController The controller responsible for product-related functionalities.
+   * @param order            The order for which items are being selected for return or exchange.
+   */
   private void createReturnItemList(OrderController orderController, UserController userController,
       ProductController productController, Order order) {
     Scanner scanner = new Scanner(System.in);
@@ -114,6 +135,15 @@ do {
 
   }
 
+  /**
+   * Creates a list of items for exchange within an order based on user input.
+   *
+   * @param orderController    The controller managing order-related actions.
+   * @param userController     The controller handling user-related operations.
+   * @param productController  The controller responsible for product-related functionalities.
+   * @param order              The order for which items are being selected for exchange.
+   * @param returnItems        The items selected for return in exchange operations.
+   */
   private void createExchangeItemList(OrderController orderController, UserController userController, ProductController productController, Order order, HashMap<UUID, List<UUID>> returnItems) {
         Scanner scanner = new Scanner(System.in);
 int input;
