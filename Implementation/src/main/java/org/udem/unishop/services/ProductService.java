@@ -139,7 +139,7 @@ public class ProductService {
     double price = Double.parseDouble(inputs.get(3));
     int points = Integer.parseInt(inputs.get(4));
     OfficeEquipment newOfficeEquipment = new OfficeEquipment(inputs.get(0), inputs.get(1), instances, price,
-        points, inputs.get(5), inputs.get(6), inputs.get(7), inputs.get(9));
+        points, inputs.get(5), inputs.get(6), inputs.get(7), inputs.get(8));
     newOfficeEquipment.setSellerId(userId);
     userService.addProductToSeller(userService.getUserById(userId), newOfficeEquipment.getId());
     return productRepository.save(newOfficeEquipment);

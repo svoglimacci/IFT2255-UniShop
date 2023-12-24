@@ -59,14 +59,27 @@ public class ProductMenu extends SubMenu {
 
         if (currentUser instanceof Buyer) {
             Command likeCommand = createLikeCommand();
-            Command addReviewCommand = createAddReviewCommand();
+            if(hasBuyerReviewedProduct((Buyer) currentUser, product)) {
+              System.out.println("Vous avez déjà évalué ce produit.");
+            } else {
+              if(currentUser.getProductsIds().contains(product.getId())) {
+                Command addReviewCommand = createAddReviewCommand();
+                addMenuComponent(new MenuItem(addReviewCommand));
+              } else {
+                System.out.println("Vous devez acheter ce produit avant de pouvoir l'évaluer.");
+              }
+            }
+
             Command addToCartCommand = createAddToCartCommand();
             addMenuComponent(new MenuItem(likeCommand));
-            addMenuComponent(new MenuItem(addToCartCommand));
-
-            if (!hasBuyerReviewedProduct((Buyer) currentUser, product)) {
-                addMenuComponent(new MenuItem(addReviewCommand));
+            if(product.getQuantity() > 0) {
+              addMenuComponent(new MenuItem(addToCartCommand));
+            } else {
+              System.out.println("Ce produit est en rupture de stock.");
             }
+
+
+
         }
     }
 
@@ -133,7 +146,7 @@ public class ProductMenu extends SubMenu {
      *
      * @return The command for adding the product to the cart.
      */
-    private Command createAddToCartCommand() {
+  private Command createAddToCartCommand() {
         return new Command() {
             @Override
             public String getName() {
@@ -144,6 +157,10 @@ public class ProductMenu extends SubMenu {
             public void execute() {
                 Prompt quantityPrompt = new QuantityPrompt().createQuantityPrompt();
                 String input = quantityPrompt.getValuesFromUser().get(0);
+                if(Integer.parseInt(input) > product.getInstances().size()) {
+                  System.out.println("Vous ne pouvez pas ajouter plus de produits que ce qui est disponible.");
+                  return;
+                }
                 boolean added = userController.addItemToCart(currentUser, product, input);
 
                 if (added) {
@@ -190,12 +207,12 @@ public class ProductMenu extends SubMenu {
 
             @Override
             public void execute() {
-                if (commandName[0].equals("Like")) {
+                if (commandName[0].equals("Ajouter une mention j'aime")) {
                     likeProduct();
-                    commandName[0] = "Unlike";
+                    commandName[0] = "Retirer la mention j'aime";
                 } else {
                     unlikeProduct();
-                    commandName[0] = "Like";
+                    commandName[0] = "Ajouter une mention j'aime";
                 }
             }
         };
