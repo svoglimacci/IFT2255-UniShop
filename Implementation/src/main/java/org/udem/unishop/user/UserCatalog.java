@@ -18,6 +18,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * The UserCatalog class represents a catalog of users with various filtering options.
+ * It provides functionality to display a list of users and their associated information through a menu interface.
+ */
 public class UserCatalog {
 
     private final SubMenu userCatalog;
@@ -25,6 +29,14 @@ public class UserCatalog {
     private final AccountType accountType;
     private final Set<UserPage> userPages = new HashSet<>();
 
+    /**
+     * Constructs a UserCatalog with the specified controllers, current user, and account type.
+     *
+     * @param userController The UserController instance.
+     * @param productController The ProductController instance.
+     * @param currentUser The currently logged-in user.
+     * @param accountType The account type of the users to be displayed.
+     */
     public UserCatalog(UserController userController, ProductController productController,
                        User currentUser, AccountType accountType) {
         this.currentUser = currentUser;
@@ -33,14 +45,35 @@ public class UserCatalog {
         createUserList(productController, userController);
     }
 
-    public UserCatalog(UserController userController, ProductController productController, User currentUser, AccountType accountType, SearchType searchType, String searchValue) {
+    /**
+     * Constructor for UserCatalog class with the specified controllers, current user, account type, search type
+     * and search value.
+     *
+     * @param userController The UserController instance.
+     * @param productController The ProductController instance.
+     * @param currentUser The currently logged-in user.
+     * @param accountType The account type of the users to be displayed.
+     * @param searchType The type of search to perform in the user catalog.
+     * @param searchValue The value used for filtering users based on the search type.
+     */
+    public UserCatalog(UserController userController, ProductController productController, User currentUser, AccountType
+            accountType, SearchType searchType, String searchValue) {
         this.currentUser = currentUser;
         this.accountType = accountType;
         this.userCatalog = new SubMenu("Catalogue d'utilisateurs");
         createFilteredUserList(productController, userController, searchType, searchValue);
     }
 
-    private void createFilteredUserList(ProductController productController, UserController userController, SearchType searchType, String searchValue) {
+    /**
+     * Creates a filtered list of users based on the specified search criteria and adds user pages to the catalog.
+     *
+     * @param productController The ProductController instance.
+     * @param userController The UserController instance.
+     * @param searchType The type of search to perform in the user catalog.
+     * @param searchValue The value used for filtering users based on the search type.
+     */
+    private void createFilteredUserList(ProductController productController, UserController userController,
+                                        SearchType searchType, String searchValue) {
         if(searchValue != null) {
             searchValue = searchValue.toLowerCase();
         }
@@ -95,10 +128,19 @@ public class UserCatalog {
         }
     }
 
+    /**
+     * Executes the user catalog, displaying the menu and allowing user interaction.
+     */
     public void run() {
         userCatalog.execute();
     }
 
+    /**
+     * Creates a list of users based on the account type and adds user pages to the catalog.
+     *
+     * @param productController The ProductController instance.
+     * @param userController    The UserController instance.
+     */
     private void createUserList(ProductController productController, UserController userController) {
         UserList userList = accountType == AccountType.BUYER ? userController.getBuyers() : userController.getSellers();
 
@@ -107,6 +149,13 @@ public class UserCatalog {
         }
     }
 
+    /**
+     * Adds a user page to the catalog if it does not already exist and the user is not the current user.
+     *
+     * @param user The User instance for which to create a user page.
+     * @param productController The ProductController instance.
+     * @param userController The UserController instance.
+     */
     private void addUserPage(User user, ProductController productController, UserController userController) {
         UserPage userPage = new UserPage(user, productController, userController, currentUser);
 

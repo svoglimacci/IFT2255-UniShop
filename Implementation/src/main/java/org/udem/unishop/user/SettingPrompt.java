@@ -8,8 +8,18 @@ import org.udem.unishop.validation.PasswordValidator;
 import org.udem.unishop.validation.PhoneValidator;
 import org.udem.unishop.validation.StringValidator;
 
+/**
+ * Utility class for creating prompts based on the specified SettingType.
+ */
 public class SettingPrompt {
 
+  /**
+   * Creates a prompt based on the specified SettingType.
+   *
+   * @param settingType The type of setting for which to create the prompt.
+   * @return A prompt configured for the specified setting type.
+   * @throws IllegalArgumentException if the provided setting type is unsupported.
+   */
   public Prompt createSettingPrompt(SettingType settingType) {
 
     Prompt settingPrompt = new Prompt();

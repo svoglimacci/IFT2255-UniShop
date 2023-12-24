@@ -17,6 +17,10 @@ import org.udem.unishop.utilities.ProductType;
 import org.udem.unishop.utilities.SearchType;
 import org.udem.unishop.utilities.SubMenu;
 
+/**
+ * The ProductCatalog class represents a catalog of products, providing functionality to display and filter products
+ * based on different search criteria.
+ */
 public class ProductCatalog {
 
   private final SubMenu productCatalog;
@@ -25,7 +29,14 @@ public class ProductCatalog {
 
   private final Set<ProductPage> productPages = new HashSet<>();
 
-
+  /**
+   * Constructs a ProductCatalog with the specified controllers and current user, initializing
+   * the product catalog SubMenu and creating the product list.
+   *
+   * @param userController The UserController instance for managing users.
+   * @param productController The ProductController instance for managing products.
+   * @param currentUser The current user accessing the catalog.
+   */
   public ProductCatalog(UserController userController, ProductController productController,
       User currentUser) {
     this.currentUser = currentUser;
@@ -34,6 +45,17 @@ public class ProductCatalog {
     createProductList(productController, userController);
   }
 
+  /**
+   * Constructs a ProductCatalog with the specified controllers, current user, and search criteria,
+   * initializing the product catalog SubMenu and creating a filtered product list based on the
+   * provided search parameters.
+   *
+   * @param userController The UserController instance for managing users.
+   * @param productController The ProductController instance for managing products.
+   * @param currentUser The current user accessing the catalog.
+   * @param searchType The type of search criteria to apply.
+   * @param searchValue The list of search values corresponding to the searchType.
+   */
   public ProductCatalog(UserController userController, ProductController productController,
       User currentUser, SearchType searchType, List<String> searchValue) {
     this.currentUser = currentUser;
@@ -42,7 +64,14 @@ public class ProductCatalog {
     createFilteredProductList(productController, userController, searchType, searchValue);
   }
 
-
+  /**
+   * Creates a filtered list of products based on the specified search criteria and values.
+   *
+   * @param productController The ProductController instance for managing products.
+   * @param userController The UserController instance for managing users.
+   * @param searchType The type of search criteria to apply.
+   * @param searchValue The list of search values corresponding to the searchType.
+   */
   private void createFilteredProductList(ProductController productController,
       UserController userController, SearchType searchType, List<String> searchValue) {
 
@@ -109,11 +138,20 @@ public class ProductCatalog {
     }
   }
 
+  /**
+   * Runs the product catalog, allowing users to view and interact with the displayed products.
+   */
   public void run() {
     productCatalog.execute();
   }
 
-
+  /**
+   * Creates the initial list of products for the catalog by retrieving all available products
+   * from the ProductController and adding corresponding ProductPages to the catalog.
+   *
+   * @param productController The ProductController instance for managing products.
+   * @param userController The UserController instance for managing users.
+   */
   private void createProductList(ProductController productController,
       UserController userController) {
     ProductList productList = productController.getProducts();
@@ -124,6 +162,14 @@ public class ProductCatalog {
     }
   }
 
+  /**
+   * Adds a ProductPage to the catalog for the specified product, ensuring no duplicate pages
+   * are added.
+   *
+   * @param product The product for which to create a ProductPage.
+   * @param productController The ProductController instance for managing products.
+   * @param userController The UserController instance for managing users.
+   */
   private void addProductPage(Product product, ProductController productController,
       UserController userController) {
     ProductPage productPage = new ProductPage(product, productController, userController,

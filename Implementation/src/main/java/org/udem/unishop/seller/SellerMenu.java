@@ -17,6 +17,9 @@ import org.udem.unishop.utilities.ProductType;
 import org.udem.unishop.utilities.SubMenu;
 import org.udem.unishop.utilities.Command;
 
+/**
+ * Reperesents the menu for sellers with various features
+ */
 public class SellerMenu {
 
     private final Menu sellerMenu;
@@ -30,6 +33,13 @@ public class SellerMenu {
     private final Seller currentUser;
 
 
+    /**
+     * Constructs a SellerMenu for the specified sller.
+     * @param userController The user controller.
+     * @param productController The product controller.
+     * @param orderController The order controller.
+     * @param currentUser The currect seller user.
+     */
     public SellerMenu(UserController userController, ProductController productController, OrderController orderController, Seller currentUser) {
         this.userController = userController;
         this.productController = productController;
@@ -46,56 +56,97 @@ public class SellerMenu {
         sellerMenu.addMenuComponent(createNotificationsMenu());
     }
 
-  private MenuComponent createOrdersMenu() {
-    return new MenuItem(new Command() {
-      @Override
-      public String getName() {
-        return "Mes commandes";
+    /**
+     * Creates a menu component for handling seller orders.
+     *
+     * @return The created menu component.
+     */
+    private MenuComponent createOrdersMenu() {
+        return new MenuItem(new Command() {
+          @Override
+          public String getName() {
+            return "Mes commandes";
+          }
+
+          @Override
+          public void execute() {
+            OrdersMenu ordersMenu = new OrdersMenu(userController, productController, orderController,
+                currentUser);
+            ordersMenu.run();
+          }
+        });
       }
 
-      @Override
-      public void execute() {
-        OrdersMenu ordersMenu = new OrdersMenu(userController, productController, orderController,
-            currentUser);
-        ordersMenu.run();
-      }
-    });
-  }
-
-  public void run() {
+    /**
+     * Runs the seller menu.
+     */
+    public void run() {
         sellerMenu.execute();
     }
 
-      private MenuComponent createNotificationsMenu() {
+    /**
+     * Creates a menu component for handling seller notifications.
+     *
+     * @return The created menu component.
+     */
+    private MenuComponent createNotificationsMenu() {
       return new MenuItem(new Command() {
-  @Override
+          /**
+           * Gets the command name for user notifications.
+           *
+           * @return The formatted command name.
+           */
+          @Override
           public String getName() {
               return "Mes notifications" + (!currentUser.getNotifications().isEmpty() ? " (" + currentUser.getNotifications().size() + ")" : "");
           }
 
+          /**
+           * Executes the command related to user notifications.
+           * It initiates the display and interaction with the notifications menu for the current user.
+           */
           @Override
           public void execute() {
               NotificationsMenu notificationsMenu = new NotificationsMenu(userController, productController, currentUser);
               notificationsMenu.run();
           }
       });
-  }
+    }
 
-  private MenuComponent createMetricsMenu() {
-      return new MenuItem(new Command() {
-  @Override
-          public String getName() {
+    /**
+     * Creates a menu component for handling seller metrics.
+     *
+     * @return The created menu component.
+     */
+    private MenuComponent createMetricsMenu() {
+        return new MenuItem(new Command() {
+            /**
+             * Gets the command name for displaying user metrics.
+             *
+             * @return The string "Mes métriques" representing the command name.
+             */
+            @Override
+            public String getName() {
               return "Mes métriques";
           }
 
-          @Override
-          public void execute() {
-            MetricsPage metricsPage = new MetricsPage(currentUser, userController, productController, orderController);
-            metricsPage.run();
-          }
-      });
+            /**
+             * Executes the command to display user metrics.
+             * It creates an instance of MetricsPage and runs it to show the metrics for the current user.
+             */
+              @Override
+              public void execute() {
+                MetricsPage metricsPage = new MetricsPage(currentUser, userController, productController, orderController);
+                metricsPage.run();
+              }
+        });
     }
 
+    /**
+     * Creates a submenu for adding a product with different types.
+     *
+     * @return The created submenu.
+     */
     private SubMenu createAddProductMenu() {
         SubMenu addProductMenu = new SubMenu("Ajouter un produit");
 
@@ -108,14 +159,28 @@ public class SellerMenu {
         return addProductMenu;
     }
 
+    /**
+     * Creates a command for adding a product of the specified type.
+     *
+     * @param productType The type of product to add.
+     * @return The created command.
+     */
     private Command createAddProductCommand(ProductType productType) {
         ProductPrompt productPrompt = new ProductPrompt();
         return new Command() {
+            /**
+             * Gets the display name for a specific product type.
+             *
+             * @return The display name of the associated product type.
+             */
             @Override
             public String getName() {
                 return productType.displayName();
             }
 
+            /**
+             * Executes the command to add a product of a specific type.
+             */
             @Override
             public void execute() {
                 List<String> inputs = productPrompt.createProductPrompt(productType).getValuesFromUser();
