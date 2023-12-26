@@ -1,0 +1,13 @@
+org.udem.unishop
+org.udem.unishop.authentication
+org.udem.unishop.buyer
+org.udem.unishop.common
+org.udem.unishop.controllers
+org.udem.unishop.models
+org.udem.unishop.product
+org.udem.unishop.repositories
+org.udem.unishop.seller
+org.udem.unishop.services
+org.udem.unishop.user
+org.udem.unishop.utilities
+org.udem.unishop.validation
